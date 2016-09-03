@@ -19,4 +19,4 @@
 
 WEB 2016/09/03
 
-Learing git
+Learning git
