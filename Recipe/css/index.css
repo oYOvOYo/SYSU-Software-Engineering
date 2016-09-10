@@ -4,7 +4,7 @@
 body {
 	background-image:url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/cork-wallet.png");
 	background-repeat:repeat;
-	font-family: "Century Gothic", Futura, Verdana, sans-serif;
+	font-family: Futura, Verdana, sans-serif;
 }
 h1 {
 	color: RGB(128,128,128);
@@ -21,7 +21,7 @@ a.pie {
 	display: block;
 	width: 300px;
 	height: 60px;
-	margin: 50px auto 350px	auto ;
+	margin: 20px auto 20px	auto ;
 	background: RGB(200,200,200);
 	border-radius: 15px;
 	box-shadow: 0 5px 0px 0 RGB(180,180,180);
@@ -35,7 +35,7 @@ a.mail {
 	display: block;
 	width: 200px;
 	height: 40px;
-	margin: 0px auto;
+	margin: 10px auto;
 	background: RGB(200,200,200);
 	border-radius: 15px;
 	box-shadow: 0 5px 0px 0 RGB(180,180,180);
