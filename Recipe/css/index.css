@@ -10,7 +10,16 @@ h1 {
 	color: RGB(128,128,128);
 	text-align:center;
 	font-size: 60px;
-	margin-top: 120px;
+	margin: 20px auto 20px	auto ;
+}
+.pic {
+	display:table-cell;
+	vertical-align:middle;
+	width: 480px;
+	height: 320px;
+	margin: 50px auto;
+	border-radius: 25px;
+	box-shadow: 0 5px 0px 0 RGB(200,200,180);
 }
 a.pie {
 	text-align: center;
