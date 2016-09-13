@@ -1,30 +1,57 @@
 #include "hex_viewer.h"
 
-int hex_viewer(char* str) {
-    FILE* fp = fopen(str, "r");
-    if (!fp) {
+#define row_length 16
+
+int hex_viewer(char *str)
+{
+    FILE *fp = fopen(str, "r");
+    if (!fp)
+    {
         perror("File opening failed");
         return EXIT_FAILURE;
     }
-    
-    int c;
-    int  num = 0;
-    while ((c = fgetc(fp))!= EOF) {
-        if(0 == num%16 ) {
-            printf("%.8x| ",num);
-        }
-        printf("%.2x ",c);
-        num++;
-        if(0 == num%16 && num >= 16) {
-            printf("\n");
-        }
-}
 
-    if(ferror(fp))
+    int c[row_length];
+    int num = 0;
+    while (!feof(fp))
+    {
+        memset(c, 0, row_length * sizeof(int));
+        int row_length_actually = row_length;
+        for (int i = 0; i < row_length_actually; i++)
+        {
+            if ((c[i] = fgetc(fp)) != EOF)
+            {
+                num++;
+            }
+
+            else
+            {
+                row_length_actually = i;
+                break;
+            }
+        }
+        printf("%.8x| ", num);
+        for (int i = 0; i < row_length_actually; i++)
+        {
+            if (-1 == c[i])
+                c[i] = 0;
+            printf("%.2x ", c[i]);
+        }
+        printf("| ");
+        for (int i = 0; i < row_length_actually; i++)
+        {
+            printf("%c", (iscntrl(c[i])) ? '.' : c[i]);
+        }
+        printf("\n");
+    }
+
+    if (ferror(fp))
         puts("I/O error when reading");
-   
+
+    /*
     else if(feof(fp))
-       // puts("\nEND of file reached successfully");
+       puts("\nEND of file reached successfully");
+    */
 
     fclose(fp);
     return 0;
