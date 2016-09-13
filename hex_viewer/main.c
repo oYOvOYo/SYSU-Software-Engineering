@@ -7,6 +7,5 @@ int main(int argc, char* argv[]) {
         puts("Usage: ./hex_viewer [file]\n");
         exit(1);
     }
-    
     return hex_viewer(argv[1]);
 }
