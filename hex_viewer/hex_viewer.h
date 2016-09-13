@@ -14,17 +14,14 @@ int hex_viewer(char* str) {
     int c;
     
     int  num = 0;
-    void* p = NULL;
     while ((c = fgetc(fp))!= EOF) {
-        if(0 == num%8 ) {
-            printf("%p| ",p);
+        if(0 == num%16 ) {
+            printf("%.8x| ",num);
         }
         printf("%.2x ",c);
         num++;
-        if(8 == num) {
+        if(0 == num%16 && num >= 16) {
             printf("\n");
-            num = 0;
-            p+=8;
         }
 }
 
