@@ -31,11 +31,10 @@ int hex_viewer(char *str)
             }
         }
         printf("%.8x| ", num);
-        for (int i = 0; i < row_length_actually; i++)
+        for (int i = 0; i < row_length; i++)
         {
-            if (-1 == c[i])
-                c[i] = 0;
-            printf("%.2x ", c[i]);
+            if (0 == c[i] || -1 == c[i]) printf("   ");
+            else printf("%.2x ", c[i]);
         }
         printf("| ");
         for (int i = 0; i < row_length_actually; i++)
