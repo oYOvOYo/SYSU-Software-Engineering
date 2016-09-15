@@ -1,2 +1,4 @@
-main.exe : main.c hex_viewer.h
-	gcc main.c hex_viewer.h -o main
+main.exe : hex_viewer.c
+	gcc hex_viewer.c -o main
+clean:
+	rm -rf *.o main

@@ -1,15 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h> // for puts, FILE, fopen, feof, printf, putchar...c
+#include <stdlib.h> // for exit, EXIT_FAILURE
+#include <string.h> // for memset
+#include <ctype.h> // for iscntrl
 
-#define ROW_LENGTH 16
-#define CTRL_CHAR '.'
+#define ROW_BYTE 16
+#define LINE_HEAD_SIZE_DEFAULT 8
 
-int hex_viewer(char* str);
+const char CONTROL_CHAR_DISPLAY = '.';
+
+int hex_viewer(char* file_adress);
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        puts("Usage: ./hex_viewer <file> [<num>]\n");
+        puts("Usage: ./hex_viewer <file> [<num>]");
         exit(1);
     }
     return hex_viewer(argv[1]);
@@ -17,58 +20,49 @@ int main(int argc, char* argv[]) {
 
 
 
-int hex_viewer(char *str)
+int hex_viewer(char *file_adress)
 {
     // Open File 
-    FILE *fp = fopen(str, "r");
+    FILE *fp = fopen(file_adress, "rb");
     if (!fp) {
         perror("File opening failed");
         return EXIT_FAILURE;
     }
 
     // Storage 
-    char c[ROW_LENGTH];
-    size_t num = 0;
+    char c[ROW_BYTE] = {0};
+    size_t read_number = 0;
+    size_t ROW_BYTE_actually = ROW_BYTE; // read number in actually  
 
     // Read 
-    while (!feof(fp)) {
-        memset(c, 0, ROW_LENGTH * sizeof(char));
-        printf("%08x  ", num);
-
-        size_t row_length_actually = ROW_LENGTH;
-        for (size_t i = 0; i < row_length_actually; i++)
-        {
-            if ((c[i] = fgetc(fp)) != EOF) {
-                num++;
-            } else {
-                row_length_actually = i;
-                break;
+    for(read_number = 0; !feof(fp); read_number++) {
+        c[read_number % ROW_BYTE] = fgetc(fp);
+        if (feof(fp)) {
+            if(0 == read_number % ROW_BYTE)break; // if first one is EOF, break
+            ROW_BYTE_actually = read_number % ROW_BYTE; // read number in actually, not include EOF
+            //memset(c+ROW_BYTE_actually, EOF,ROW_BYTE - ROW_BYTE_actually);
+            read_number+= ROW_BYTE - ROW_BYTE_actually -1; // for this row must have ROW_BYTE number char 
+        }
+        if (0 == read_number % 16) 
+            printf("%08x  ", (unsigned int)read_number);
+        if(15 == read_number % 16) { // prinf the date
+            for (int n = 0; n < ROW_BYTE_actually; n++) {
+                printf("%0*x ", 2, (unsigned char)c[n]); // unsigned char to avoid ffffxx
+                if(7 == n%8) putchar(' '); // style 
             }
-        }
-        for (int i = 0; i < ROW_LENGTH; i++)
-        {
-            if (0 == c[i] || -1 == c[i]) printf("   ");
-            else printf("%02x ", c[i]);
-
-            if(7 == i%8) putchar(' ');
-        }
-        printf("|");
-        for (int i = 0; i < row_length_actually; i++)
-        {
-            printf("%c", (iscntrl(c[i])) ? CTRL_CHAR : c[i]);
-        }
+            for (int n = ROW_BYTE_actually; n < ROW_BYTE;n++) {
+                 printf("   ");
+                 if(7 == n%8) putchar(' ');// style 
+            }
+            printf("|");
+            for (int i = 0; i < ROW_BYTE_actually; i++) {
+            printf("%c", (isprint(c[i])? c[i]:CONTROL_CHAR_DISPLAY)); // only isprint(char) could show 
+            }
         printf("|\n");
+        }
+        
     }
-    printf("%08x\n", num);
-    
-
-    if (ferror(fp))
-        puts("I/O error when reading");
-
-    /*
-    else if(feof(fp))
-       puts("\nEND of file reached successfully");
-    */
+    printf("%08x\n", (unsigned int)(read_number- ROW_BYTE + ROW_BYTE_actually )); // finally line , -1 mean the for ++   
 
     // Close FIle
     fclose(fp);
