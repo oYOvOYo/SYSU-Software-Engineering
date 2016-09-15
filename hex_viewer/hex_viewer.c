@@ -33,6 +33,8 @@ int hex_viewer(char *str)
     // Read 
     while (!feof(fp)) {
         memset(c, 0, ROW_LENGTH * sizeof(char));
+        printf("%08x  ", num);
+
         size_t row_length_actually = ROW_LENGTH;
         for (size_t i = 0; i < row_length_actually; i++)
         {
@@ -43,7 +45,6 @@ int hex_viewer(char *str)
                 break;
             }
         }
-        printf("%08x  ", num);
         for (int i = 0; i < ROW_LENGTH; i++)
         {
             if (0 == c[i] || -1 == c[i]) printf("   ");
@@ -58,7 +59,7 @@ int hex_viewer(char *str)
         }
         printf("|\n");
     }
-    printf("%08x\n", num-1);
+    printf("%08x\n", num-16);
     
 
     if (ferror(fp))
