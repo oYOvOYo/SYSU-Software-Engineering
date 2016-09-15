@@ -59,7 +59,7 @@ int hex_viewer(char *str)
         }
         printf("|\n");
     }
-    printf("%08x\n", num-16);
+    printf("%08x\n", num);
     
 
     if (ferror(fp))
