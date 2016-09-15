@@ -7,8 +7,7 @@
 #define LINE_HEAD_SIZE_DEFAULT 8
 
 const char CONTROL_CHAR_DISPLAY = '.';
-int hex_viewer(char *file_adress)
-{
+int hex_viewer(char *file_adress)　{
     // Open File 
     FILE *fp = fopen(file_adress, "rb");
     if (!fp) {
