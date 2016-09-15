@@ -9,7 +9,7 @@ int hex_viewer(char* str);
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        puts("Usage: ./hex_viewer [file]\n");
+        puts("Usage: ./hex_viewer <file> [<num>]\n");
         exit(1);
     }
     return hex_viewer(argv[1]);
