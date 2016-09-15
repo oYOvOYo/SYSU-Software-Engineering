@@ -49,8 +49,7 @@ int hex_viewer(char *file_adress)
         }
         
     }
-    printf("%08x\n", (unsigned int)(read_number- ROW_BYTE + ROW_BYTE_actually )); // finally line , -1 mean the for ++   
-
+    printf("%08x\n", (unsigned int)(read_number- ROW_BYTE + ROW_BYTE_actually )); // finally line
     // Close FIle
     fclose(fp);
     return 0;
