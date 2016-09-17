@@ -59,7 +59,7 @@ Vector* create_vector(Vector** vec_ptr) {
 void destroy_vector(Vector** vec_ptr) {
     if (NULL == vec_ptr) return;
     vec_clear(*vec_ptr);  
-
+    (*vec_ptr)->capacity = 0;
     free((*vec_ptr)->data); // free is in destroy 
 }
 
@@ -163,7 +163,6 @@ void vec_pop_back(Vector* vec) {
 
 void vec_clear(Vector* vec) {
     vec->count = 0;
-    vec->capacity = 0;
 }
 
 value_type* vec_data(Vector* vec) {
