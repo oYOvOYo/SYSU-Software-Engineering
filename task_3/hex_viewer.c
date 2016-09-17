@@ -1,14 +1,12 @@
-#include <stdio.h> // for puts, FILE, fopen, feof, printf, putchar...c
+#include <stdio.h> // for FILE, fopen, feof, printf, putchar...c
 #include <stdlib.h> // for exit, EXIT_FAILURE
-#include <string.h> // for memset
-#include <ctype.h> // for iscntrl
+#include <ctype.h> // for isprint
 
 #define ROW_BYTE 16
 #define LINE_HEAD_SIZE_DEFAULT 8
 
 const char CONTROL_CHAR_DISPLAY = '.';
-int hex_viewer(char *file_adress)
-{
+int hex_viewer(char *file_adress) {
     // Open File 
     FILE *fp = fopen(file_adress, "rb");
     if (!fp) {
@@ -25,31 +23,32 @@ int hex_viewer(char *file_adress)
     for(read_number = 0; !feof(fp); read_number++) {
         c[read_number % ROW_BYTE] = fgetc(fp);
         if (feof(fp)) {
-            if(0 == read_number % ROW_BYTE)break; // if first one is EOF, break
+            if (0 == read_number % ROW_BYTE) break; // if first one is EOF, break
             ROW_BYTE_actually = read_number % ROW_BYTE; // read number in actually, not include EOF
-            //memset(c+ROW_BYTE_actually, EOF,ROW_BYTE - ROW_BYTE_actually);
+
             read_number+= ROW_BYTE - ROW_BYTE_actually -1; // for this row must have ROW_BYTE number char 
         }
         if (0 == read_number % 16) 
             printf("%08x  ", (unsigned int)read_number);
-        if(15 == read_number % 16) { // prinf the date
+        if (15 == read_number % 16) { // prinf the date
             for (int n = 0; n < ROW_BYTE_actually; n++) {
                 printf("%0*x ", 2, (unsigned char)c[n]); // unsigned char to avoid ffffxx
-                if(7 == n%8) putchar(' '); // style 
+                if(7 == n % 8) putchar(' '); // style 
             }
             for (int n = ROW_BYTE_actually; n < ROW_BYTE;n++) {
                  printf("   ");
-                 if(7 == n%8) putchar(' ');// style 
+                 if(7 == n % 8) putchar(' ');// style 
             }
             printf("|");
             for (int i = 0; i < ROW_BYTE_actually; i++) {
-            printf("%c", (isprint(c[i])? c[i]:CONTROL_CHAR_DISPLAY)); // only isprint(char) could show 
+                printf("%c", (isprint(c[i])? c[i]:CONTROL_CHAR_DISPLAY)); // only isprint(char) could show 
             }
-        printf("|\n");
+            printf("|\n");
         }
-        
     }
+
     printf("%08x\n", (unsigned int)(read_number- ROW_BYTE + ROW_BYTE_actually )); // finally line
+    
     // Close FIle
     fclose(fp);
     return 0;

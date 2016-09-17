@@ -25,7 +25,7 @@ typedef struct{
         (P).top = (void*)(tmp + 1);\
     } while (0)
 
-#define popStack(P, TYPE)　\
+#define popStack(P, TYPE) \
     do {\
         TYPE* tmp = (P).top;\
         (P).top = (void*)(tmp - 1);\
