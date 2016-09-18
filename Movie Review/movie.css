@@ -1,3 +1,5 @@
+/* A simple web page, by Wangqing's student Huang Jintian, 2016/09/09 in SYSU */
+
 body {
     background: url("./rsc/background.png")
                 repeat;
@@ -21,6 +23,7 @@ h1 {
     text-align: center;
 }
 
+/* in the total, there ara left right and bottom */
 .total {
     width: 800px;
 	border: 4px gray solid;
@@ -66,7 +69,7 @@ h1 {
 .reviewer {
 	margin-bottom: 3em;
 }
-
+/* */
 .reviewer p {
 	font-style: italic;
 }
