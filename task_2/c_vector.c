@@ -26,7 +26,8 @@ static inline void* memcpy_backward(void* dst, const void* src, size_t n) {
     for (i = n-1; i >= 0; i--) {
         dst[i] = src[i]; // begin from the biggest
     }　
-    return dst; */
+    */
+    return dst; 
 }
 
 // It is safe for the overlapping buffers unlike the memcpy in <string.h>.
@@ -37,7 +38,8 @@ static inline void* memcpy_forward(void* dst, const void* src, size_t n) {
     for (i = 0; i < n; i++) {
         dst[i] = src[i]; // begin from the smallest
     }
-    return dst;*/
+    */
+    return dst;
 }
 
 
@@ -70,7 +72,7 @@ Vector* copy_vector(Vector* vec_src, Vector** vec_ptr) {
     vec->count = vec_size(vec_src);
     
     if (vec_ptr != NULL) {
-        *vec_ptr = vec; // question !!!!! why not vec_ptr = &vec ? 
+        *vec_ptr = vec; 
     }
     return vec;
 }
@@ -97,7 +99,7 @@ void vec_resize(Vector* vec, size_t n, value_type val) {
 }
 
 int vec_empty(Vector* vec) {
-    return vec_size(vec);
+    return !vec_size(vec);
 }
 
 void vec_reserve(Vector* vec, size_t n) {
@@ -134,7 +136,8 @@ void vec_insert(Vector* vec, size_t n, size_t size, value_type vals[]) {
 
     vec_reserve(vec, size + vec_size(vec));
 
-    memmove(vec_data(vec) + n + size, vec_data(vec) + n, (vec_size(vec) - n) * sizeof(value_type));
+    memmove(vec_data(vec) + n + size, vec_data(vec) + n,
+         (vec_size(vec) - n) * sizeof(value_type));
     memmove(vec_data(vec) + n, vals, size * sizeof(value_type)); // memmove  
 
     vec->count += size; // change count 
@@ -153,7 +156,8 @@ value_type vec_back(Vector* vec) {
 }
 
 void vec_erase(Vector* vec, size_t n, size_t size) {
-    memmove(vec_data(vec)+n,vec_data(vec)+n+size,(vec_size(vec)-n-size) * sizeof(value_type));
+    memmove(vec_data(vec)+n,vec_data(vec)+n+size,
+        (vec_size(vec)-n-size) * sizeof(value_type));
     vec->count-=size;  // memmove and change count 
 }
 
