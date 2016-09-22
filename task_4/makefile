@@ -1,2 +1,2 @@
-main.o : UCS_2_to_UTF-8.c
-	gcc -std=c11 -o a UCS_2_to_UTF-8.c
+main.o : UTF-8_to_UCS2.c
+	gcc -std=c11 -o b UTF-8_to_UCS2.c
