@@ -9,7 +9,7 @@ main.o: main.c
 
 # You had better remove the flag '-Wno-return-type'
 c_vector.o: c_vector.c c_vector.h
-	gcc -std=c99 -Wno-return-type -Wall -Werror -c $< -o $@
+	gcc -std=c99  -Wall -Werror -c $< -o $@
 
 clean:
 	rm -rf *.o test
