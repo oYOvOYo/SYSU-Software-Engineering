@@ -57,11 +57,15 @@ h1 {
 	overflow: auto;
 }
 
-.review>img, .reviewer>img {
+.review > img, .reviewer > img {
 	float: left;
 	margin-right: 5px;
 }
-.review>p{
+
+.reviewer > .br {
+	font-style: italic;
+}
+.review > p{
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: left;
@@ -87,13 +91,13 @@ h1 {
 	vertical-align: bottom;
 }
 
-.head>.font33{
+.head > .font33{
     font-size:48pt;
     color: red;
     font-weight:bold;
 }
 
-.head>.font88{
+.head > .font88{
     font-size: 8pt;
 	color: white;
 }
@@ -102,7 +106,7 @@ h1 {
 	vertical-align: bottom;
 }
 
-.right>.info {
+.right > .info {
 	margin: 0px;
 	padding-right: 10px;
 	padding-top: 0px;
@@ -111,11 +115,11 @@ h1 {
 	font-family: Arial, sans-serif;
 }
 
-.right>.info dl {
+.right > .info dl {
 	margin: 0;
 }
 
-.right>.info dt {
+.right > .info dt {
 	text-align: left;
 	font-weight: bold;
 	margin-top: 1em;
