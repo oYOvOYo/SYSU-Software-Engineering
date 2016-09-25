@@ -44,6 +44,7 @@ li {
     position: absolute;
     bottom: 160px;
     left: -45px;
+
     -webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	-o-transform: scale(1);
@@ -105,18 +106,14 @@ li {
     font-weight: bold;
 }
 
-
-
+/* 控制环形容器位置 */
 #control-ring-container {
 	position: absolute;
-	width: 160px;
-	height: 160px;
-	bottom: 76px;
+    bottom: 76px;
 	left: 0px;
 }
 
-
-/* 控制环形容器大小，位置，背景 */
+/* 单个小图标大小，背景 */
  #control-ring-container li {
     width: 30px;
 	height: 30px;
@@ -125,13 +122,14 @@ li {
     left: -15px;
 	background-color: RGB(128,128,128);
 	border-radius: 50%;
+
     opacity: 0;
 	-webkit-transition: all 0.8s;
 	-o-transition: all 0.8s;
 	transition: all 0.8s;
 }
 
-/* 设置小图标背景，位置 */
+/* 设置小图标图案，位置，下同 */
 #button:hover #control-ring-container .mask {
     background-image: url(assets/images/nomask.png);
     background-position: center;
