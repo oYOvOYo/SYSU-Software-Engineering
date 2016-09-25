@@ -3,20 +3,13 @@
 #define UCS_SIZE 2
 #define UTF_SIZE 3
 
-void UCS_2_to_UTF_8(char * file_adress) {
-    FILE * fp = fopen(file_adress, "r"); // read from file 
+void UCS_2_to_UTF_8(FILE * fp) {
     FILE * out = fopen("UTF-8", "w"); // write to target
-
-    if(!fp) { // check whether the file can be open 
-        printf("File opening failed\n"); 
-        return;
-    }
 
     char UCS[UCS_SIZE]; // store UCS-2
     char UTF[UTF_SIZE]; // store UTF-8
     size_t UTF_length; // store UTF-8 length
     unsigned long Unicode; // store Unicde
-    int break_flag = 0; 
 
     // check the file is Bid Endian or Little Endian
     // Bid Endian : FE FF Little Endian FF FE,  true means Bid Endian 
@@ -24,31 +17,21 @@ void UCS_2_to_UTF_8(char * file_adress) {
 
     while (!feof(fp)) {
     // for every word, read and write to file     
-    for (size_t i = 0; i < UCS_SIZE; i++) {
+    for (size_t i = 0; i < UCS_SIZE && !feof(fp); i++) {
         UCS[i] = fgetc(fp); // store every two byte in a char type
-        if(feof(fp)) {
-            break_flag = 1;
-            break;
-        } 
     }
-    if(break_flag) break;
 
+    if (feof(fp)) break;
     // change UCS-2 to Unicode
     Unicode = 0;
     if(endian) {
-        for (size_t i = 0; i < UCS_SIZE; i++) {
-            Unicode = (Unicode << 8); // 8 bit  
-            Unicode += (unsigned char)UCS[i]; 
-        }
+        for (size_t i = 0; i < UCS_SIZE; i++) 
+            Unicode = (Unicode << 8) + (unsigned char)UCS[i]; 
     } else {
-        for (size_t i = UCS_SIZE-1; i >= 0; i--) {
-            Unicode = (Unicode << 8); // 8 bit
-            Unicode += (unsigned char)UCS[i]; 
-        }
+        for (size_t i = UCS_SIZE-1; i >= 0; i--) 
+            Unicode = (Unicode << 8) + (unsigned char)UCS[i]; 
     }
     
-    
-
     //change Unicode to UTF-8 
     if ( Unicode <= 0x0000007F ) {  
         // * U-00000000 - U-0000007F:  0xxxxxxx  
@@ -79,7 +62,6 @@ void UCS_2_to_UTF_8(char * file_adress) {
     }
 
     }
-    fclose(fp);
     fclose(out);
     return;
 }
@@ -90,6 +72,15 @@ int main(int argc, char * argv[]) {
         return -1;
     }
     
-    UCS_2_to_UTF_8(argv[1]);
+    FILE * fp = fopen(argv[1], "r"); // read from file
+    
+    if(!fp) { // check whether the file can be open 
+        printf("File opening failed\n"); 
+        return -1;
+    }
+
+    UCS_2_to_UTF_8(fp);
+    fclose(fp);
+
     return 0;
 }

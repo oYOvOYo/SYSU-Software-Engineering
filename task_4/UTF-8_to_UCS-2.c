@@ -3,15 +3,10 @@
 #define UCS_SIZE 2
 #define UTF_SIZE 3
 
-void UTF_8_to_UCS2(char * file_adress) {
-    FILE * fp = fopen(file_adress, "r"); // read from file 
+void UTF_8_to_UCS2(FILE * fp ) {
+   
     FILE * out = fopen("UCS-2", "w"); // write to target
-
-    if(!fp) { // check whether the file can be open 
-        printf("File opening failed\n"); 
-        return;
-    }
-
+    
     char UCS[UCS_SIZE] = { 0xFE, 0xFF }; // store UCS-2
     char UTF[UTF_SIZE]; // store UTF-8
     size_t UTF_length; // store UTF-8 length
@@ -54,7 +49,7 @@ void UTF_8_to_UCS2(char * file_adress) {
     fputc((unsigned char)UCS[1], out);
     }
 
-    fclose(fp);
+   
     fclose(out);
     return;
 }
@@ -64,6 +59,14 @@ int main(int argc, char * argv[]) {
         printf("Usage: ./UTF-8_to_UCS2 <file> \n");
         return -1;
     }
-    UTF_8_to_UCS2(argv[1]);
+    FILE * fp = fopen(argv[1], "r"); // read from file
+     
+     if(!fp) { // check whether the file can be open 
+        printf("File opening failed\n"); 
+        return -1;
+    } 
+
+    UTF_8_to_UCS2(fp);
+    fclose(fp);
     return 0;
 }
