@@ -1,0 +1,238 @@
+/* 通配符 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 字体 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 全局设置列表项目样式为空 */
+li {
+    list-style-type: none;
+}
+
+/* 底部定位 */
+#bottom-positioner {
+    width: 0px;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+}
+
+/* 初始位置 */
+#info-bar {
+    opacity: 0;
+    position: absolute;
+    left: -60px;
+    bottom: 55px;
+    margin: auto;
+	-webkit-transform:scale(0.2);
+	-ms-transform: scale(0.2);
+	-o-transform: scale(0.2);
+	transform: scale(0.2);
+  
+	-webkit-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	transition: all 0.8s;
+}
+
+/* 鼠标覆盖时 */
+#button:hover #info-bar {
+    position: absolute;
+    bottom: 160px;
+    left: -45px;
+
+    -webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+    opacity: 1;
+}
+
+/* 设置大按钮的背景 */
+.info {
+    width: 120px;
+    height: 120px;
+    background-color: RGB(128,128,128);
+    border-radius: 50%;
+}
+
+/* 设置大按钮中的元素的位置 */
+.user {
+    position: relative;
+    top: 10px;
+    left: 35px;
+}
+
+.comment {
+    position: relative;
+    top: 10px;
+    left: 30px;
+}
+
+.posted {
+    position: relative;
+    top: 18px;
+    left: 15px
+}
+
+.like {
+    position: relative;
+    top: -10px;
+    left: 65px
+}
+
+/* 设置字体样式 */
+#info-bar li span {
+	font-size: 18px;
+    color: white;
+	margin-left: 8px;
+    vertical-align: top;
+}
+
+/* 大号字体 */
+#info-bar li.comment span {
+	font-size: 30px;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+/* 绿色字体 */
+#info-bar li.mine span {
+	color:#21D993;
+    font-weight: bold;
+}
+
+/* 控制环形容器位置 */
+#control-ring-container {
+	position: absolute;
+    bottom: 76px;
+	left: 0px;
+}
+
+/* 单个小图标大小，背景 */
+ #control-ring-container li {
+    width: 30px;
+	height: 30px;
+    position: absolute;
+	bottom: 30px;
+    left: -15px;
+	background-color: RGB(128,128,128);
+	border-radius: 50%;
+
+    opacity: 0;
+	-webkit-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	transition: all 0.8s;
+}
+
+/* 设置小图标图案，位置，下同 */
+#button:hover #control-ring-container .mask {
+    background-image: url(assets/images/nomask.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: -55px;
+    margin-bottom: 35px;
+    opacity: 1;
+}
+
+#button:hover #control-ring-container .history {
+    background-image: url(assets/images/history.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: -65px;
+    margin-bottom: -5px;
+    opacity: 1;
+}
+
+#button:hover #control-ring-container .message {
+    background-image: url(assets/images/message.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: -50px;
+    margin-bottom: -40px;
+    opacity: 1;
+}
+
+#button:hover #control-ring-container .setting {
+    background-image: url(assets/images/setting.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: -18px;
+    margin-bottom: -60px;
+    opacity: 1;
+}
+
+#button:hover #control-ring-container .sign {
+    background-image: url(assets/images/signin.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+    margin-bottom: -59px;
+    opacity: 1;
+}
+
+/* 设置未读样式 */
+.unread {
+    width: 18px;
+    height: 18px;
+	position: absolute;
+	top: -8px;
+	left: 18px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    line-height: 18px;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+/* apb位置 */
+.apb {
+    position: absolute;
+    bottom: 100px;
+    left: -15px;
+}
+
+/* 图标样式 */
+.apb > .icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(assets/images/atplus_white.png);
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-color: RGB(153,157,202);
+    border-radius: 50%;
+
+    transition:all 0.5s;
+    -moz-transition:all 0.5s; /* Firefox 4 */
+    -webkit-transition:all 0.5s; /* Safari and Chrome */
+    -o-transition:all 0.5s; /* Opera */
+
+    transition-delay: 0.5s;
+	-webkit-transition-delay: 0.5s;
+	-o-transition-delay:0.5s;
+	transition-delay:0.5s;
+}
+
+.apb > .icon:hover {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-image: url(assets/images/atplus_green.png);
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-color: #2B3AA1;
+
+    transition:all 0.5s;
+    -moz-transition:all 0.5s; /* Firefox 4 */
+    -webkit-transition:all 0.5s; /* Safari and Chrome */
+    -o-transition:all 0.5s; /* Opera */
+}
+
