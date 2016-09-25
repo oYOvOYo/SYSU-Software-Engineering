@@ -12,6 +12,7 @@ body {
 /* 全局设置列表项目样式为空 */
 li {
     list-style-type: none;
+    position: relative;
 }
 
 /* 底部定位 */
@@ -27,7 +28,7 @@ li {
     
 }
 
-/*调整初始弹出位置，模拟从@中弹出的效果*/
+/*调整初始弹出位置，模拟从@中弹出的效果
 #info-bar {
     margin: auto;
     opacity:1;
@@ -35,12 +36,12 @@ li {
 	-ms-transform:  scale(0.2);
 	-o-transform:  scale(0.2);
 	transform:  scale(0.2);
-    
+  
 	-webkit-transition: all 0.8s;
 	-o-transition: all 0.8s;
 	transition: all 0.8s;
 }
-
+*/
 /*鼠标指向时，通过变色来实现动画效果*/
 #button:hover #info-bar {
     margin: auto;
@@ -56,13 +57,6 @@ li {
 }
 
 
-/* 设置大按钮的位置 
-#info-bar {
-    visibility: hidden;
-    
-}
-
-*/
 
 /* 设置大按钮的背景 */
 .info {
@@ -120,8 +114,7 @@ li {
 
 
 /* 控制环形容器大小，位置，背景 */
-#control-ring-container li {
-    opacity:0;
+#button:hover #control-ring-container li {
     width: 30px;
 	height: 30px;
     position: absolute;
@@ -172,7 +165,7 @@ li {
 }
 
 /* 设置未读样式 */
-.unread {
+#button:hover #control-ring-container .unread {
     width: 18px;
     height: 18px;
 	position: absolute;
