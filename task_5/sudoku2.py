@@ -100,6 +100,6 @@ if __name__=='__main__':
 	pointList=initPoint(sudoku)
 	showSudoku(sudoku)
 	print('\n')
-	p=poicntList.pop()
+	p=pointList.pop()
 	tryInsert(p,sudoku)
 	
