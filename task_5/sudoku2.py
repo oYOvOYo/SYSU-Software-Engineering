@@ -1,66 +1,105 @@
-# -*- coding: utf-8 -*-
+import time
+t0=time.time()
+class point:
+	def __init__(self,x,y):
+		self.x=x
+		self.y=y
+		self.available=[]
+		self.value=0
 
-class sudoku(object):
-    def show(self, date):
-        for i in date:
-            print i
-        print '\n' * 2
-        
-    def solute(self, date, raw, column):
-        temp = []
-        for x in date:
-            temp.append(x[:])
-        for x in range(0, 9):
-            for y in range(0, 9):
-                if temp[x][y] == 0:
-                    if [] == self.next_value(temp, x, y):
-                        return 
-                    print x,y,self.next_value(temp, x, y), "\n"
-                    for value in self.next_value(temp, x, y):
-                        temp2 = []
-                        temp2.extend(date)
-                        # self.show(temp2)
-                        temp2[x][y] = value
-                        self.solute(temp2, x, y)
-                elif x == 8 and y == 8:
-                    self.show(temp)
-                    exit(-1)
-        
+def rowNum(p,sudoku):
+	row=set(sudoku[p.y*9:(p.y+1)*9])
+	row.remove(0)
+	return row #set type
 
-    def next_value(self, date, raw, column):
-        """ return reasonable next value use set and return a list """
-        value = date[raw][column]
-        temp = set([])
-        for x in date:
-            temp.add(x[column])
-        temp = temp | set(date[raw])
-        raw //= 3
-        column //= 3
-        for x in date[3 * column: 3 * (column + 1)]:
-            temp = temp | set(x[3 * raw: 3 * (raw + 1)])
+def colNum(p,sudoku):
+	col=[]
+	length=len(sudoku)
+	for i in range(p.x,length,9):
+		col.append(sudoku[i])
+	col=set(col)
+	col.remove(0)
+	return col #set type
 
-        return sorted(set(range(value + 1, 10)) - temp)
+def blockNum(p,sudoku):
+	block_x=p.x//3
+	block_y=p.y//3
+	block=[]
+	start=block_y*3*9+block_x*3
+	for i in range(start,start+3):
+		block.append(sudoku[i])
+	for i in range(start+9,start+9+3):
+		block.append(sudoku[i])
+	for i in range(start+9+9,start+9+9+3):
+		block.append(sudoku[i])
+	block=set(block)
+	block.remove(0)
+	return block #set type
 
-def read_date():
-    date = []
-    for i in range(9):
-        str = raw_input()
-        temp = []
-        for x in str:
-            temp.append(int(x))
-        date.append(temp)
-    return date
+def initPoint(sudoku):
+	pointList=[]
+	length=len(sudoku)
+	for i in range(length):
+		if sudoku[i]==0:
+			p=point(i%9,i//9)
+			for j in range(1,10):
+				if j not in rowNum(p,sudoku) and j not in colNum(p,sudoku) and j not in blockNum(p,sudoku):
+					p.available.append(j)
+			pointList.append(p)
+	return pointList
 
-if __name__ == '__main__':
-    # temp = read_date()
-    temp = [ [5, 3, 0, 0, 7, 0, 0, 0, 0],
-             [6, 0, 0, 1, 9, 5, 0, 0, 0],
-             [0, 9, 8, 0, 0, 0, 0, 6, 0],
-             [8, 0, 0, 0, 6, 0, 0, 0, 3],
-             [4, 0, 0, 8, 0, 3, 0, 0, 1],
-             [7, 0, 0, 4, 2, 6, 0, 0, 6],
-             [0, 6, 0, 0, 0, 0, 2, 8, 0],
-             [0, 0, 0, 4, 1, 9, 0, 0, 5],
-             [0, 0, 0, 0, 8, 0, 0, 7, 9]]
-    s = sudoku()
-    s.solute(temp,0,0)
+
+def tryInsert(p,sudoku):
+	availNum=p.available
+	for v in availNum:
+		p.value=v
+		if check(p,sudoku):
+			sudoku[p.y*9+p.x]=p.value
+			if len(pointList)<=0:
+				t1=time.time()
+				useTime=t1-t0
+				showSudoku(sudoku)
+				print('\nuse Time: %f s'%(useTime))
+				exit()
+			p2=pointList.pop()
+			tryInsert(p2,sudoku)
+			sudoku[p2.y*9+p2.x]=0
+			sudoku[p.y*9+p.x]=0
+			p2.value=0
+			pointList.append(p2)
+		else:
+			pass	
+
+def check(p,sudoku):
+	if p.value==0:
+		print('not assign value to point p!!')
+		return False
+	if p.value not in rowNum(p,sudoku) and p.value not in colNum(p,sudoku) and p.value not in blockNum(p,sudoku):
+		return True
+	else:
+		return False
+
+def showSudoku(sudoku):
+	for j in range(9):
+		for i in range(9):
+			print('%d '%(sudoku[j*9+i]),end='')
+		print('')	
+
+if __name__=='__main__':
+	sudoku=[
+			8,0,0,0,0,0,0,0,0,
+			0,0,3,6,0,0,0,0,0,
+			0,7,0,0,9,0,2,0,0,
+			0,5,0,0,0,7,0,0,0,
+			0,0,0,0,4,5,7,0,0,
+			0,0,0,1,0,0,0,3,0,
+			0,0,1,0,0,0,0,6,8,
+			0,0,8,5,0,0,0,1,0,
+			0,9,0,0,0,0,4,0,0,
+			]
+	pointList=initPoint(sudoku)
+	showSudoku(sudoku)
+	print('\n')
+	p=poicntList.pop()
+	tryInsert(p,sudoku)
+	
