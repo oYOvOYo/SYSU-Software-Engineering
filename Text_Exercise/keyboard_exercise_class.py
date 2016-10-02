@@ -6,25 +6,79 @@ class TextExercise(object):
     # 初始化构造函数
     # file_date：文件数据
     # exercise_raw：每次练习行数
-    def __init__(self, file_date, exercise_raw = 2):
+    # line_length: 每行练习字符数
+    def __init__(self, file_date, exercise_raw = '2'):
         self.file_date_ = file_date
-        self.exercise_raw_ = exercise_raw
+        self.exercise_raw_ = int(exercise_raw)
+        self.line_length_ = 40
+
         self.file_lenth_ = len(file_date)
         self.score_ = 0
+        self.total_line_number_ = 0
+        self.total_entered_number_ = 0
+        self.sigle_line_date_ = ""
+        
         self.MainFuc()
     
     # MainFuc(self)
     # 主函数
     def MainFuc(self):
-        self.ShowScore()
+        self.Exercise()
+        self.ShowScores()
     
     # Exercise(self)
     # 练习部分
     def Exercise(self):
-        pass
+        while len(self.file_date_) != 0:
+            self.total_line_number_+=1
+            if self.total_line_number_ % self.exercise_raw_ == 0:
+                if (self.EndExercise()): break
+
+            if len(self.file_date_) < self.line_length_:
+                self.sigle_line_date_ = self.file_date_[:]
+                self.file_date_ = ""
+            else:
+                self.sigle_line_date_ = self.file_date_[:self.line_length_]
+                self.file_date_ = self.file_date_[self.line_length_:]
+            self.ShowLineDate()
+            self.UpdateScores(self.ReadLineInport())
+            
+
+    # ShowLineDate(self)
+    # 展示一行数据      
+    def ShowLineDate(self):
+        print "$ %05d $" % self.total_line_number_ , ">|", self.sigle_line_date_, "|<"
+
+    # ReadLineInport(self)
+    # 读入一行输入
+    def ReadLineInport(self):
+        print "$ ENTER $", ">|",
+        return raw_input()
+
+    # UpdateScores(self)
+    # 更新得分数据    
+    def UpdateScores(self, LineInput):
+        for i in range(len(LineInput)):
+            self.total_entered_number_+=1
+            if  self.sigle_line_date_[i] == LineInput[i]:
+                self.score_+=1
     
+    # EndExercise(self)
+    # 中途停止练习
+    def EndExercise(self):
+        print "Do you want to end exercise? y/n",
+        return raw_input() == 'y'
+
     # ShowScore(self)
     # 展示得分部分
-    def ShowScore(self):
-        print self.file_date_
+    def ShowScores(self):
+        
+        print "$ %05d $"  % 0, ">|", '-' * self.line_length_, "|<"
+        print "Your Scores:"
+        print "\tFile Length:", "%d" %self.file_lenth_
+        print "\tTOTAL Correct Character:" , "%d" %self.score_
+        print "\tTOTAL Entered Character:" , "%d" %self.total_entered_number_
+        print "\tTOTAL Correct Rate", "%.5f" %(
+            self.score_ / float(self.line_length_ * self.total_line_number_))
+        print "$ %05d $"  % 0, ">|", '-' * self.line_length_, "|<"
     
