@@ -4,14 +4,15 @@
 import math # for sqrt()
 
 class TextExercise(object):
-    # __init__(self, file_date, exercise_raw = 2)
+    # __init__(self, file_date, exercise_raw = 4)
     # 初始化构造函数
     # file_date：文件数据
     # exercise_raw：每次练习行数
     # line_length: 每行练习字符数
-    def __init__(self, file_date, exercise_raw = '2'):
+    def __init__(self, file_date, exercise_raw = '4'):
         # 处理非ASCII字符
-        file_date = "".join(map(lambda x: ((ord(x) < 32 or ord(x) > 127) and ' ' or x ),file_date)) 
+        file_date = "".join(
+            map(lambda x: ((ord(x) < 32 or ord(x) > 127) and ' ' or x), file_date)) 
         
         self.file_date_ = file_date
         self.exercise_raw_ = int(exercise_raw)
@@ -33,8 +34,7 @@ class TextExercise(object):
     # 练习部分
     def Exercise(self):
         while len(self.file_date_) != 0:
-            self.total_line_number_+=1
-            if self.total_line_number_ % self.exercise_raw_ == 0:
+            if  self.total_line_number_ and (self.total_line_number_ % self.exercise_raw_ == 0):
                 if (self.EndExercise()): break
 
             if len(self.file_date_) < self.line_length_:
@@ -45,12 +45,12 @@ class TextExercise(object):
                 self.file_date_ = self.file_date_[self.line_length_:]
             self.ShowLineDate()
             self.UpdateScores(self.ReadLineInport())
-            
+            self.total_line_number_+=1
 
     # ShowLineDate(self)
     # 展示一行数据      
     def ShowLineDate(self):
-        print "$ %05d $" % self.total_line_number_ , ">|", self.sigle_line_date_, "|<"
+        print "$ %05d $" % (self.total_line_number_+1) , ">|", self.sigle_line_date_, "|<"
 
     # ReadLineInport(self)
     # 读入一行输入
@@ -75,7 +75,7 @@ class TextExercise(object):
     # ShowScore(self)
     # 展示得分部分
     def ShowScores(self):
-        correct_rate = self.score_ / float(self.line_length_ * (self.total_line_number_ - 1))
+        correct_rate = self.score_ / float(self.line_length_ * (self.total_line_number_ ))
         print "$ %05d $"  % 0, ">|", '-' * self.line_length_, "|<"
         print "\tFile Length:", "%d" %self.file_lenth_
         print "\tTOTAL Correct Character:" , "%d" %self.score_
