@@ -61,7 +61,7 @@ class TextExercise(object):
     # UpdateScores(self)
     # 更新得分数据    
     def UpdateScores(self, LineInput):
-        for i in range(min(len(LineInput), self.line_length_)):
+        for i in range(min(len(LineInput), len(self.sigle_line_date_))):
             self.total_entered_number_+=1
             if  self.sigle_line_date_[i] == LineInput[i]:
                 self.score_+=1
