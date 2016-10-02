@@ -11,7 +11,7 @@ def PrintUsage():
     print """Usage: ./main.py <file> or [-r]  [-n <num>]
 file :file name and adress
 -r   :for random Characters
--n   :the every sigle times practice raws, default as 2"""
+-n   :the every sigle times practice raws, default as 4"""
 
 # ReadAllFile(file_adress)
 # 读取地址文件中的所有内容
@@ -47,5 +47,7 @@ if __name__ == "__main__":
             play = TextExercise(file_date = GenerateRandomNumber(1000), exercise_raw = 4)
         else:
             play = TextExercise(file_date = ReadAllFile(argv[1]), exercise_raw = 4)
+    elif len(argv) == 1:
+        play = TextExercise(file_date = GenerateRandomNumber(1000), exercise_raw = 4)
     else:
         PrintUsage()
