@@ -27,7 +27,7 @@ class text_statistics(object):
         self.answer = filter(lambda x: not x[0] in special_char, self.answer) # 删除单个存在的特殊字符
         
         
-        print "%-30s %-10s" % ("word", "number")
+        print "%-30s %-10s" % ("world", "number")
         for x in self.answer:
             print "%-30s %-10d" % (x[0], x[1])
 
