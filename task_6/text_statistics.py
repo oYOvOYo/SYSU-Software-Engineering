@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from  sys import argv # for argv
-import string # for string.punctuation
+import string # for string.punctuation string.lstrip() string.rstrip()
 class text_statistics(object):
     def main_fuc(self, file_adress):
         """
@@ -16,6 +16,8 @@ class text_statistics(object):
         delete_char =  (string.punctuation + string.digits).translate(None, special_char) # 需要删除的字符
         self.date = "".join(map(lambda x : x in delete_char and ' ' or x , self.date))   # 删除字符
         self.word_list = self.date.split() # 切片
+        self.word_list = map(lambda x : string.rstrip(string.lstrip(x,special_char), 
+            special_char), self.word_list) # 删除开头结尾的独立存在的特殊字符
         self.answer = {} # 为了方便先用dict存
         for x in self.word_list:
             if not x in self.answer:
