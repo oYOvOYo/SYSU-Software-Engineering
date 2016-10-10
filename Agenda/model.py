@@ -34,8 +34,6 @@ class Storage(object):
         except ValueError:
             pass
         
-
-
     def write_to_file(self):
         with open("../json/user.json",'w') as f:
             json.dump(self.user_list, f, default=lambda obj: obj.user_data, indent=2)
