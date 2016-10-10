@@ -8,20 +8,30 @@ import json
 
 class User(object):
     def __init__(self, name, password, email, phone):
-        self.name, self.password, self.email, self.phone = name, password, email, phone
+        self.name, self.password, self.email, self.phone = 
+            name, password, email, phone
 
 def read_user(dic):
     return User(dic['name'], dic['password'], dic['email'], dic['phone'])
 
 class Meeting(object):
     def __init__(self, sponsor, participator, start_time, end_time, title):
-        self.sponsor, self.participator, self.start_time, self.end_time, self.title = sponsor, participator, start_time, end_time, title
+        self.sponsor, self.participator, self.start_time, self.end_time, 
+        self.title = sponsor, participator, start_time, end_time, title
+    
+    def is_participator(self, name):
+        return len(filter(lambda user: user.name = name, self.participator)) > 0
+
 
 def read_meeting(dic):
     if 'name' in dic:
         return read_user(dic)
     else:
-        return Meeting(dic['sponsor'], dic['participator'], dic['start_time'], dic['end_time'], dic['title'])
+        return Meeting(dic['sponsor'], dic['participator'], 
+            dic['start_time'], dic['end_time'], dic['title'])
+
+def str2time(time_str):
+    return time.strptime(time_str, "%Y-%m-%d/%H:%M")
 
 class Storage(object):
     def __init__(self):
