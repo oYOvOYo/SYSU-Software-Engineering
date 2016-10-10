@@ -10,7 +10,6 @@ class Date(object):
         print "{:>10s} {:>10d}".format(self.name, self.score), self.dic
 
 def read_data(dic):
-    return dic
     return Date(dic['name'], dic['score'], dic['dic'])
     
 if __name__ == "__main__":
@@ -19,9 +18,9 @@ if __name__ == "__main__":
         f.close()
     print temp
 
-    obj1 = Date("huang", 100, {1:2})
-    obj2 = Date("zhang", 90, {1:2})
-    obj_list = [obj1, obj2]
+    obj1 = Date("huang", 100, [1, 2])
+    obj2 = Date("zhang", 90, obj1)
+    obj_list = temp+[obj1, obj2]
     print obj_list
     with open('data.json', 'w') as f:
         json.dump(obj_list, f,default=lambda obj: obj.__dict__, indent=2)
