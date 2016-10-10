@@ -1,4 +1,7 @@
 # READ_ME Calculater
+# 已经修改靠答案右对齐
+# 已经修改'\\'注释的影响
+
 ## 调试环境：Microsoft Windows [版本 10.0.14393] chrome 53.0
 
 ## 编写环境：Microsoft Windows [版本 10.0.14393] VS Code 1.5

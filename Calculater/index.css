@@ -41,6 +41,7 @@ body {
 #answer {
     width: 430px;
     height:30px;
+	text-align :right;
     margin: 15px auto 20px auto;
     border: 1px solid gray
 }
