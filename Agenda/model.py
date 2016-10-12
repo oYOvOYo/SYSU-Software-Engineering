@@ -8,8 +8,7 @@ import json
 
 class User(object):
     def __init__(self, name, password, email, phone):
-        self.name, self.password, self.email, self.phone = 
-            name, password, email, phone
+        self.name, self.password, self.email, self.phone = name, password, email, phone
 
 def read_user(dic):
     return User(dic['name'], dic['password'], dic['email'], dic['phone'])
@@ -20,7 +19,7 @@ class Meeting(object):
         self.title = sponsor, participator, start_time, end_time, title
     
     def is_participator(self, name):
-        return len(filter(lambda user: user.name = name, self.participator)) > 0
+        return len(filter(lambda user: user.name == name, self.participator)) > 0
 
 
 def read_meeting(dic):
@@ -37,20 +36,23 @@ class Storage(object):
     def __init__(self):
         self.user_list = []
         self.meeting_list = []
-        try :
+        try:
             with open("../json/user.json",'r') as f:
-                self.user_list = json.load(f, object_hook=lambda dic: read_user(dic))
+                try:
+                    self.user_list = json.load(f, object_hook=lambda dic: read_user(dic))
+                except ValueError:
+                    pass
         except IOError:
             pass
-        except ValueError:
-            pass
+        
 
-        try :
+        try:
             with open("../json/meeting.json",'r') as f:
-                self.meeting_list = json.load(f, object_hook=lambda dic: read_meeting(dic))
+                try:
+                    self.meeting_list = json.load(f, object_hook=lambda dic: read_meeting(dic))
+                except ValueError:
+                    pass
         except IOError:
-            pass
-        except ValueError:
             pass
     
     def write_to_file(self):
@@ -93,16 +95,16 @@ class Storage(object):
         return num
 
 if __name__ == "__main__":
-    temp = Storage()
-    user1 = User("huang", 123, "1234","12345")
-    user2 = User("zhang", 123, "1234","12345")
+    # temp = Storage()
+    # user1 = User("huang", 123, "1234","12345")
+    # user2 = User("zhang", 123, "1234","12345")
 
-    meeting1 = Meeting(user1, [user2], "2015", "2016", "haha")
-    temp.user_list.append(user1)
-    temp.meeting_list.append(meeting1)
-    print temp.user_list
-    print temp.meeting_list
-    temp.write_to_file()
+    # meeting1 = Meeting(user1, [user2], "2015", "2016", "haha")
+    # temp.user_list.append(user1)
+    # temp.meeting_list.append(meeting1)
+    # print temp.user_list
+    # print temp.meeting_list
+    # temp.write_to_file()
 
     
    
