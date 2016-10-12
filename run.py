@@ -5,6 +5,5 @@
 from Agenda import *
 
 
-print dir()
 if __name__ == "__main__":
     Agenda = Agenda_UI()

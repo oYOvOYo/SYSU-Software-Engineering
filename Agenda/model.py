@@ -64,7 +64,7 @@ class Storage(object):
         self.user_list.append(user)
 
     def query_user(self, filter_func):
-        return filter(func_func, self.user_list)
+        return filter(filter_func, self.user_list)
 
     def update_user(self, filter_func, update_func):
         self.user_list = map(lambda user: filter_func(user) and update_func(user) or user, 
@@ -93,24 +93,3 @@ class Storage(object):
         self.meeting_list = filter(lambda meeting: not filter_func(meeting), 
             self.meeting_list)
         return num
-
-if __name__ == "__main__":
-    # temp = Storage()
-    # user1 = User("huang", 123, "1234","12345")
-    # user2 = User("zhang", 123, "1234","12345")
-
-    # meeting1 = Meeting(user1, [user2], "2015", "2016", "haha")
-    # temp.user_list.append(user1)
-    # temp.meeting_list.append(meeting1)
-    # print temp.user_list
-    # print temp.meeting_list
-    # temp.write_to_file()
-
-    
-   
-
-
-
-
-
-

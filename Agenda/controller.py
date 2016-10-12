@@ -14,7 +14,7 @@ class AgendaService(object):
         and password == user['password'])) == 1
 
     def user_register(self, name, password, email, phone):
-        if self.data.query_user(lambda user: name == user['name']) == 0:
+        if len(self.data.query_user(lambda user: name == user['name'])) == 0:
             user = User(name, password, email, phone)
             self.data.creat_user(user)
             return True

@@ -21,8 +21,8 @@ class Agenda_UI(object):
             self.print_line("r", "register an Agenda account")
             self.print_line("q", "quit Agenda")
             
-            choice = raw_input("Agenda : ~$ ")
-            
+            self.choice = raw_input("Agenda : ~$ ")
+
             if self.choice == 'l':
                 self.user_login()
             elif self.choice == 'r':
@@ -87,13 +87,13 @@ class Agenda_UI(object):
         self.choice = raw_input("Agenda " + self.name + " : # ")
 
     def user_register(self):
-        input_data = raw_input("[register] [user name] [password] [email] [phone]")
-        input_data = input_data.split("[register] ")
-
+        print("[register] [user name] [password] [email] [phone]")
+        input_data = raw_input("[register] ")
+        input_data = input_data.split()
         if self.controller.user_register(input_data[0], input_data[1], input_data[2], input_data[3]):
             print  "success!"
         else:
-            print "login in fail!"
+            print "register fail!"
 
     def quit_agenda(self):
         print "thanks for using Agenda"
@@ -111,11 +111,27 @@ class Agenda_UI(object):
     def list_all_users(self):
         print "[list all user]"
         print "{0:<15}{1:<25}{2:<15}".format("name","email", "phone")
-        for user in self.controller.list_all_users()
+        for user in self.controller.list_all_users():
             print "{0:<15}{1:<25}{2:<15}".format(user.name, user.email, user.phone)
 
     def create_meeting(self):
-        
+        print "[create meeting] [the number of participators]"
+        input_data = raw_input("[create meeting] ")
+        participators = ""
+        for i in range(int(input_data)):
+            print "[create meeting] [please enter the participator", i ,"]"
+            participators += raw_input("[create meeting] ")
+
+        print "[create meeting] [title][star time(yyyy-mm-dd/hh:mm)][end time(yyyy-mm-dd/hh:mm)]"
+        input_data = raw_input("[create meeting] ")
+        input_data = input_data.split()
+
+        print "[create meeting] ",
+        if self.controller.create_meeting(self.name, input_data[0], 
+            input_data[1], input_data[2], participators):
+            print "success!"
+        else:
+            print "error!"
 
     def list_all_meetings(self):
         print "[list all sponsor meetings]"
@@ -157,8 +173,15 @@ class Agenda_UI(object):
             print "delete meeting fail!"
 
     def print_meetings(self, meeting_list):
+        print "{:<12}{:<12}{:<20}{:<20}{:<20}".format("title", "sponsor", "start time", 
+        "end time", "participator")
+        participator = ""
         for meeting in meeting_list:
-            print
+            participator = ""
+            for user in meeting.participator:
+                partictipator = participator + user.name + " "
+            print "{:<12}{:<12}{:<20}{:<20}{:<20}".format(meeting.title, meeting.sponsor, 
+                meeting.start_time, meeting.end_time, participator)
 
     def print_line(self, operation_char, operation_help):
         print "{:<5}- {:<48}".format(operation_char, operation_help)        
