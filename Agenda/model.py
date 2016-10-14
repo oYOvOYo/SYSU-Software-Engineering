@@ -37,7 +37,7 @@ class Storage(object):
         self.user_list = []
         self.meeting_list = []
         try:
-            with open("../json/user.json",'r') as f:
+            with open("./json/user.json",'r') as f:
                 try:
                     self.user_list = json.load(f, object_hook=lambda dic: read_user(dic))
                 except ValueError:
@@ -47,7 +47,7 @@ class Storage(object):
         
 
         try:
-            with open("../json/meeting.json",'r') as f:
+            with open("./json/meeting.json",'r') as f:
                 try:
                     self.meeting_list = json.load(f, object_hook=lambda dic: read_meeting(dic))
                 except ValueError:
@@ -56,10 +56,11 @@ class Storage(object):
             pass
     
     def write_to_file(self):
-        with open("../json/user.json",'w') as f:
+        with open("./json/user.json",'w') as f:
             json.dump(self.user_list, f, default=lambda obj: obj.__dict__, indent=2)
-        with open("../json/meeting.json",'w') as f:
+        with open("./json/meeting.json",'w') as f:
             json.dump(self.meeting_list, f, default=lambda obj: obj.__dict__, indent=2)
+
     def creat_user(self, user):
         self.user_list.append(user)
 

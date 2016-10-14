@@ -45,7 +45,6 @@ class AgendaService(object):
         self.data.creat_meeting(Meeting(name, participator, start_time, end_time, title))
         return True
      
-
     def meeting_query_title(self, name, title):
         return self.data.query_meeting(lambda meeting:
         (meeting.sponsor == name or meeting.is_participator(name)) and 
@@ -78,4 +77,7 @@ class AgendaService(object):
         return self.data.delete_meeting(lambda meeting: meeting.sponsor == name and meeting.title == title)
 
     def delete_all_meetings(self, name):
-       return self.data.delete_meeting(lambda meeting: meeting.sponsor == name) 
+       return self.data.delete_meeting(lambda meeting: meeting.sponsor == name)
+
+    def write_to_file(self):
+        self.data.write_to_file()

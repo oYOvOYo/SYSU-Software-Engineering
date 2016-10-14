@@ -28,7 +28,7 @@ class Agenda_UI(object):
             elif self.choice == 'r':
                 self.user_register()
             elif self.choice == 'q':
-                self.user_logout()
+                self.quit_agenda()
             else:
                 print "please check your inport"
 
@@ -75,7 +75,7 @@ class Agenda_UI(object):
             self.choice = raw_input("Agenda " + self.name + " : # ")
 
     def user_login(self):
-        input_data = raw_input("[login in] [user name] [password]")
+        print("[login in] [user name] [password]")
         input_data = input_data.split("[login in] ")
         if self.controller.user_login(input_data[0], input_data[1]):
             self.name = input_data[0]
@@ -97,6 +97,7 @@ class Agenda_UI(object):
 
     def quit_agenda(self):
         print "thanks for using Agenda"
+        self.controller.write_to_file()
 
     def user_logout(self):
         print ""
