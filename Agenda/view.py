@@ -162,12 +162,15 @@ class Agenda_UI(object):
                             input_data))
 
     def querry_meeting_by_time_interval(self):
-        print "[queryMeeting] [star time(yyyy-mm-dd/hh:mm)] \
-               [end time(yyyy-mm-dd/hh:mm)]"
+        print "[queryMeeting] [star time(yyyy-mm-dd/hh:mm)]",\
+            "[end time(yyyy-mm-dd/hh:mm)]"
         input_data = raw_input("[queryMeeting] ")
         input_data = input_data.split()
-        self.print_meetings(self.controller.meeting_query_time(
-                            self.name, input_data[0], input_data[1]))
+        if len(input_data) == 2:
+            self.print_meetings(self.controller.meeting_query_time(
+                                self.name, input_data[0], input_data[1]))
+        else:
+            self.print_meetings([])
 
     def delete_meeting_by_title(self):
         print "[delete meeting] [title]"
