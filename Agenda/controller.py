@@ -55,13 +55,37 @@ class AgendaService(object):
         创建会议
         """
         try:
-            str2time
             a = str2time(start_time)
             b = str2time(end_time)
         except ValueError:
             return False
         if a >= b:
             return False
+
+        total_name = participator[:]
+        total_name.append(name)
+
+        for user_name in total_name:
+            if not self.data.query_user(lambda user:
+                    user.name == user_name):
+                print "name"
+                return False
+
+        if not len(set(total_name)) == len(total_name):
+            print "name2"
+            return False
+        
+        if self.data.query_meeting(lambda meeting:
+                meeting.title == title):
+            print "name3"
+            return False
+
+        
+        for user_name in total_name:
+            if not self.meeting_query_time(user_name, start_time, end_time):
+                print "name4"
+                return False
+ 
         self.data.creat_meeting(Meeting(name, participator,
                                         start_time, end_time, title))
         return True
