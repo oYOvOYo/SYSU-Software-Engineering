@@ -4,5 +4,17 @@
     "password": "1", 
     "name": "huang", 
     "email": "1"
+  }, 
+  {
+    "phone": "1", 
+    "password": "1", 
+    "name": "zhang", 
+    "email": "1"
+  }, 
+  {
+    "phone": "1", 
+    "password": "1", 
+    "name": "li", 
+    "email": "1"
   }
 ]
