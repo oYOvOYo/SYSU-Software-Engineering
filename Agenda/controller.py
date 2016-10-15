@@ -7,14 +7,14 @@ from model import *
 
 class AgendaService(object):
     def __init__(self):
-        self.data = Storage()
+        self.model = Storage()
 
     def user_login(self, name, password):
         """
         user_login(self, name, password)
         检测符合用户名和密码的唯一用户
         """
-        return len(self.data.query_user(
+        return len(self.model.query_user(
             lambda user: name == user.name and password == user.password)) == 1
 
     def user_register(self, name, password, email, phone):
@@ -22,9 +22,9 @@ class AgendaService(object):
         user_register(self, name, password, email, phone)
         先检查用户名重复，然后创建用户
         """
-        if len(self.data.query_user(lambda user: name == user.name)) == 0:
+        if len(self.model.query_user(lambda user: name == user.name)) == 0:
             user = User(name, password, email, phone)
-            self.data.creat_user(user)
+            self.model.creat_user(user)
             return True
         else:
             return False
@@ -34,7 +34,7 @@ class AgendaService(object):
         delete_user(self, name, password)
         删除用户，返回删除结果
         """
-        if self.data.delete_user(lambda user: name == user.name and
+        if self.model.delete_user(lambda user: name == user.name and
                                  password == user.password) > 0:
             self.delete_all_meetings(name)
             for meeting in self.list_all_meetings(name):
@@ -47,7 +47,7 @@ class AgendaService(object):
         list_all_users(self)
         返回所有用户
         """
-        return self.data.query_user(lambda x: True)
+        return self.model.query_user(lambda x: True)
 
     def create_meeting(self, name, title, start_time, end_time, participator):
         """
@@ -62,18 +62,21 @@ class AgendaService(object):
         if a >= b:
             return False
 
+        if not participator:
+            return False
+
         total_name = participator[:]
         total_name.append(name)
 
         for user_name in total_name:
-            if not self.data.query_user(lambda user:
+            if not self.model.query_user(lambda user:
                     user.name == user_name):
                 return False
 
         if not len(set(total_name)) == len(total_name):
             return False
         
-        if self.data.query_meeting(lambda meeting:
+        if self.model.query_meeting(lambda meeting:
                 meeting.title == title):
             return False
 
@@ -83,7 +86,7 @@ class AgendaService(object):
                 print user_name, self.meeting_query_time(user_name, start_time, end_time)
                 return False
  
-        self.data.creat_meeting(Meeting(name, participator,
+        self.model.creat_meeting(Meeting(name, participator,
                                         start_time, end_time, title))
         return True
 
@@ -92,7 +95,7 @@ class AgendaService(object):
         meeting_query_title(self, name, title)
         根据标题查询会议
         """
-        return self.data.query_meeting(lambda meeting:
+        return self.model.query_meeting(lambda meeting:
                                        (meeting.sponsor == name or
                                         meeting.is_participator(name)) and
                                        meeting.title == title)
@@ -107,7 +110,7 @@ class AgendaService(object):
             b = str2time(end_time)
         except ValueError:
             return []
-        return self.data.query_meeting(lambda meeting:
+        return self.model.query_meeting(lambda meeting:
                                        ((meeting.sponsor == name or
                                         meeting.is_participator(name)) and
                                        ((str2time(meeting.start_time) <= a and
@@ -122,7 +125,7 @@ class AgendaService(object):
         list_all_meetings(self, name)
         返回所有会议
         """
-        return self.data.query_meeting(lambda meeting:
+        return self.model.query_meeting(lambda meeting:
                                        meeting.sponsor == name or
                                        meeting.is_participator(name))
 
@@ -131,7 +134,7 @@ class AgendaService(object):
         list_all_sponsor_meetings(self, name)
         返回所有发起的会议
         """
-        return self.data.query_meeting(lambda meeting:
+        return self.model.query_meeting(lambda meeting:
                                        meeting.sponsor == name)
 
     def list_all_participate_meetings(self, name):
@@ -139,7 +142,7 @@ class AgendaService(object):
         list_all_participate_meetings(self, name)
         返回所有参加的会议
         """
-        return self.data.query_meeting(lambda meeting:
+        return self.model.query_meeting(lambda meeting:
                                        meeting.is_participator(name))
 
     def delete_meeting(self, name, title):
@@ -147,7 +150,7 @@ class AgendaService(object):
         delete_meeting(self, name, title)
         根据会议标题和发起人删除会议
         """
-        return self.data.delete_meeting(lambda meeting:
+        return self.model.delete_meeting(lambda meeting:
                                         meeting.sponsor == name and
                                         meeting.title == title)
 
@@ -156,7 +159,7 @@ class AgendaService(object):
         delete_all_meetings(self, name)
         删除全部发起的会议
         """
-        return self.data.delete_meeting(lambda meeting:
+        return self.model.delete_meeting(lambda meeting:
                                         meeting.sponsor == name)
 
     def write_to_file(self):
@@ -164,4 +167,4 @@ class AgendaService(object):
         write_to_file(self)
         写入文件
         """
-        self.data.write_to_file()
+        self.model.write_to_file()

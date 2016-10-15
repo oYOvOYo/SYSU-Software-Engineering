@@ -78,8 +78,8 @@ class Agenda_UI(object):
         print("[login in] [user name] [password]")
         input_data = raw_input("[login in] ")
         input_data = input_data.split()
-        if len(input_data) == 2 and 
-                self.controller.user_login(input_data[0], input_data[1]):
+        if len(input_data) == 2 and self.controller.user_login(input_data[0],
+            input_data[1]):
             self.name = input_data[0]
             print "success!"
         else:
@@ -93,8 +93,8 @@ class Agenda_UI(object):
         print("[register] [user name] [password] [email] [phone]")
         input_data = raw_input("[register] ")
         input_data = input_data.split()
-        if self.controller.user_register(input_data[0], input_data[1],
-                                         input_data[2], input_data[3]):
+        if len(input_data) == 4 and self.controller.user_register(
+            input_data[0], input_data[1], input_data[2], input_data[3]):
             print "success!"
         else:
             print "register fail!"
@@ -134,9 +134,9 @@ class Agenda_UI(object):
         input_data = input_data.split()
 
         print "[create meeting] ",
-        if self.controller.create_meeting(self.name, input_data[0],
-                                          input_data[1], input_data[2],
-                                          participators):
+        if len(input_data) == 3 and self.controller.create_meeting(
+            self.name, input_data[0], input_data[1], input_data[2], 
+            participators):
             print "success!"
         else:
             print "error!"
