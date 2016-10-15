@@ -70,8 +70,7 @@ class TestControllerFunctions(unittest.TestCase):
         # Wrong time 
         self.assertFalse(agendaservice.create_meeting("Jskyzero", "meeting2",
             time5, time2, ["Nishiki"]))
-        
-        # ORZ
+        # OKOKOKOKOKOKOK
 
 
 
