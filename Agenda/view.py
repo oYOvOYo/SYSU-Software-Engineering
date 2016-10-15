@@ -73,13 +73,13 @@ class Agenda_UI(object):
 
             self.choice = raw_input("Agenda " + self.name + " : # ")
             self.choice = self.choice.strip()
-            print "|{0:}|".format(self.choice)
 
     def user_login(self):
         print("[login in] [user name] [password]")
         input_data = raw_input("[login in] ")
         input_data = input_data.split()
-        if self.controller.user_login(input_data[0], input_data[1]):
+        if len(input_data) == 2 and 
+                self.controller.user_login(input_data[0], input_data[1]):
             self.name = input_data[0]
             print "success!"
         else:
@@ -128,8 +128,8 @@ class Agenda_UI(object):
             print "[create meeting] [please enter the participator", i+1, "]"
             participators.append(raw_input("[create meeting] "))
 
-        print "[create meeting] [title][star time(yyyy-mm-dd/hh:mm)]\
-               [end time(yyyy-mm-dd/hh:mm)]"
+        print "[create meeting] [title][star time(yyyy-mm-dd/hh:mm)]",\
+            "[end time(yyyy-mm-dd/hh:mm)]"
         input_data = raw_input("[create meeting] ")
         input_data = input_data.split()
 
@@ -167,7 +167,7 @@ class Agenda_UI(object):
         input_data = raw_input("[queryMeeting] ")
         input_data = input_data.split()
         self.print_meetings(self.controller.meeting_query_time(
-                            input_data[0], input_data[1]))
+                            self.name, input_data[0], input_data[1]))
 
     def delete_meeting_by_title(self):
         print "[delete meeting] [title]"

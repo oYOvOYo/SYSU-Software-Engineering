@@ -68,22 +68,19 @@ class AgendaService(object):
         for user_name in total_name:
             if not self.data.query_user(lambda user:
                     user.name == user_name):
-                print "name"
                 return False
 
         if not len(set(total_name)) == len(total_name):
-            print "name2"
             return False
         
         if self.data.query_meeting(lambda meeting:
                 meeting.title == title):
-            print "name3"
             return False
 
         
         for user_name in total_name:
-            if not self.meeting_query_time(user_name, start_time, end_time):
-                print "name4"
+            if self.meeting_query_time(user_name, start_time, end_time):
+                print user_name, self.meeting_query_time(user_name, start_time, end_time)
                 return False
  
         self.data.creat_meeting(Meeting(name, participator,
@@ -111,14 +108,14 @@ class AgendaService(object):
         except ValueError:
             return []
         return self.data.query_meeting(lambda meeting:
-                                       (meeting.sponsor == name or
+                                       ((meeting.sponsor == name or
                                         meeting.is_participator(name)) and
                                        ((str2time(meeting.start_time) <= a and
-                                        (str2time(meeting.end_time)) >= a) or
+                                        str2time(meeting.end_time) >= a) or
                                         (str2time(meeting.start_time) <= b and
-                                        (str2time(meeting.end_time)) >= a) or
-                                        (str2time(meeting.start_time) <= a and
-                                        (str2time(meeting.end_time)) >= b)))
+                                         str2time(meeting.end_time) >= b) or
+                                        (str2time(meeting.start_time) >= a and
+                                         str2time(meeting.end_time) <= b))))
 
     def list_all_meetings(self, name):
         """
