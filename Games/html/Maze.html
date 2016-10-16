@@ -11,12 +11,13 @@
 	<link href="http://my.ss.sysu.edu.cn/wiki/download/attachments/131074/global.logo?version=1&modificationDate=1342770530000"
 		type="image/gif" rel="shortcut icon" />
 </head>
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-<body>
-	<p id="title">The Amazing Mouse Maze!</p>
-    <p id="help">Move your mouse over the "S" to begin.</p>
-    <p id="ans">hint</p>
 
+<body>
+	<div id=title>
+		<p>The Amazing Mouse Maze!</p>
+		<p>Move your mouse over the "S" to begin.</p>
+	</div>
+	<p id="ans">orz</p>
 	<div id="box">
 		<div>
 			<div id="left_side" class="wall"></div>
@@ -29,11 +30,12 @@
 		<div id="E">E</div>
 		<div id="judge"></div>
 	</div>
-	<div id="text">
-            <p>The object of this game is to guide the mouse cursor through the start area and get to the end area. Be sure to avoid the walls: </p>
-            <div id="example"></div>
-            <p>Good luck!</p>
-        </div>
+	<div id="end">
+		<p>The object of this game is to guide the mouse cursor through the start area and get to the end area. Be sure to avoid the
+			walls: </p>
+		<div id="wall0"></div>
+		<p>Good luck!</p>
+	</div>
 </body>
 
 </html>

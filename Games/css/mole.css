@@ -1,15 +1,20 @@
 @font-face {
         font-family: Cat;
-        src :url(../res/方正喵呜体.ttf);
+        src: url(../res/方正喵呜体.ttf);
 }
 
 * {
    font-family: Cat, sans-serif;
+   color: #242424;
+   font-size: 14pt;
 }
 
 body {
-	min-width: 1200px;
-    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-image: url("../res/cork-wallet.png");
+    background-repeat: repeat;
 }
 
 h1 {
@@ -22,47 +27,40 @@ h2{
 	text-align: center;
 	padding-right: 600px;
     margin-bottom: 0px;
+    font-family: Cat;
 }
 
-#instructions {
+#instruction {
 	text-align: center;
-	padding-right: 100px;
+	padding-right: 60px;
+    font-size: 18px;
 }
 
-#instructions2 {
-	text-align: center;
-	padding-right: 373px;
-}
 
-#intro {
-	text-align: center;
-}
 
 #info {
     width: 600px;
     height: 80px;
-    margin: 10px auto 0 auto;
-
+    margin: 20px auto 0 auto;
 }	
 
 #start_stop {
-    width: 176px;
+    width: 200px;
 
     margin-left: 130px;
     background-color: #FFFFFF;
     font-weight: bold;
-    font-size: 14pt;
+    
     position: absolute;
 }
 
 input[value="Game Over"] {
+    width: 190px;
     padding-left: 6px;
     margin-left: 130px;
-    margin-top: 16px;	
-    font-weight: bold;
-    font-size: 14pt;
-    width: 166px;
+    margin-top: 36px;	
     position: absolute;
+    font-weight: bold;
 }
 
 #time {
@@ -73,23 +71,23 @@ input[value="Game Over"] {
 
 #score {
 	margin-top: 16px;
-	margin-left: 380px;
+	margin-left: 385px;
     font-size: 20pt;
     position: absolute;
 }
 
 #time input, #score input {
-    width: 35px;
-    font-size: 12pt;
+    width: 40px;
+    font-size: 13pt;
     position: absolute;
 }
 
 #wrap {
 	width: 300px;
     height: 200px;
+    background-color: white;
     margin: 20px auto 20px auto;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border: 1px solid black;
 }
 
 #wrapper:hover {
