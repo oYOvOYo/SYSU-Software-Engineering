@@ -3,7 +3,7 @@ function add_char(ch) {
     ans = document.getElementById("answer");
     ans.innerHTML = ans.innerHTML + ch; //加字符
 }
-//
+// 删除字符
 function delete_char() {
     ans = document.getElementById("answer");
     ans.innerHTML = ans.innerHTML.substring(0, ans.innerHTML.length-1)
