@@ -12,17 +12,22 @@
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <body>
+    <!--标题和帮助-->
     <h1>What-a-mole</h1>
     <p id="instruction">Test your skill. How many boxes(moles) can you check(hit) in 30 seconds?</p>
-    <div id="info">
-        <button id="start_stop">Start Game | Stop Game</button>
-        <input id="stage" type="text" value="Game Over">
-        <form id="time"> Time:<input type="text"></form><br />
+    <!--游戏信息-->
+    <div id="infomation">
+        <button id="star_or_stop">Start Game | Stop Game</button>
+        <input id="state" type="text" value="Game Over">
+        <form id="time"> Time:<input type="text"></form>
         <form id="score">Score:<input type="text"></form>
+        <!--图标借用了SYSU校徽-->
+        <link href="http://my.ss.sysu.edu.cn/wiki/download/attachments/131074/global.logo?version=1&modificationDate=1342770530000"
+            type="image/gif" rel="shortcut icon" />
     </div>
-
+    <!--游戏本体-->
     <div id="game"></div>
-
+    <!--底部帮助-->
     <div>
         <h2>Instructions:</h2>
         <p id="instruction">
