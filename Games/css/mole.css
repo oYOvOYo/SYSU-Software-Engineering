@@ -82,9 +82,9 @@ input[value="Game Over"] {
     position: absolute;
 }
 
-#wrap {
-	width: 300px;
-    height: 200px;
+#game {
+	width: 600px;
+    height: 400px;
     background-color: white;
     margin: 20px auto 20px auto;
     border: 1px solid black;
@@ -95,17 +95,17 @@ input[value="Game Over"] {
 }
 
 .hole {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     display: inline-block;
     background-image: url('../res/hole.png');
-    margin: 5px;
+    margin: 10px;
 }
 
 .mole {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     display: inline-block;
     background-image: url('../res/mole.png');
-    margin: 5px;
+    margin: 10px;
 }

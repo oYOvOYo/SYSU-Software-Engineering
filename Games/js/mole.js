@@ -6,17 +6,17 @@ window.onload = function(){
 	var gameTime = false;
 	var choice;
 
-	var wrap = document.getElementById('wrap');
+	var game = document.getElementById('game');
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 10; j++) {
-            var box = document.createElement("div");
+            var box = document.createElement("hole");
             box.className = "hole";
             box.addEventListener("click", hit);
-            wrap.appendChild(box);
+            game.appendChild(box);
         }
     }	
 
-    var boxes = document.getElementById('wrap').getElementsByTagName('div');
+    var boxes = document.getElementById('game').getElementsByTagName('hole');
     var scoreInput = document.getElementById('score').getElementsByTagName('input');
     var timeInput = document.getElementById('time').getElementsByTagName('input');
     var stage = document.getElementById('stage');
