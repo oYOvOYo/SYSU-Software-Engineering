@@ -27,7 +27,7 @@ static error_t service_find_item(const todolist_t* tdl, item_t** return_item,
 
     va_list ap;
     va_start(ap, filter);
-    
+
     item_list_t* return_list = create_item_list();
     if (todolist_vfind_items(tdl, &return_list, filter, ap) == FAILURE)
         return FAILURE;
@@ -37,7 +37,7 @@ static error_t service_find_item(const todolist_t* tdl, item_t** return_item,
 
     destroy_item_list(&return_list);
     va_end(ap);
-    
+
     return SUCCESS;
 }
 
@@ -50,6 +50,7 @@ error_t service_find_items_by_keyword(const todolist_t* tdl, const char* keyword
 error_t service_find_item_by_id(const todolist_t* tdl, id_t item_id,
                                 item_t** item) {
     /* Your code here. */
+    return todolist_find_items(tdl, item_list, filter_by_id, keyword);
 }
 
 int service_find_items_by_state(const todolist_t* tdl, item_list_t** item_list,
@@ -63,7 +64,7 @@ int service_find_items_by_state(const todolist_t* tdl, item_list_t** item_list,
     int count = 0;
     for (; count < line_count && p ; count++, p = item_node_next(p))
         item_list_add((*item_list), p->data);
-    
+
     destroy_item_list(&tmp);
     return count;
 }
@@ -77,6 +78,8 @@ static int filter_by_id(const item_t* item, va_list ap) {
 static int filter_by_keyword(const item_t* item, va_list ap) {
     assert(item);
     /* Your code here. */
+    char* content = va_arg(ap, char*);
+    return (strstr(item->content, content) != NUll);
 }
 
 static int filter_by_state(const item_t* item, va_list ap) {
