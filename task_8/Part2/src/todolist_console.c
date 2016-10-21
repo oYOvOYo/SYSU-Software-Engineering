@@ -220,7 +220,7 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
     int item_id = -1;
     int is_find_by_id = 0;
 
-
+    const char* item_keyword = NULL;
     int is_find_by_keyword = 0;
 
     for (int i = 2; i < argc; i++) {
@@ -241,7 +241,7 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
         } else if ((strcmp(argv[i], FIND_ITEM_BY_KEYWORD_FLAG_ABBR) == 0 ||
                    strcmp(argv[i], FIND_ITEM_BY_KEYWORD_FLAG) == 0) &&
                    !is_find_by_id) {
-
+            item_keyword = argv[i + 1];
             is_find_by_keyword = 1;
             i++;
 
@@ -258,12 +258,15 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
     if (is_find_by_id) {
         item_t* item = create_empty_item();
         result = service_find_item_by_id(tdl, item_id, &item);
-        output_item(item);
+        if (result != FAILURE) {
+            output_item(item);
+        }
         destroy_item(&item);
     } else if (is_find_by_keyword) {
         item_list_t* item_list = create_item_list();
 
         /* Your code here. */
+        result = service_find_items_by_keyword(tdl, item_keyword, &item_list);
 
         output_item_list(item_list);
         destroy_item_list(&item_list);
@@ -271,8 +274,8 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
         assert(0);
     }
 
-    if (result != FAILURE) {
-        fprintf(stderr, "Failed to find.");
+    if (result == FAILURE) {
+        fprintf(stderr, "Failed to find.\n");
     }
 }
 

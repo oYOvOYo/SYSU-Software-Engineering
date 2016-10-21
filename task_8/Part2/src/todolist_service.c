@@ -5,6 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <assert.h>
+#include <stdio.h> //
 
 static int filter_by_id(const item_t* item, va_list ap);
 static int filter_by_keyword(const item_t* item, va_list ap);
@@ -47,10 +48,19 @@ error_t service_find_items_by_keyword(const todolist_t* tdl, const char* keyword
     return todolist_find_items(tdl, item_list, filter_by_keyword, keyword);
 }
 
+
 error_t service_find_item_by_id(const todolist_t* tdl, id_t item_id,
                                 item_t** item) {
     /* Your code here. */
-    return todolist_find_items(tdl, item, filter_by_id, item_id);
+    item_list_t* tmp = create_item_list();
+    size_t item_number = 0;
+    for (struct item_node* p = tdl->item_list->head; p != NULL; p = p->next) {
+        item_number++;
+    }
+    if (item_id > item_number) return FAILURE;
+    error_t ans = todolist_find_items(tdl, &tmp, filter_by_id, item_id);
+    *item = tmp->head->data;
+    return ans;
 }
 
 int service_find_items_by_state(const todolist_t* tdl, item_list_t** item_list,
@@ -79,7 +89,7 @@ static int filter_by_keyword(const item_t* item, va_list ap) {
     assert(item);
     /* Your code here. */
     char* content = va_arg(ap, char*);
-    return (strstr(item->content, content) == NULL);
+    return (strstr(item->content, content) != NULL);
 }
 
 static int filter_by_state(const item_t* item, va_list ap) {
