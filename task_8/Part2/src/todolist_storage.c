@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> // for strlen
 #include <assert.h>
 #include "cJSON.h"
 #include "todolist_storage.h"
 #include "todolist_error_code.h"
+
+
 
 error_t todolist_save(const todolist_t* tdl) {
     FILE* fout = fopen(DEFAULT_DATA_ADDRESS, "wt");
@@ -12,12 +15,12 @@ error_t todolist_save(const todolist_t* tdl) {
 
     /* Your code here. */
     cJSON* root = cJSON_CreateObject();
-    cJSON_AddNumberToObject(root, tdl->id_count);
+    cJSON_AddNumberToObject(root, "id_count", tdl->id_count);
     cJSON* item_list = cJSON_CreateArray();
-    for (item_node* p = tdl->item_list->head; p != tdl->item_list->tail; p = p->next) {
-        cJson* item = cJSON_CreateObject();
+    for (struct item_node* p = tdl->item_list->head; p != NULL; p = p->next) {
+        cJSON* item = cJSON_CreateObject();
         cJSON_AddNumberToObject(item, "id", p->data->id);
-        cJSON_AddStringToObject(item, "content", p->data->constant);
+        cJSON_AddStringToObject(item, "content", p->data->content);
         cJSON_AddNumberToObject(item, "state", p->data->state);
         cJSON_AddNumberToObject(item, "timestamp", p->data->timestamp);
         cJSON_AddItemToArray(item_list, item);
@@ -25,7 +28,7 @@ error_t todolist_save(const todolist_t* tdl) {
     cJSON_AddItemToObject(root, "item_list", item_list);
 
     char* str = cJSON_Print(root);
-    fwrite(str, sizeof(char), sizeof(str), fout);
+    fwrite(str, sizeof(char), strlen(str), fout);
 
     cJSON_Delete(root);
     fclose(fout);
@@ -41,7 +44,7 @@ error_t todolist_load(todolist_t* tdl) {
     /* Your code here. */
     fseek(fin, 0, SEEK_END);
 	size_t file_size = ftell(fin);
-    rwind(fin);
+    fseek(fin, 0, SEEK_SET);
     char* str = (char*)malloc(sizeof(char) * (file_size+1));
     if (NULL == str) return FAILURE;
     size_t result = fread(str, 1, file_size, fin);
@@ -50,16 +53,17 @@ error_t todolist_load(todolist_t* tdl) {
     str[file_size] = '\0';
     free(str);
 
-    tdl->id_count = cJSON_GetObjectItem(root, "id_count")->cJSON_Number;
+    if (root == NULL) return FAILURE;
+    tdl->id_count = cJSON_GetObjectItem(root, "id_count")->valueint;
     cJSON* item_list = cJSON_GetObjectItem(root, "item_list");
     for (size_t i = 0; i < cJSON_GetArraySize(item_list); i++) {
         cJSON* item = cJSON_GetArrayItem(item_list, i);
 
-        todolist_add_item(tdl, cJSON_GetObjectItem(item, "content")->cJSON_Number,
-                               cJSON_GetObjectItem(item, "id")->cJSON_String,
-                               cJSON_GetObjectItem(item, "state")->cJSON_Number,
-                               cJSON_GetObjectItem(item, "timestamp")->cJSON_Number);
-    }
+        todolist_add_item(tdl, cJSON_GetObjectItem(item, "content")->valuestring,
+                               cJSON_GetObjectItem(item, "id")->valueint,
+                               cJSON_GetObjectItem(item, "state")->valueint,
+                               cJSON_GetObjectItem(item, "timestamp")->valueint);
+  }
 
     cJSON_Delete(root);
     fclose(fin);

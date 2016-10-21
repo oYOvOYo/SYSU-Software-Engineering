@@ -59,27 +59,27 @@ static error_t console_run_todolist(todolist_t* tdl, int argc, char* argv[]) {
     } else {
         cmd = get_command(argv[1]);
     }
-    
+
     switch (cmd) {
-        case UNKNOWN_CMD: 
-            print_usage(tdl, argc, argv); 
+        case UNKNOWN_CMD:
+            print_usage(tdl, argc, argv);
             break;
-        case NONE: 
+        case NONE:
             console_print_list_by_default(tdl);
             break;
-        case LIST: 
+        case LIST:
             console_print_list(tdl, argc, argv);
             break;
-        case ADD: 
+        case ADD:
             console_add_item(tdl, argc, argv);
             break;
-        case FINISH: 
+        case FINISH:
             console_finish_item(tdl, argc, argv);
             break;
-        case FIND: 
+        case FIND:
             console_find_item(tdl, argc, argv);
             break;
-        default: 
+        default:
             assert(0);
     }
 
@@ -201,7 +201,7 @@ static void console_finish_item(todolist_t* tdl, int argc, char* argv[]) {
 
     char* end_ptr = NULL;
     int item_id = strtol(argv[2], &end_ptr, 10);
-    
+
     if (strlen(argv[2]) != (end_ptr - argv[2])) {
         print_error("Expect a valid number of ID.");
     }
@@ -220,7 +220,7 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
     int item_id = -1;
     int is_find_by_id = 0;
 
-    const char* item_keyword = NULL;
+
     int is_find_by_keyword = 0;
 
     for (int i = 2; i < argc; i++) {
@@ -229,7 +229,7 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
             !is_find_by_keyword) {
                 char* end_ptr = NULL;
                 item_id = strtol(argv[i + 1], &end_ptr, 10);
-                
+
                 if (strlen(argv[i + 1]) != (end_ptr - argv[i + 1])) {
                     print_error("Expect a valid number of ID.");
                     return;
@@ -241,7 +241,7 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
         } else if ((strcmp(argv[i], FIND_ITEM_BY_KEYWORD_FLAG_ABBR) == 0 ||
                    strcmp(argv[i], FIND_ITEM_BY_KEYWORD_FLAG) == 0) &&
                    !is_find_by_id) {
-            item_keyword = argv[i + 1];
+
             is_find_by_keyword = 1;
             i++;
 
@@ -262,7 +262,7 @@ static void console_find_item(todolist_t* tdl, int argc, char* argv[]) {
         destroy_item(&item);
     } else if (is_find_by_keyword) {
         item_list_t* item_list = create_item_list();
-        
+
         /* Your code here. */
 
         output_item_list(item_list);
@@ -299,7 +299,7 @@ static void output_item_list(const item_list_t* item_list) {
 
 static void output_item(const item_t* item) {
     const char* state_str = NULL;
-    
+
     if (item->state == FINISHED)
         state_str = "Done";
     else if (item->state == UNFINISHED)
