@@ -5,7 +5,7 @@
 if __name__ == "__main__":
     with open('words', 'rt') as f:
         # 切片读词
-        words_list = f.read().split()
+        words_list = set(f.read().split())
         with open('result_py', 'wt') as result:
             for word in words_list:
                 # 相等写入
