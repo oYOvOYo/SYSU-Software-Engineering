@@ -50,8 +50,7 @@ error_t service_find_items_by_keyword(const todolist_t* tdl, const char* keyword
 error_t service_find_item_by_id(const todolist_t* tdl, id_t item_id,
                                 item_t** item) {
     /* Your code here. */
-    item_list_t* tmp = create_item_list();
-    return todolist_find_items(tdl, &tmp, filter_by_id, item_id);
+    return todolist_find_items(tdl, item, filter_by_id, item_id);
 }
 
 int service_find_items_by_state(const todolist_t* tdl, item_list_t** item_list,
