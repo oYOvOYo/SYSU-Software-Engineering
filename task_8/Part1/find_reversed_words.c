@@ -1,9 +1,9 @@
 // Copyright (c) 2016 jskyzero. All righs reserved.
 #include <stdio.h>
 #include <stdlib.h> // for malloc
-#include <string.h> // for strlen
+#include <string.h> // for strlen strcpy
 
-
+// 除了最后一个子符，反向一个字符串
 char* reverse_str(char* str) {
     size_t str_len = strlen(str) -1;
     for (int n = 0; n < str_len/2; n++) {
@@ -17,18 +17,21 @@ char* reverse_str(char* str) {
 int main() {
     FILE* read = fopen("words", "rt");
     FILE* write = fopen("result_c", "wt");
+    // 储存数据
     char lines[100000][30] = {'\0'};
     char line[30]= {'\0'};
     if (read == NULL) {
-        printf("%s", "orz");
+        printf("%s", "fail to open file");
         return -1;
     }
-
+    // 读入数据
     for (int i = 0; i < 100000; i++) {
         fgets(lines[i], 30, read);
         if(feof(read)) break;
     }
+    // 遍历数组检查
     for (int i = 0; i < 100000; i++) {
+        // 对于多出的一些ｌｉｎｅ
         if (lines[i][0] == '\0') break;
         strcpy(line, lines[i]);
         reverse_str(line);
@@ -48,7 +51,7 @@ int main() {
 }
 
 
-
+// 这下面是花了约三小时试图自己写一个简单的ｌｉｓｔ但是遂发现效率太低遂放弃
 
 
 
@@ -100,9 +103,6 @@ int main() {
 //     }
 //     return 0;
 // }
-
-
-
 
 // int main() {
 //     FILE* read = fopen("words", "rt");
