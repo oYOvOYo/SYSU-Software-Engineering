@@ -1,5 +1,0 @@
-= =
-
-SYSU 2016 实训Agenda项目
-
-python 实现
