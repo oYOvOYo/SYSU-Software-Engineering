@@ -1,0 +1,56 @@
+* {
+
+}
+
+body {
+    background-color: beige;
+}
+
+#class {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    border: 1px black solid;
+    margin-left: auto;
+    margin-right: auto;
+    color: rebeccapurple;
+    text-align: center;
+    background-image: url("https://static.mengniang.org/common/thumb/d/d2/New_Claris.jpg/375px-New_Claris.jpg");
+    background-size: 60% 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+img {
+    float: right;
+    width: 10%;
+}
+
+.toolbar {
+
+}
+
+.toolbar>p {
+    float: right;
+    width: 25%;
+    margin: 10px;
+    background-color: red;
+}
+
+#p1 {
+width: 100px;
+height: 100px;
+background-color: blue;
+position: absolute;
+left: 200px;
+
+}
+
+p#orz {
+    width: 100px;
+    height: 100px;
+    background-color: yellowgreen;
+
+}
+
+
