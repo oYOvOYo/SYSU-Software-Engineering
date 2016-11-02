@@ -1,0 +1,42 @@
+@font-face {
+        font-family: OpenSans-Light;
+        src: url(../font/OpenSans-Light.ttf);
+}
+
+* {
+    font-family: OpenSans-Light sans-serif;
+}
+
+th, td {
+    border: 1px #F6F6F6 solid;
+    text-align: left;
+}
+
+thead {
+    background-color: #031B7F;
+    color: white;
+}
+
+th {
+    padding-right: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: #DDDDDD;
+}
+
+.click {
+    background-color: #A4B0FC;
+}
+
+.ascend {
+    background-image: url(ascend.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.descend {
+    background-image: url(descend.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}
