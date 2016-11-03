@@ -28,7 +28,7 @@
 - [x] 代码减少
 - [x] 代码可读性增强
 - [x] JavaScript代码模块化，命名合理
-- [x] 每个方法不超过10行
+- [x] 每个方法不超过10行[^注1]
 
 
 
@@ -86,11 +86,6 @@
 
 [Homework 8. Table Sorter](http://my.ss.sysu.edu.cn/wiki/display/WEB/Homework+8.+Table+Sorter)
 
-\\\
-
-阿萨德加咖啡
-
-[^note]: 
 [^注1]: 由于方法存在嵌套,这里理解为最底层单个方法满足小于0行, 对于外层为底层函数均为一行
 
  
