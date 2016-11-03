@@ -1,0 +1,1 @@
+window.location.href='./html/puzzle.html';

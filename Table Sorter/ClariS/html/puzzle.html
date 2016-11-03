@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- A simple web page, by Wangqing's student Jskyzero, 2016/10/２３ in SYSU -->
+<html>
+
+<head>
+	<meta http-equiv="" content="text/html; charset=UTFF-8">
+	<title>ClariS Puzzle</title>
+	<link href="../css/puzzle.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/puzzle.js"></script>
+	<link href="../picture/shortcut.jpg" type="image/gif" rel="shortcut icon" />
+</head>
+
+<body>
+	<!--头部标题和标签组-->
+	<header>Welcome to ClariS TOP</header>
+	<nav>
+		<a href="http://www.clarismusic.jp/index2.html">Official</a>
+		<a href="http://www.clarismusic.jp/news/">News</a>
+		<a href="http://tieba.baidu.com/f?kw=claris&ie=utf-8">Tieba</a>
+		<a href="https://en.wikipedia.org/wiki/ClariS">Wiki</a>
+	</nav>
+	<!--主体部分-->
+	<div ID="page">
+		<!--背景音乐-->
+		<audio controls id="music" autoplay="autoplay" loop="loop">
+			<source src="../music/ClariS - ひらひら ひらら.mp3" type="audio/mp3"> Your browser does not support the audio element.
+		</audio>
+		<p class="help">A puzzle game of ClariS</p>
+		<button type="button" id="reset">Re Set</button>
+		<!--拼图部分-->
+		<div ID="puzzle">
+		</div>
+		<img ID="origin" src="../picture/restart.jpg" alt="origin picture">
+		<p class="help" id="win">You win the game</p>
+	</div>
+	<!--边框栏暂时设空-->
+	<aside></aside>
+	<!--角标-->
+	<footer>By Jskyzero</footer>
+</body>
+
+</html>
