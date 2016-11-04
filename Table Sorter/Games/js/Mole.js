@@ -1,6 +1,6 @@
 (function () {
     var moleGame = function () {
-        var notGame, timer; //不再游戏, 计时器
+        var notGame, timer, time, score; //不再游戏, 计时器
          // 初始化函数
         var moleInitial = function () {
             var frag = document.createDocumentFragment();
@@ -22,7 +22,7 @@
         }
         //开始游戏
         var startGame = function () {
-            var time = 30, score = 0;
+            time = 30, score = 0;
             // 每一秒更新显示
             var oneSecond = function () {
                 $("#time").find("input")[0].value = --time;
@@ -41,6 +41,8 @@
                         randomMole();
                     }
                     $("#score").find("input")[0].value = score;
+                    console.log(score);
+                    console.log($("#score").find("input")[0].value);
                 }
             }
             // 随机改变一个
