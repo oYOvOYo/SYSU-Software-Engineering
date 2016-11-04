@@ -1,12 +1,3 @@
-/*自定义字体*/
-@font-face {
-        font-family: Cat;
-        src: url(../font/方正喵呜体.ttf);
-}
-@font-face {
-        font-family: OpenSans-Light;
-        src: url(../font/OpenSans-Light.ttf);
-}
 
 * {
     font-family: OpenSans-Light sans-serif;
@@ -121,15 +112,14 @@ nav > a:hover{
 }
 
 #page > #puzzle {
-    width: 400px;
-    height: 400px;
+    width: 408px;
+    height: 408px;
     margin: 0px;
     border: 1px silver solid;
     background-color: snow;
     position: absolute;
     top:250px;
     left: 5px;
-    overflow: hidden;
 }
 
 #puzzle > div {
@@ -140,10 +130,15 @@ nav > a:hover{
     float: left;
     width: 100px;
     height: 100px;
+    border: 1px white solid;
     margin: 0px;
     background-image: url("../picture/restart.jpg");
     background-size: 400px 400px;
     background-position: 0px 0px;
+}
+
+.piece:hover {
+    transform: scale(1.05);
 }
 
 /*空白图片*/
