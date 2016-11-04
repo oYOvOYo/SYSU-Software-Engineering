@@ -1,4 +1,5 @@
 (function () {
+
     var createPuzzle = function () {
         var winGame = function () {
             for (var i = 0; i < 16; i++) {
@@ -36,17 +37,19 @@
             haveInitialed = true;
         }
 
-        var puzzle = document.getElementById("puzzle");
-        var frag = document.createDocumentFragment();
-        var haveInitialed;
-        for (var i = 0; i < 16; i++) {
+        var createPiece = function (i) {
             var piece = document.createElement("img");
             piece.className = "piece";
             piece.onclick = canMove;
             piece.style.backgroundPositionX = - i % 4 * 100 + "px";
             piece.style.backgroundPositionY = - Math.floor(i / 4) * 100 + "px";
-            frag.appendChild(piece)
+            return piece;
         }
+
+        var puzzle = document.getElementById("puzzle");
+        var frag = document.createDocumentFragment();
+        var haveInitialed;
+        for (var i = 0; i < 16; i++) frag.appendChild(createPiece(i))
         puzzle.appendChild(frag);
         var imgList = document.getElementsByClassName("piece");
         imgList[15].style.backgroundImage = "none";
@@ -57,4 +60,3 @@
         var puzzle_obj = new createPuzzle();
     }
 })();
-
