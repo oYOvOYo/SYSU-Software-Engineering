@@ -10,6 +10,22 @@ $(function () {
     gray: "#7E7E7E"
   }
 
+
+  // 模拟同时按下A~E按钮，并在所有随机数到达后，立即按下大气泡的过程。
+  var parallelClick = function () {
+    var liArray = $("#control-ring > li");
+    for (var i = 0; i < liArray.length; i++) {
+      liArray[i].click();
+    }
+    var timer = setInterval(function () {
+      if ($("#info-bar")[0].canBeClick) {
+        setTimeout($("#info-bar")[0].click(), 500);
+        clearInterval(timer);
+      }
+    }, 1200);
+  }
+
+
   var deleteOldContent = function () {
     // empty the big buttum
     $("#info-bar").empty();
@@ -22,6 +38,7 @@ $(function () {
   }
 
   var addNewContent = function () {
+    isControlRingClick = false
     var liArray = $("#control-ring > li");
     for (var i = 0; i < liArray.length; i++) {
       liArray[i].innerHTML = String.fromCharCode('A'.charCodeAt(0) + i);
@@ -39,6 +56,8 @@ $(function () {
     })
     // 气泡点击事件
     $("#info-bar")[0].onclick = clickInfo;
+    // 点击@+按钮，将执行这段机器人程序
+    $(".apb")[0].onclick = parallelClick;
   }
 
   var buttonHoverIn = function () {
@@ -62,13 +81,13 @@ $(function () {
 
   // 在得到结果前
   var addNumberElement = function () {
-      var numberElement = document.createElement("span");
-      numberElement.className = "unread";
-      // 红色圆圈内显示 。。。，表示正在等待随机数
-      numberElement.innerHTML = "...";
-      $(this).append(numberElement);
-      // 灭活（disable）其它按钮，变为灰色，用户不能够点击（点击没有响应，也不会发送新的请求到服务器）
-      disableOthers.call(this);
+    var numberElement = document.createElement("span");
+    numberElement.className = "unread";
+    // 红色圆圈内显示 。。。，表示正在等待随机数
+    numberElement.innerHTML = "...";
+    $(this).append(numberElement);
+    // 灭活（disable）其它按钮，变为灰色，用户不能够点击（点击没有响应，也不会发送新的请求到服务器）
+    setTimeout(function () { disableOthers.call(this) }, 0);
   }
 
   var getNumber = function () {
@@ -77,14 +96,13 @@ $(function () {
       if ($(this).find(".unread")[0]) {
         // 显示在当前按钮右上角红色圆圈内
         $(this).find(".unread")[0].innerHTML = num;
+        // 灭活当前按钮，变为灰色，用户不能够点击
+        this.haveBeenClicked = true;
+        $(this).css("background-color", indexConfig.gray)
+        // 激活（enable）其余按钮，呈现为蓝色，用户可以点击，从服务器获取随机数
+        enableOthers.call(this);
+        checkInfoCanClick();
       }
-      // 灭活当前按钮，变为灰色，用户不能够点击
-      this.haveBeenClicked = true;
-      $(this).css("background-color", indexConfig.gray)
-
-      // 激活（enable）其余按钮，呈现为蓝色，用户可以点击，从服务器获取随机数
-      enableOthers.call(this);
-      checkInfoCanClick();
     })
   }
 
@@ -112,7 +130,7 @@ $(function () {
   var checkInfoCanClick = function () {
     var allHaveNum = true;
     $("#control-ring > li").each(function () {
-      if (!$(this).find(".unread").length) {
+      if (!$(this)[0].haveBeenClicked) {
         allHaveNum = false;
       }
     })
@@ -152,4 +170,4 @@ $(function () {
   mainFunc();
 })
 
-// 至此 S1部分完成
+// 至此 S3部分完成

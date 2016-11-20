@@ -200,3 +200,11 @@ html, body {
     color: #26E79E;
     font-size: 32px;
 }
+
+.sequence {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 10px;
+    color: #26E79E;
+    font-size: 20px;
+}
