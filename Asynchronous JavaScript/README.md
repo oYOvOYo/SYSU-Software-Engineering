@@ -2,7 +2,15 @@
 
 [TOC]
 
-## 简介
+## 说明
+
+1. 已经实现S1 - S4
+2. 当鼠标移开按钮时请等待之前课程中设置的1秒时间延迟.
+3. 如有问题请指出.
+
+
+
+# 简介
 
 在[Homework 3 - Ring Menu](http://my.ss.sysu.edu.cn/wiki/display/WEB/Homework+3+-+Ring+Menu)代码的基础上，添加与服务器交互的Ajax代码，环形菜单变身为环形Async求和计算器。
 
