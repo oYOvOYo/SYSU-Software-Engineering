@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+
 class sudoku(object):
+
     def __init__(self, data):
         """
         intial a sudoku
@@ -15,12 +17,12 @@ class sudoku(object):
             if(self.data[i] == 0):
                 self.list.append(i)
                 self.dict[i] = self.next_value(i)
-    
+
     def show(self):
         """ show a sudoku """
         for i in range(len(self.data)):
-            if (i+1) % 9 == 0:
-                print self.data[i],'\n',
+            if (i + 1) % 9 == 0:
+                print self.data[i], '\n',
             else:
                 print self.data[i],
 
@@ -28,7 +30,7 @@ class sudoku(object):
         """ Get every line """
         raw = index // 9
         return self.data[raw * 9: raw * 9 + 9]
-    
+
     def column(self, index):
         """ Get every column """
         column = index % 9
@@ -45,7 +47,7 @@ class sudoku(object):
             raw_temp = self.data[(3 * raw + x) * 9: (3 * raw + 1 + x) * 9]
             temp.extend(raw_temp[3 * column: 3 * column + 3])
         return temp
-    
+
     def isvalid(self, index):
         """ check value is valid """
         temp = []
@@ -56,8 +58,8 @@ class sudoku(object):
         for x in temp:
             ans *= 0 in x and True or range(1, 10) == sorted(x)
         return bool(ans)
-    
-    def check_all(self,data):
+
+    def check_all(self, data):
         """ check value is valid """
         self.data = data
         for x in range(81):
@@ -78,7 +80,6 @@ class sudoku(object):
                 self.solute(index2)
                 self.data[index2] = 0
                 self.list.append(index2)
-        
 
     def next_value(self, index):
         """ return reasonable next value use set and return a list """
@@ -87,11 +88,12 @@ class sudoku(object):
         temp.extend(self.raw(index))
         temp.extend(self.column(index))
         temp.extend(self.block(index))
-        for x in range(1,10):
+        for x in range(1, 10):
             if not(x in temp):
                 ans.append(x)
-            self.data[index] = 0 
+            self.data[index] = 0
         return ans
+
 
 def read_data():
     sudoku = []
@@ -116,5 +118,3 @@ if __name__ == '__main__':
     #          0, 0, 0, 0, 8, 0, 0, 7, 9]
     s = sudoku(temp)
     s.solute(s.list.pop())
-
-
