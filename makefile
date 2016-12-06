@@ -13,15 +13,15 @@ FLAGS = -I $(ROOT_DIR) -I $(INC_DIR)
 
 
 
-$(BIN_DIR)/SimpleCalculator: $(SRC_DIR)/SimpleCalculator.c $(OBJ_DIR)/ShellUI.o \
-	$(OBJ_DIR)/Calculate.o
+$(BIN_DIR)/SimpleCalculator: $(SRC_DIR)/SimpleCalculator.c $(OBJ_DIR)/shellUI.o \
+	$(OBJ_DIR)/calculate.o
 	$(CC) $(FLAGS) $^ -o $@
 
-$(OBJ_DIR)/ShellUI.o: $(SRC_DIR)/ShellUI.c
+$(OBJ_DIR)/shellUI.o: $(SRC_DIR)/shellUI.c
 	mkdir -p $(OBJ_DIR) $(BIN_DIR)
 	$(CC) $(FLAGS) $^ -c -o $@
 
-$(OBJ_DIR)/Calculate.o: $(SRC_DIR)/Calculate.c
+$(OBJ_DIR)/calculate.o: $(SRC_DIR)/calculate.c
 	$(CC) $(FLAGS) $^ -c -o $@
  
 clean:
