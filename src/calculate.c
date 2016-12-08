@@ -4,11 +4,9 @@
 //
 
 #include "calculate.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <limits.h>
+#include <string.h> // for strchr() strlen() 
+#include <stdlib.h> // for malloc() free() 
+#include <ctype.h> // for isdigit()
 
 int int_add(int num1, int num2, int* have_error);
 int int_sub(int num1, int num2, int* have_error);
