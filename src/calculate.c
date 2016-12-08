@@ -4,10 +4,11 @@
 //
 
 #include "calculate.h"
-#include <string.h> // for strchr() strlen() 
-#include <stdlib.h> // for malloc() free() 
-#include <ctype.h> // for isdigit()
-#include <limits.h> // for INT_MIN
+#include <string.h>  // for strchr() strlen()
+#include <stdlib.h>  // for malloc() free()
+#include <ctype.h>   // for isdigit()
+#include <limits.h>  // for INT_MIN
+
 
 int int_add(int num1, int num2, int* have_error);
 int int_sub(int num1, int num2, int* have_error);
@@ -21,62 +22,93 @@ int integer(const char* cal_str, int size, int* have_error);
 int number(const char* cal_str, int size, int* have_error);
 int digit(char ch, int* have_error);
 
-int find_first_digit_pos(const char* cal_str, int size) {
-  if (size == 0) return size;
-  for (int i = 0; i < size; i++) {
-    if(isdigit(cal_str[i])) {
-      return i;
-    }
-  }
-  return size - 1;
-}
+// #include <stdio.h>
+// void show(const char* cal_str, int size, const char* str, int* p) {
+//   if (*p == 0) {
+//     char a[100] = {0};
+//     strncpy(a, cal_str, size);
+//     printf("%s %s\n", str, a);
+//   }
+//   if (*p == -1) {
+//     char a[100] = {0};
+//     strncpy(a, cal_str, size);
+//     printf("   %s %s\n", str, a);
+//   }
+// }
 
 int expr(const char* cal_str, int size, int* have_error) {
-  if (*have_error) return 0;
+  // show(cal_str, size, "expr", have_error);
+  if (*have_error > 0) return 0;
   char* char_ptr;
-  int offset = find_first_digit_pos(cal_str, size);
-  char_ptr = strchr(cal_str + offset, '+');
-  if (char_ptr)
-    return int_add(
-        term(cal_str, char_ptr - cal_str, have_error),
-        expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-        have_error);
-  char_ptr = strchr(cal_str + offset, '-');
-  if (char_ptr)
-    return int_sub(
-        term(cal_str, char_ptr - cal_str, have_error),
-        expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-        have_error);
+  int left, try_error = -1;
+  char_ptr = strchr(cal_str, '+');
+  if (char_ptr  && (char_ptr - cal_str) <= size ) {
+    left = term(cal_str, char_ptr - cal_str, &try_error);
+    if (try_error <= 0) {
+      term(cal_str, char_ptr - cal_str, have_error);
+      return int_add(
+          left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+          have_error);
+    }
+  }
+  try_error = -1;
+  char_ptr = strchr(cal_str, '-');
+  if (char_ptr  && (char_ptr - cal_str) <= size ) {
+    left = term(cal_str, char_ptr - cal_str, &try_error);
+    if (try_error <= 0) {
+      term(cal_str, char_ptr - cal_str, have_error);
+      return int_sub(
+          left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+          have_error);
+    }
+  }
+
   return term(cal_str, size, have_error);
 }
 
 int term(const char* cal_str, int size, int* have_error) {
-  if (*have_error) return 0;
+  // show(cal_str, size, "term", have_error);
+  if (*have_error > 0) return 0;
   char* char_ptr;
-  int offset = find_first_digit_pos(cal_str, size);
-  char_ptr = strchr(cal_str + offset, '*');
-  if (char_ptr)
-    return int_mul(
-        factor(cal_str, char_ptr - cal_str, have_error),
-        term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-        have_error);
-  char_ptr = strchr(cal_str + offset, '/');
-  if (char_ptr)
-    return int_div(
-        factor(cal_str, char_ptr - cal_str, have_error),
-        term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-        have_error);
+  int left, try_error = -1;
+  char_ptr = strchr(cal_str, '*');
+  if (char_ptr  && (char_ptr - cal_str) <= size ) {
+    left = factor(cal_str, char_ptr - cal_str, have_error);
+    if (try_error <= 0) {
+      left = factor(cal_str, char_ptr - cal_str, &try_error);
+      return int_mul(
+          left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+          have_error);
+    }
+  }
+  try_error = -1;
+  char_ptr = strchr(cal_str, '/');
+  if (char_ptr  && (char_ptr - cal_str) <= size ) {
+    left = factor(cal_str, char_ptr - cal_str, &try_error);
+    if (try_error <= 0) {
+      left = factor(cal_str, char_ptr - cal_str, have_error);
+      return int_div(
+          left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+          have_error);
+    }
+  }
+
   return factor(cal_str, size, have_error);
 }
 
 int factor(const char* cal_str, int size, int* have_error) {
-  if (*have_error) return 0;
-  if ('(' == cal_str[0] && ')' == cal_str[size - 1])
+  // show(cal_str, size, "factor", have_error);
+  if (*have_error > 0) return 0;
+  if ('(' == cal_str[0] && ')' == cal_str[size - 1]) {
     return expr(cal_str + 1, size - 2, have_error);
+  }
   return integer(cal_str, size, have_error);
 }
+
+
 int integer(const char* cal_str, int size, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
+  
   if (0 == strncmp(cal_str, "-2147483648", 11)) return INT_MIN;
   if ('+' == cal_str[0]) return number(cal_str + 1, size - 1, have_error);
   if ('-' == cal_str[0]) return -number(cal_str + 1, size - 1, have_error);
@@ -84,10 +116,9 @@ int integer(const char* cal_str, int size, int* have_error) {
 }
 
 int number(const char* cal_str, int size, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
   if (size <= 0) {
-    show_error_message(EXPRESSION_ERROR);
-    *have_error = 1;
+    *have_error = EXPRESSION_ERROR;
     return 0;
   }
 
@@ -98,10 +129,9 @@ int number(const char* cal_str, int size, int* have_error) {
 }
 
 int digit(char ch, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
   if (!isdigit(ch)) {
-    show_error_message(EXPRESSION_ERROR);
-    *have_error = 1;
+    *have_error = EXPRESSION_ERROR;
     return 0;
   } else {
     return ch - '0';
@@ -109,24 +139,23 @@ int digit(char ch, int* have_error) {
 }
 
 int int_add(int num1, int num2, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
   int ans = num1 + num2;
   if ((ans ^ num1) >= 0 || (ans ^ num2) >= 0) {
     return ans;
   } else {
-    show_error_message(OVER_FLOW_ERROR);
-    *have_error = 1;
+    *have_error = OVER_FLOW_ERROR;
     return 0;
   }
 }
 
 int int_sub(int num1, int num2, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
   return int_add(num1, -num2, have_error);
 }
 
 int int_mul(int num1, int num2, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
   int ans = 0;
   while (num2--) {
     ans = int_add(ans, num1, have_error);
@@ -135,13 +164,12 @@ int int_mul(int num1, int num2, int* have_error) {
 }
 
 int int_div(int num1, int num2, int* have_error) {
-  if (*have_error) return 0;
+  if (*have_error > 0) return 0;
   if (num2 == 0) {
     if (num1 != 0) {
       return 0;
     } else {
-      show_error_message(DIVIDE_BY_ZERO_ERROR);
-      *have_error = 1;
+      *have_error = DIVIDE_BY_ZERO_ERROR;
       return 0;
     }
   } else {
@@ -167,5 +195,9 @@ int calculate(const char* input_str) {
   int have_error = 0;
   result = expr(cal_str, j, &have_error);
   free(cal_str);
-  return have_error ? 0 : result;
+  if (have_error) {
+    show_error_message(have_error);
+    return 0;
+  } else
+    return result;
 }
