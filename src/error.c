@@ -18,3 +18,18 @@ void show_error_message(ERROR err) {
       break;
   }
 }
+
+#include <string.h>
+
+void show_info(const char* cal_str, int size, const char* str, int* p) {
+  if (*p == 0) {
+    char a[100] = {0};
+    strncpy(a, cal_str, size);
+    printf("%s %s\n", str, a);
+  }
+  if (*p == -1) {
+    char a[100] = {0};
+    strncpy(a, cal_str, size);
+    printf("   %s %s\n", str, a);
+  }
+}
