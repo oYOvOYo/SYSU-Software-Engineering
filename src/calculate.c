@@ -79,12 +79,10 @@ int number(const char* cal_str, int size, int* have_error) {
     return 0;
   }
 
-  int ans = size == 1
-                ? digit(cal_str[0], have_error)
-                : int_add(int_mul(number(cal_str, size - 1, have_error), 10,
-                                  have_error),
-                          digit(cal_str[size-1], have_error), have_error);
-  return ans;
+  return size == 1 ? digit(cal_str[0], have_error)
+                   : int_add(int_mul(number(cal_str, size - 1, have_error), 10,
+                                     have_error),
+                             digit(cal_str[size - 1], have_error), have_error);
 }
 
 int digit(char ch, int* have_error) {
