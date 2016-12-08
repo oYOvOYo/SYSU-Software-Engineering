@@ -9,7 +9,6 @@
 #include <ctype.h>   // for isdigit()
 #include <limits.h>  // for INT_MIN
 
-
 int int_add(int num1, int num2, int* have_error);
 int int_sub(int num1, int num2, int* have_error);
 int int_mul(int num1, int num2, int* have_error);
@@ -39,28 +38,37 @@ int digit(char ch, int* have_error);
 int expr(const char* cal_str, int size, int* have_error) {
   // show(cal_str, size, "expr", have_error);
   if (*have_error > 0) return 0;
-  char* char_ptr;
-  int left, try_error = -1;
+  const char* char_ptr;
+  int left, try_error;
+
   char_ptr = strchr(cal_str, '+');
-  if (char_ptr  && (char_ptr - cal_str) <= size ) {
-    left = term(cal_str, char_ptr - cal_str, &try_error);
-    if (try_error <= 0) {
-      term(cal_str, char_ptr - cal_str, have_error);
-      return int_add(
-          left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-          have_error);
+  while (char_ptr) {
+    try_error = -1;
+    if (char_ptr && (char_ptr - cal_str) <= size) {
+      left = term(cal_str, char_ptr - cal_str, &try_error);
+      if (try_error <= 0) {
+        term(cal_str, char_ptr - cal_str, have_error);
+        return int_add(left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1,
+                                  have_error),
+                       have_error);
+      }
     }
+    char_ptr = strchr(char_ptr + 1, '+');
   }
-  try_error = -1;
+
   char_ptr = strchr(cal_str, '-');
-  if (char_ptr  && (char_ptr - cal_str) <= size ) {
-    left = term(cal_str, char_ptr - cal_str, &try_error);
-    if (try_error <= 0) {
-      term(cal_str, char_ptr - cal_str, have_error);
-      return int_sub(
-          left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-          have_error);
+  while (char_ptr) {
+    try_error = -1;
+    if (char_ptr && (char_ptr - cal_str) <= size) {
+      left = term(cal_str, char_ptr - cal_str, &try_error);
+      if (try_error <= 0) {
+        term(cal_str, char_ptr - cal_str, have_error);
+        return int_sub(left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1,
+                                  have_error),
+                       have_error);
+      }
     }
+    char_ptr = strchr(char_ptr + 1, '-');
   }
 
   return term(cal_str, size, have_error);
@@ -69,28 +77,37 @@ int expr(const char* cal_str, int size, int* have_error) {
 int term(const char* cal_str, int size, int* have_error) {
   // show(cal_str, size, "term", have_error);
   if (*have_error > 0) return 0;
-  char* char_ptr;
-  int left, try_error = -1;
+  const char* char_ptr;
+  int left, try_error;
+
   char_ptr = strchr(cal_str, '*');
-  if (char_ptr  && (char_ptr - cal_str) <= size ) {
-    left = factor(cal_str, char_ptr - cal_str, have_error);
-    if (try_error <= 0) {
+  while (char_ptr) {
+    try_error = -1;
+    if (char_ptr && (char_ptr - cal_str) <= size) {
       left = factor(cal_str, char_ptr - cal_str, &try_error);
-      return int_mul(
-          left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-          have_error);
+      if (try_error <= 0) {
+        factor(cal_str, char_ptr - cal_str, have_error);
+        return int_mul(left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1,
+                                  have_error),
+                       have_error);
+      }
     }
+    char_ptr = strchr(char_ptr + 1, '*');
   }
-  try_error = -1;
+
   char_ptr = strchr(cal_str, '/');
-  if (char_ptr  && (char_ptr - cal_str) <= size ) {
-    left = factor(cal_str, char_ptr - cal_str, &try_error);
-    if (try_error <= 0) {
-      left = factor(cal_str, char_ptr - cal_str, have_error);
-      return int_div(
-          left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
-          have_error);
+  while (char_ptr) {
+    try_error = -1;
+    if (char_ptr && (char_ptr - cal_str) <= size) {
+      left = factor(cal_str, char_ptr - cal_str, &try_error);
+      if (try_error <= 0) {
+        factor(cal_str, char_ptr - cal_str, have_error);
+        return int_div(left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1,
+                                  have_error),
+                       have_error);
+      }
     }
+    char_ptr = strchr(char_ptr + 1, '/');
   }
 
   return factor(cal_str, size, have_error);
@@ -105,10 +122,9 @@ int factor(const char* cal_str, int size, int* have_error) {
   return integer(cal_str, size, have_error);
 }
 
-
 int integer(const char* cal_str, int size, int* have_error) {
   if (*have_error > 0) return 0;
-  
+
   if (0 == strncmp(cal_str, "-2147483648", 11)) return INT_MIN;
   if ('+' == cal_str[0]) return number(cal_str + 1, size - 1, have_error);
   if ('-' == cal_str[0]) return -number(cal_str + 1, size - 1, have_error);
