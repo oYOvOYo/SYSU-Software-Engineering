@@ -7,6 +7,7 @@
 #include <string.h> // for strchr() strlen() 
 #include <stdlib.h> // for malloc() free() 
 #include <ctype.h> // for isdigit()
+#include <limits.h> // for INT_MIN
 
 int int_add(int num1, int num2, int* have_error);
 int int_sub(int num1, int num2, int* have_error);
@@ -20,16 +21,26 @@ int integer(const char* cal_str, int size, int* have_error);
 int number(const char* cal_str, int size, int* have_error);
 int digit(char ch, int* have_error);
 
+int find_first_digit_pos(const char* cal_str, int size) {
+  for (int i = 0; i < size; i++) {
+    if(isdigit(cal_str[i])) {
+      return i;
+    }
+  }
+  return size - 1;
+}
+
 int expr(const char* cal_str, int size, int* have_error) {
   if (*have_error) return 0;
   char* char_ptr;
-  char_ptr = strchr(cal_str, '+');
+  int offset = find_first_digit_pos(cal_str, size);
+  char_ptr = strchr(cal_str + offset, '+');
   if (char_ptr)
     return int_add(
         term(cal_str, char_ptr - cal_str, have_error),
         expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
         have_error);
-  char_ptr = strchr(cal_str, '-');
+  char_ptr = strchr(cal_str + offset, '-');
   if (char_ptr)
     return int_sub(
         term(cal_str, char_ptr - cal_str, have_error),
@@ -41,13 +52,14 @@ int expr(const char* cal_str, int size, int* have_error) {
 int term(const char* cal_str, int size, int* have_error) {
   if (*have_error) return 0;
   char* char_ptr;
-  char_ptr = strchr(cal_str, '*');
+  int offset = find_first_digit_pos(cal_str, size);
+  char_ptr = strchr(cal_str + offset, '*');
   if (char_ptr)
     return int_mul(
         factor(cal_str, char_ptr - cal_str, have_error),
         term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
         have_error);
-  char_ptr = strchr(cal_str, '/');
+  char_ptr = strchr(cal_str + offset, '/');
   if (char_ptr)
     return int_div(
         factor(cal_str, char_ptr - cal_str, have_error),
@@ -64,6 +76,7 @@ int factor(const char* cal_str, int size, int* have_error) {
 }
 int integer(const char* cal_str, int size, int* have_error) {
   if (*have_error) return 0;
+  if (0 == strncmp(cal_str, "-2147483648", 11)) return INT_MIN;
   if ('+' == cal_str[0]) return number(cal_str + 1, size - 1, have_error);
   if ('-' == cal_str[0]) return -number(cal_str + 1, size - 1, have_error);
   return number(cal_str, size, have_error);
