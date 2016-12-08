@@ -7,96 +7,157 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
+#include <limits.h>
 
-#ifndef MAXINT
-#define MAXINT  2147483647 // ((1<<31)-1)
-#endif
+int int_add(int num1, int num2, int* have_error);
+int int_sub(int num1, int num2, int* have_error);
+int int_mul(int num1, int num2, int* have_error);
+int int_div(int num1, int num2, int* have_error);
 
-static int eval(const char *cal_str, int offset, int *bounds);
+int expr(const char* cal_str, int size, int* have_error);
+int term(const char* cal_str, int size, int* have_error);
+int factor(const char* cal_str, int size, int* have_error);
+int integer(const char* cal_str, int size, int* have_error);
+int number(const char* cal_str, int size, int* have_error);
+int digit(char ch, int* have_error);
 
-static int node(const char *cal_str, int offset, int *bounds) {
-  int pos = offset + 1;  // start from the second char
-
-  if (cal_str[offset] == '(') {
-    return eval(cal_str, pos, bounds);  // eval sub expression
-  }
-  if (cal_str[offset] == '-') {
-    return -node(cal_str, pos, bounds);  // format: '-(x)'
-  }
-
-  for (pos; pos < *bounds; ++pos) {
-    if (cal_str[pos] == '+' || cal_str[pos] == '-' || cal_str[pos] == '*' ||
-        cal_str[pos] == '/' || cal_str[pos] == ')') {
-      *bounds = pos;
-      break;
-    }
-  }
-  // printf("-%d-", atoi(cal_str + offset));
-  return atoi(cal_str + offset);
+int expr(const char* cal_str, int size, int* have_error) {
+  if (*have_error) return 0;
+  char* char_ptr;
+  char_ptr = strchr(cal_str, '+');
+  if (char_ptr)
+    return int_add(
+        term(cal_str, char_ptr - cal_str, have_error),
+        expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+        have_error);
+  char_ptr = strchr(cal_str, '-');
+  if (char_ptr)
+    return int_sub(
+        term(cal_str, char_ptr - cal_str, have_error),
+        expr(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+        have_error);
+  return term(cal_str, size, have_error);
 }
 
-static int eval(const char *cal_str, int offset, int *bounds) {
-  int pos = *bounds;
-  float left = node(cal_str, offset, &pos), right;  // get left node first
-
-  // primary operations
-  do {
-    if (pos >= *bounds) {
-      return left;  // finished
-    }
-    if (cal_str[pos] == ')') {
-      *bounds = pos + 1;
-      return left;  // end sub expression
-    }
-
-    offset = pos + 1;  // next node offset
-
-    if (cal_str[pos] == '*') {
-      pos = *bounds;
-      left *= node(cal_str, offset, &pos);
-      continue;
-    }
-    if (cal_str[pos] == '/') {
-      pos = *bounds;
-      right = node(cal_str, offset, &pos);
-      if (right == 0)printf("Divide by zero error\n");
-      left = (right == 0 ? MAXINT : left / right);
-      continue;
-    }
-
-    break;
-  } while (1);
-
-  // secondary operations
-  if (cal_str[pos] == '+') {
-    return left + eval(cal_str, offset, bounds);
-  }
-  if (cal_str[pos] == '-') {
-    return left + eval(cal_str, pos, bounds);  // x - y - z <=> x + (-y - z)
-  }
-
-  // error
-  printf("Expression error\n");
-  return MAXINT;
+int term(const char* cal_str, int size, int* have_error) {
+  if (*have_error) return 0;
+  char* char_ptr;
+  char_ptr = strchr(cal_str, '*');
+  if (char_ptr)
+    return int_mul(
+        factor(cal_str, char_ptr - cal_str, have_error),
+        term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+        have_error);
+  char_ptr = strchr(cal_str, '/');
+  if (char_ptr)
+    return int_div(
+        factor(cal_str, char_ptr - cal_str, have_error),
+        term(char_ptr + 1, size - (char_ptr - cal_str) - 1, have_error),
+        have_error);
+  return factor(cal_str, size, have_error);
 }
 
-int calculate(const char *input_str) {
+int factor(const char* cal_str, int size, int* have_error) {
+  if (*have_error) return 0;
+  if ('(' == cal_str[0] && ')' == cal_str[size - 1])
+    return expr(cal_str + 1, size - 2, have_error);
+  return integer(cal_str, size, have_error);
+}
+int integer(const char* cal_str, int size, int* have_error) {
+  if (*have_error) return 0;
+  if ('+' == cal_str[0]) return number(cal_str + 1, size - 1, have_error);
+  if ('-' == cal_str[0]) return -number(cal_str + 1, size - 1, have_error);
+  return number(cal_str, size, have_error);
+}
+
+int number(const char* cal_str, int size, int* have_error) {
+  if (*have_error) return 0;
+  if (size <= 0) {
+    show_error_message(EXPRESSION_ERROR);
+    *have_error = 1;
+    return 0;
+  }
+
+  int ans = size == 1
+                ? digit(cal_str[0], have_error)
+                : int_add(int_mul(number(cal_str, size - 1, have_error), 10,
+                                  have_error),
+                          digit(cal_str[size-1], have_error), have_error);
+  return ans;
+}
+
+int digit(char ch, int* have_error) {
+  if (*have_error) return 0;
+  if (!isdigit(ch)) {
+    show_error_message(EXPRESSION_ERROR);
+    *have_error = 1;
+    return 0;
+  } else {
+    return ch - '0';
+  }
+}
+
+int int_add(int num1, int num2, int* have_error) {
+  if (*have_error) return 0;
+  int ans = num1 + num2;
+  if ((ans ^ num1) >= 0 || (ans ^ num2) >= 0) {
+    return ans;
+  } else {
+    show_error_message(OVER_FLOW_ERROR);
+    *have_error = 1;
+    return 0;
+  }
+}
+
+int int_sub(int num1, int num2, int* have_error) {
+  if (*have_error) return 0;
+  return int_add(num1, -num2, have_error);
+}
+
+int int_mul(int num1, int num2, int* have_error) {
+  if (*have_error) return 0;
+  int ans = 0;
+  while (num2--) {
+    ans = int_add(ans, num1, have_error);
+  }
+  return ans;
+}
+
+int int_div(int num1, int num2, int* have_error) {
+  if (*have_error) return 0;
+  if (num2 == 0) {
+    if (num1 != 0) {
+      return 0;
+    } else {
+      show_error_message(DIVIDE_BY_ZERO_ERROR);
+      *have_error = 1;
+      return 0;
+    }
+  } else {
+    return num1 / num2;
+  }
+}
+
+int calculate(const char* input_str) {
   size_t len = strlen(input_str);
-  char *cal_str = (char *)malloc((len + 1) * sizeof(char));
-  int i, j;
+  char* cal_str = (char*)malloc((len + 1) * sizeof(char));
+  int i, j;  // input_str index and cal_str index
   int result;
 
   // remove white spaces
   memset(cal_str, sizeof(char) * len, 0);
   for (i = 0, j = 0; i < len; ++i) {
-    if (input_str[i] != ' ' && input_str[i] != '\t') {
+    if (!isspace(input_str[i])) {
       cal_str[j] = input_str[i];
       ++j;
     }
   }
 
   // start
-  result = eval(cal_str, 0, &j);
+  int have_error = 0;
+  result = expr(cal_str, j, &have_error);
+  // result = eval(cal_str, 0, &j);
   free(cal_str);
-  return result;
+  return have_error ? 0 : result;
 }
