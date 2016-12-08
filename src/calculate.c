@@ -22,6 +22,7 @@ int number(const char* cal_str, int size, int* have_error);
 int digit(char ch, int* have_error);
 
 int find_first_digit_pos(const char* cal_str, int size) {
+  if (size == 0) return size;
   for (int i = 0; i < size; i++) {
     if(isdigit(cal_str[i])) {
       return i;
@@ -155,18 +156,16 @@ int calculate(const char* input_str) {
   int result;
 
   // remove white spaces
-  memset(cal_str, sizeof(char) * len, 0);
   for (i = 0, j = 0; i < len; ++i) {
     if (!isspace(input_str[i])) {
       cal_str[j] = input_str[i];
       ++j;
     }
   }
-
+  cal_str[j] = '\0';
   // start
   int have_error = 0;
   result = expr(cal_str, j, &have_error);
-  // result = eval(cal_str, 0, &j);
   free(cal_str);
   return have_error ? 0 : result;
 }
