@@ -8,16 +8,18 @@
 #include <stdlib.h>
 
 #ifndef STRING_LENGTH
-#define STRING_LENGTH (1 << 16)
+#define STRING_LENGTH (1 << 31)
 #endif
 
 
 void ShellUI(void) {
   
-  test();
+  // delete it if you do not to test  
+  test(); 
+
 
   char *input_str = (char *)malloc(STRING_LENGTH * sizeof(char));
-  
+
   while (printf(">> "), fgets(input_str, STRING_LENGTH, stdin) != NULL) {
     printf("%d\n", calculate(input_str));
   }

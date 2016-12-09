@@ -7,12 +7,15 @@
 
 // error types
 
+#ifndef ERROR_TYPES
+#define ERROR_TYPES
 typedef enum {
   NO_ERROR,
   EXPRESSION_ERROR = 1,
   DIVIDE_BY_ZERO_ERROR,
   OVER_FLOW_ERROR
 } ERROR;
+#endif
 
 // once this have error, can call this func to show error info
 void show_error_message(ERROR err);

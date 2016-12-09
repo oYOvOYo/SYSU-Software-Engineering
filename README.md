@@ -41,10 +41,10 @@
 │   └── *.o
 ├── include
 │   ├── arithmetic.h	// basic arithmetic using only int
-│   ├── calculate.h
+│   ├── calculate.h		// the main part of the calculate	
 │   ├── error.h 		// define some errors and some func about error
-│   ├── shellUI.h
-│   └── test.h
+│   ├── shellUI.h		// a shell UI read message and use the message
+│   └── test.h			// some tests 
 ├── LICENSE
 ├── makefile
 ├── README.md
