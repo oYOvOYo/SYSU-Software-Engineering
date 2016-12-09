@@ -9,37 +9,45 @@
 #include <ctype.h>   // for isdigit()
 #include <limits.h>  // for INT_MIN
 
-int expr(const char* cal_str, int size, int* have_error) {
-  // show_info(cal_str, size, "expr", have_error);
-  if (*have_error > 0) return 1;
+typedef int (*analysis_func)(const char* cal_str, int size, int* have_error);
+typedef int (*int_calculate)(int num1, int num2, int* have_error);
+
+int try_analysis(const char* cal_str, int size, int* have_error, int* success,
+                 char cal_char, analysis_func left_func,
+                 analysis_func right_func, int_calculate int_cal) {
   const char* char_ptr;
   int right, try_error;
 
-  char_ptr = strchr(cal_str, '+');
+  char_ptr = strchr(cal_str, cal_char);
   while (char_ptr) {
     try_error = -1;
     if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
-      right = term(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
+      right =
+          right_func(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
       if (try_error <= 0) {
-        return int_add(expr(cal_str, char_ptr - cal_str, have_error), right,
-                       have_error);
+        *success = 1;
+        return int_cal(left_func(cal_str, char_ptr - cal_str, have_error),
+                       right, have_error);
       }
     }
-    char_ptr = strchr(char_ptr + 1, '+');
+    char_ptr = strchr(char_ptr + 1, cal_char);
   }
+  return 1;
+}
 
-  char_ptr = strchr(cal_str, '-');
-  while (char_ptr) {
-    try_error = -1;
-    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
-      right = term(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
-      if (try_error <= 0) {
-        return int_sub(expr(cal_str, char_ptr - cal_str, have_error), right,
-                       have_error);
-      }
-    }
-    char_ptr = strchr(char_ptr + 1, '-');
-  }
+int expr(const char* cal_str, int size, int* have_error) {
+  // show_info(cal_str, size, "expr", have_error);
+  if (*have_error > 0) return 1;
+  
+  int return_value, can_analysis = 0;
+  
+  return_value = try_analysis(cal_str, size, have_error, &can_analysis, '+',
+                                  expr, term, int_add);
+  if (can_analysis) return return_value;
+
+  return_value = try_analysis(cal_str, size, have_error, &can_analysis, '-',
+                                  expr, term, int_sub);
+  if (can_analysis) return return_value;
 
   return term(cal_str, size, have_error);
 }
@@ -47,34 +55,15 @@ int expr(const char* cal_str, int size, int* have_error) {
 int term(const char* cal_str, int size, int* have_error) {
   // show_info(cal_str, size, "term", have_error);
   if (*have_error > 0) return 1;
-  const char* char_ptr;
-  int right, try_error;
+  int return_value, can_analysis = 0;
+  
+  return_value = try_analysis(cal_str, size, have_error, &can_analysis, '*',
+                                  term, factor, int_mul);
+  if (can_analysis) return return_value;
 
-  char_ptr = strchr(cal_str, '*');
-  while (char_ptr) {
-    try_error = -1;
-    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
-      right = factor(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
-      if (try_error <= 0) {
-        return int_mul(term(cal_str, char_ptr - cal_str, have_error), right,
-                       have_error);
-      }
-    }
-    char_ptr = strchr(char_ptr + 1, '*');
-  }
-
-  char_ptr = strchr(cal_str, '/');
-  while (char_ptr) {
-    try_error = -1;
-    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
-      right = factor(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
-      if (try_error <= 0) {
-        return int_div(term(cal_str, char_ptr - cal_str, have_error), right,
-                       have_error);
-      }
-    }
-    char_ptr = strchr(char_ptr + 1, '/');
-  }
+  return_value = try_analysis(cal_str, size, have_error, &can_analysis, '/',
+                                  term, factor, int_div);
+  if (can_analysis) return return_value;
 
   return factor(cal_str, size, have_error);
 }
@@ -119,8 +108,6 @@ int digit(char ch, int* have_error) {
     return ch - '0';
   }
 }
-
-
 
 int calculate(const char* input_str) {
   size_t len = strlen(input_str);
