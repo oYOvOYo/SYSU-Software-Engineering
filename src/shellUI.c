@@ -3,9 +3,9 @@
 // Copyright (C)  2016 jskyzero
 //
 
+#include "shellUI.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "shellUI.h"
 
 #ifndef STRING_LENGTH
 #define STRING_LENGTH (1 << 16)
@@ -13,6 +13,8 @@
 
 
 void ShellUI(void) {
+  // test();
+
   char *input_str = (char *)malloc(STRING_LENGTH * sizeof(char));
   
   while (printf(">> "), fgets(input_str, STRING_LENGTH, stdin) != NULL) {

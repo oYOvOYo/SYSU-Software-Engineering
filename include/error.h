@@ -10,3 +10,4 @@ typedef enum {
 } ERROR;
 
 void show_error_message(ERROR err);
+void show_info(const char* cal_str, int size, const char* str, int* p);

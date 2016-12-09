@@ -9,34 +9,19 @@
 #include <ctype.h>   // for isdigit()
 #include <limits.h>  // for INT_MIN
 
-int int_add(int num1, int num2, int* have_error);
-int int_sub(int num1, int num2, int* have_error);
-int int_mul(int num1, int num2, int* have_error);
-int int_div(int num1, int num2, int* have_error);
-
-int expr(const char* cal_str, int size, int* have_error);
-int term(const char* cal_str, int size, int* have_error);
-int factor(const char* cal_str, int size, int* have_error);
-int integer(const char* cal_str, int size, int* have_error);
-int number(const char* cal_str, int size, int* have_error);
-int digit(char ch, int* have_error);
-
-
 int expr(const char* cal_str, int size, int* have_error) {
   // show_info(cal_str, size, "expr", have_error);
   if (*have_error > 0) return 1;
   const char* char_ptr;
-  int left, try_error;
+  int right, try_error;
 
   char_ptr = strchr(cal_str, '+');
   while (char_ptr) {
     try_error = -1;
-    if (char_ptr && (char_ptr - cal_str) <= size) {
-      left = term(cal_str, char_ptr - cal_str, &try_error);
+    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
+      right = term(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
       if (try_error <= 0) {
-        term(cal_str, char_ptr - cal_str, have_error);
-        return int_add(left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1,
-                                  have_error),
+        return int_add(expr(cal_str, char_ptr - cal_str, have_error), right,
                        have_error);
       }
     }
@@ -46,12 +31,10 @@ int expr(const char* cal_str, int size, int* have_error) {
   char_ptr = strchr(cal_str, '-');
   while (char_ptr) {
     try_error = -1;
-    if (char_ptr && (char_ptr - cal_str) <= size) {
-      left = term(cal_str, char_ptr - cal_str, &try_error);
+    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
+      right = term(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
       if (try_error <= 0) {
-        term(cal_str, char_ptr - cal_str, have_error);
-        return int_sub(left, expr(char_ptr + 1, size - (char_ptr - cal_str) - 1,
-                                  have_error),
+        return int_sub(expr(cal_str, char_ptr - cal_str, have_error), right,
                        have_error);
       }
     }
@@ -65,17 +48,15 @@ int term(const char* cal_str, int size, int* have_error) {
   // show_info(cal_str, size, "term", have_error);
   if (*have_error > 0) return 1;
   const char* char_ptr;
-  int left, try_error;
+  int right, try_error;
 
   char_ptr = strchr(cal_str, '*');
   while (char_ptr) {
     try_error = -1;
-    if (char_ptr && (char_ptr - cal_str) <= size) {
-      left = factor(cal_str, char_ptr - cal_str, &try_error);
+    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
+      right = factor(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
       if (try_error <= 0) {
-        factor(cal_str, char_ptr - cal_str, have_error);
-        return int_mul(left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1,
-                                  have_error),
+        return int_mul(term(cal_str, char_ptr - cal_str, have_error), right,
                        have_error);
       }
     }
@@ -85,12 +66,10 @@ int term(const char* cal_str, int size, int* have_error) {
   char_ptr = strchr(cal_str, '/');
   while (char_ptr) {
     try_error = -1;
-    if (char_ptr && (char_ptr - cal_str) <= size) {
-      left = factor(cal_str, char_ptr - cal_str, &try_error);
+    if (0 < (char_ptr - cal_str) && (char_ptr - cal_str) <= size) {
+      right = factor(char_ptr + 1, size - (char_ptr - cal_str) - 1, &try_error);
       if (try_error <= 0) {
-        factor(cal_str, char_ptr - cal_str, have_error);
-        return int_div(left, term(char_ptr + 1, size - (char_ptr - cal_str) - 1,
-                                  have_error),
+        return int_div(term(cal_str, char_ptr - cal_str, have_error), right,
                        have_error);
       }
     }
@@ -154,6 +133,19 @@ int int_add(int num1, int num2, int* have_error) {
 
 int int_sub(int num1, int num2, int* have_error) {
   if (*have_error > 0) return 1;
+  if (num2 == INT_MIN) {
+    if (num1 == INT_MIN) {
+      return 0;
+    }
+    if (num1 < INT_MAX) {
+      num1 += 1;
+      num2 += 1;
+    }
+    if (num1 == INT_MAX) {
+      *have_error = OVER_FLOW_ERROR;
+      return 1;
+    }
+  }
   return int_add(num1, -num2, have_error);
 }
 
@@ -164,15 +156,17 @@ int int_mul(int num1, int num2, int* have_error) {
   if (num1 == INT_MIN || num2 == INT_MIN) {
     if (num1 == 0 || num2 == 0) {
       return 0;
-    } else {
-      *have_error = OVER_FLOW_ERROR;
-      return 1;
     }
+    if (num1 == 1 || num2 == 1) {
+      return INT_MIN;
+    }
+    *have_error = OVER_FLOW_ERROR;
+    return 1;
   }
 
   int min = num1 < num2 ? num1 : num2;
   int max = num1 > num2 ? num1 : num2;
-  if ( min < 0 ) {
+  if (min < 0) {
     min = -min;
     max = -max;
   }
