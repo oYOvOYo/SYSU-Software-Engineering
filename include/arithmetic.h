@@ -7,7 +7,7 @@
 
 #include "error.h"
 
-int int_add(int num1, int num2, int* have_error);
-int int_sub(int num1, int num2, int* have_error);
-int int_mul(int num1, int num2, int* have_error);
-int int_div(int num1, int num2, int* have_error);
+int int_add(int left, int right, int* error_code_ptr);
+int int_sub(int left, int right, int* error_code_ptr);
+int int_mul(int left, int right, int* error_code_ptr);
+int int_div(int left, int right, int* error_code_ptr);

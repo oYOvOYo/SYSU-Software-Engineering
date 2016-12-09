@@ -33,24 +33,28 @@
 
 ## Project Structure
 
-```C
+```
 .
 ├── bin
-│   └── SimpleCalculator
+│   └── SimpleCalculator
 ├── build
-│   ├── Calculate.o
-│   └── ShellUI.o
+│   └── *.o
 ├── include
-│   ├── Calculate.h
-│   └── ShellUI.h
+│   ├── arithmetic.h	// basic arithmetic using only int
+│   ├── calculate.h
+│   ├── error.h 		// define some errors and some func about error
+│   ├── shellUI.h
+│   └── test.h
 ├── LICENSE
 ├── makefile
 ├── README.md
 └── src
-    ├── Calculate.c
-    ├── ShellUI.c
-    └── SimpleCalculator.c
-
+    ├── arithmetic.c
+    ├── calculate.c
+    ├── error.c 
+    ├── shellUI.c
+    ├── SimpleCalculator.c
+    └── test.c
 ```
 
 ## References

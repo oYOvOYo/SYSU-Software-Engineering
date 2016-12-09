@@ -1,72 +1,100 @@
-#include "arithmetic.h"
-#include <limits.h>
+//
+// arithmetic.h
+// Copyright (C)  2016 jskyzero
+//
+// basic arithmetic using only int
+//
 
-int int_add(int num1, int num2, int* have_error) {
-  if (*have_error > 0) return 1;
-  int ans = num1 + num2;
-  if ((ans ^ num1) >= 0 || (ans ^ num2) >= 0) {
+#include "arithmetic.h"
+
+#include <limits.h>  // for INT_MAX INT_MIN
+
+#ifndef ERROR_RETURN_VALUE
+#define ERROR_RETURN_VALUE 1
+#endif
+
+int int_add(int left, int right, int* error_code_ptr) {
+  if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
+
+  int ans = left + right;
+  // thre is no overflow
+  if ((ans ^ left) >= 0 || (ans ^ right) >= 0) {
     return ans;
   } else {
-    *have_error = OVER_FLOW_ERROR;
-    return 1;
+    *error_code_ptr = OVER_FLOW_ERROR;
+    return ERROR_RETURN_VALUE;
   }
 }
 
-int int_sub(int num1, int num2, int* have_error) {
-  if (*have_error > 0) return 1;
-  if (num2 == INT_MIN) {
-    if (num1 == INT_MIN) {
+int int_sub(int left, int right, int* error_code_ptr) {
+  if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
+
+  if (right == INT_MIN) {
+    // check the sitution if the right value is INT_MIN
+    if (left == INT_MIN) {
       return 0;
     }
-    if (num1 < INT_MAX) {
-      num1 += 1;
-      num2 += 1;
+    // incase -INT_MIN or left + 1 will overflow
+    if (left < INT_MAX) {
+      left += 1;
+      right += 1;
     }
-    if (num1 == INT_MAX) {
-      *have_error = OVER_FLOW_ERROR;
-      return 1;
+    // of course, overflow
+    if (left == INT_MAX) {
+      *error_code_ptr = OVER_FLOW_ERROR;
+      return ERROR_RETURN_VALUE;
     }
   }
-  return int_add(num1, -num2, have_error);
+  return int_add(left, -right, error_code_ptr);
 }
 
-int int_mul(int num1, int num2, int* have_error) {
-  if (*have_error > 0) return 1;
+int int_mul(int left, int right, int* error_code_ptr) {
+  if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
+
   int ans = 0;
-
-  if (num1 == INT_MIN || num2 == INT_MIN) {
-    if (num1 == 0 || num2 == 0) {
+  // check the sutuation there is a INT_MIN in left or right
+  if (left == INT_MIN || right == INT_MIN) {
+    // 0 * anyvalue = 0
+    if (left == 0 || right == 0) {
       return 0;
     }
-    if (num1 == 1 || num2 == 1) {
+    // 1 * anyvalue = anyvalue
+    if (left == 1 || right == 1) {
       return INT_MIN;
     }
-    *have_error = OVER_FLOW_ERROR;
-    return 1;
+    // overflow
+    *error_code_ptr = OVER_FLOW_ERROR;
+    return ERROR_RETURN_VALUE;
   }
-
-  int min = num1 < num2 ? num1 : num2;
-  int max = num1 > num2 ? num1 : num2;
+  // in other commen case
+  int min = left < right ? left : right;
+  int max = left > right ? left : right;
+  
+  // in case while loop
   if (min < 0) {
     min = -min;
     max = -max;
   }
   while (min--) {
-    ans = int_add(ans, max, have_error);
+    ans = int_add(ans, max, error_code_ptr);
   }
   return ans;
 }
 
-int int_div(int num1, int num2, int* have_error) {
-  if (*have_error > 0) return 1;
-  if (num2 == 0) {
-    if (num1 != 0) {
+int int_div(int left, int right, int* error_code_ptr) {
+  if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
+
+  if (right == 0) {
+    if (left != 0) {
+      // 0 / 0 will not cause a error
       return 0;
     } else {
-      *have_error = DIVIDE_BY_ZERO_ERROR;
-      return 1;
+      // Not 0 / 0 will cause a error
+      *error_code_ptr = DIVIDE_BY_ZERO_ERROR;
+      return ERROR_RETURN_VALUE;
     }
   } else {
-    return num1 / num2;
+    // integer devide
+    return left / right;
   }
 }

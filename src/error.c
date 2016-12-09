@@ -2,11 +2,13 @@
 // error.h
 // Copyright (C)  2016 jskyzero
 //
+// define some errors and some func about error
+//
+
 #include "error.h"
 #include <stdio.h>
 
-
-
+// once this have error, can call this func to show error info
 void show_error_message(ERROR err) {
   switch (err) {
     case EXPRESSION_ERROR:
@@ -21,20 +23,20 @@ void show_error_message(ERROR err) {
   }
 }
 
-int check_have_error(int * error_code_ptr) {
-  return *error_code_ptr > 0; 
-}
+// check if there have the error
+int check_have_error(int* error_code_ptr) { return *error_code_ptr > 0; }
 
+// help to show call info whe debug
+// attention have error
 #include <string.h>
 void show_info(const char* cal_str, int size, const char* str, int* p) {
-  if (*p == 0) {
-    char a[100] = {0};
-    strncpy(a, cal_str, size);
+  char a[size];
+  strncpy(a, cal_str, size);
+
+  if (*p == NO_ERROR) {
     printf("%s %s\n", str, a);
   }
-  if (*p == -1) {
-    char a[100] = {0};
-    strncpy(a, cal_str, size);
+  if (*p == NO_ERROR - 1) {
     printf("   %s %s\n", str, a);
   }
 }
