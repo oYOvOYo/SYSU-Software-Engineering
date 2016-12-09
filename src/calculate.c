@@ -13,6 +13,9 @@
 #define ERROR_RETURN_VALUE 1
 #endif
 
+#ifndef INT_MIN_STR 
+#define INT_MIN_STR "-2147483648"
+#endif
 
 typedef int (*analysis_func)(const char* cal_str, int size, int* error_code_ptr);
 typedef int (*int_calculate)(int num1, int num2, int* error_code_ptr);
@@ -40,52 +43,52 @@ int try_analysis(const char* cal_str, int size, int* error_code_ptr, int* succes
   return ERROR_RETURN_VALUE;
 }
 
-int expr(const char* cal_str, int size, int* error_code_ptr) {
-  // show_info(cal_str, size, "expr", error_code_ptr);
+int additive_expression(const char* cal_str, int size, int* error_code_ptr) {
+  // show_info(cal_str, size, "additive_expression", error_code_ptr);
   if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
   
   int return_value, can_analysis = 0;
   
   return_value = try_analysis(cal_str, size, error_code_ptr, &can_analysis, '+',
-                                  expr, term, int_add);
+                                  additive_expression, multiple_expression, int_add);
   if (can_analysis) return return_value;
 
   return_value = try_analysis(cal_str, size, error_code_ptr, &can_analysis, '-',
-                                  expr, term, int_sub);
+                                  additive_expression, multiple_expression, int_sub);
   if (can_analysis) return return_value;
 
-  return term(cal_str, size, error_code_ptr);
+  return multiple_expression(cal_str, size, error_code_ptr);
 }
 
-int term(const char* cal_str, int size, int* error_code_ptr) {
-  // show_info(cal_str, size, "term", error_code_ptr);
+int multiple_expression(const char* cal_str, int size, int* error_code_ptr) {
+  // show_info(cal_str, size, "multiple_expression", error_code_ptr);
   if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
   int return_value, can_analysis = 0;
   
   return_value = try_analysis(cal_str, size, error_code_ptr, &can_analysis, '*',
-                                  term, factor, int_mul);
+                                  multiple_expression, primary_expression, int_mul);
   if (can_analysis) return return_value;
 
   return_value = try_analysis(cal_str, size, error_code_ptr, &can_analysis, '/',
-                                  term, factor, int_div);
+                                  multiple_expression, primary_expression, int_div);
   if (can_analysis) return return_value;
 
-  return factor(cal_str, size, error_code_ptr);
+  return primary_expression(cal_str, size, error_code_ptr);
 }
 
-int factor(const char* cal_str, int size, int* error_code_ptr) {
-  // show_info(cal_str, size, "factor", error_code_ptr);
+int primary_expression(const char* cal_str, int size, int* error_code_ptr) {
+  // show_info(cal_str, size, "primary_expression", error_code_ptr);
   if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
   if ('(' == cal_str[0] && ')' == cal_str[size - 1]) {
-    return expr(cal_str + 1, size - 2, error_code_ptr);
-  }
+    return additive_expression(cal_str + 1, size - 2, error_code_ptr);
+}
   return integer(cal_str, size, error_code_ptr);
 }
 
 int integer(const char* cal_str, int size, int* error_code_ptr) {
-  if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
 
-  if (0 == strncmp(cal_str, "-2147483648", 11)) return INT_MIN;
+  if (check_have_error(error_code_ptr)) return ERROR_RETURN_VALUE;
+  if (0 == strncmp(cal_str, INT_MIN_STR, strlen(INT_MIN_STR))) return INT_MIN;
   if ('+' == cal_str[0]) return number(cal_str + 1, size - 1, error_code_ptr);
   if ('-' == cal_str[0]) return -number(cal_str + 1, size - 1, error_code_ptr);
   return number(cal_str, size, error_code_ptr);
@@ -130,7 +133,7 @@ int calculate(const char* input_str) {
   cal_str[j] = '\0';
   // start
   int error_code = 0;
-  result = expr(cal_str, j, &error_code);
+  result = additive_expression(cal_str, j, &error_code);
   free(cal_str);
   if (error_code) {
     show_error_message(error_code);
