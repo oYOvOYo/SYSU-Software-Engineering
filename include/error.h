@@ -2,6 +2,8 @@
 // error.h
 // Copyright (C)  2016 jskyzero
 //
+// define some errors and show the error 
+//
 
 typedef enum {
     EXPRESSION_ERROR=1,

@@ -1,12 +1,13 @@
-#include "error.h"
+//
+// calculate.h
+// Copyright (C)  2016 jskyzero
+//
+// the main part of the calculate
+//
 
+#include "arithmetic.h"
 
 int calculate(const char * str);
-
-int int_add(int num1, int num2, int* have_error);
-int int_sub(int num1, int num2, int* have_error);
-int int_mul(int num1, int num2, int* have_error);
-int int_div(int num1, int num2, int* have_error);
 
 int expr(const char* cal_str, int size, int* have_error);
 int term(const char* cal_str, int size, int* have_error);
