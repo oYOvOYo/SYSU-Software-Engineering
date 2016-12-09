@@ -13,8 +13,9 @@
 
 
 void ShellUI(void) {
+  
   // test();
-
+  
   char *input_str = (char *)malloc(STRING_LENGTH * sizeof(char));
   
   while (printf(">> "), fgets(input_str, STRING_LENGTH, stdin) != NULL) {

@@ -39,4 +39,18 @@ void test(void) {
     assert(0 == int_mul(INT_MIN, 0, &have_error) && have_error == 0);
     assert(1 == int_mul(INT_MIN, -1, &have_error) && have_error == OVER_FLOW_ERROR);
     puts("int_mul finished");
+
+    have_error = 0;
+    assert(0 == int_div(0, INT_MIN, &have_error) && have_error == 0);
+    assert(0 == int_div(0, INT_MAX, &have_error) && have_error == 0);
+    assert(-1 == int_div(-1, 1, &have_error) && have_error == 0);
+    assert(-1 == int_div(1, -1, &have_error) && have_error == 0);
+    puts("int_div finished");
+
+    assert(1 == calculate("1"));
+    assert(-18 == calculate(" (1+2)-1*19-(2-2)-2+1 * 2 / 3 - 12+12"));
+    assert(1 == calculate("(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((1)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"));
+    assert(42167754 == calculate("1+2324-134/1244*134-(23412-(12340*3419-385-1234))"));
+    assert( 50918778 == calculate("1+2324-134/1244*134-(23412-(12340*3419-385-1234))+345-452*345/3452+(24-42*(34-452-45)*450)"));
+    puts("tests finished");
 }
