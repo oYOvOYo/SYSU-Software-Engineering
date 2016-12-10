@@ -65,7 +65,7 @@ void test(void) {
   const char in_str[] = "1";
   const char end_str[] = "+1";
   char *input_str = (char *)malloc(
-      (2 * brackets_length + strlen(in_str) + strlen(end_str) + 1) * sizeof(char));
+      (1 + 2 * brackets_length + strlen(in_str) + strlen(end_str)) * sizeof(char));
   memset(input_str, '(', brackets_length);
   strcpy(input_str + brackets_length, in_str);
   memset(input_str + brackets_length + strlen(in_str), ')', brackets_length);
