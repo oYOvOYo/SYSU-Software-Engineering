@@ -36,7 +36,7 @@ window.onload = function () {
     function startOrStop() {
         if (beginGame) {
             beginGame = false;
-            for (var i = 0; i < 6; i++) {
+            for (var i = 0; i < 60; i++) {
                 boxes[i].className = "hole";
             }
             state.value = "Game Over"
