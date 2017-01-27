@@ -4,8 +4,12 @@ div {
     margin-left: 50%;
     margin-right: 50%;
     color: red;
-    -webkit-animation: objectRotate 18s ease-in-out infinite 2s;
-    animation: objectRotate 18s ease-in-out infinite 2s;
+    -webkit-animation: objectRotate 5s ease-in-out infinite 0.5s;
+    animation: objectRotate 5s ease-in-out infinite 0.5s;
+}
+
+#music {
+    display: none;
 }
 
 @-webkit-keyframes objectRotate {
