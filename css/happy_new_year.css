@@ -1,6 +1,8 @@
 div {
     font-size: 100px;
     position: absolute;
+    margin-left: 50%;
+    margin-right: 50%;
     color: red;
     -webkit-animation: objectRotate 18s ease-in-out infinite 2s;
     animation: objectRotate 18s ease-in-out infinite 2s;
