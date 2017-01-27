@@ -8,10 +8,6 @@ div {
     animation: objectRotate 5s ease-in-out infinite 0.5s;
 }
 
-#player {
-    display: none;
-}
-
 @-webkit-keyframes objectRotate {
   0% {
     -webkit-transform: rotateY(0deg);
