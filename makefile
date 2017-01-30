@@ -9,7 +9,7 @@ OBJ_DIR = $(ROOT_DIR)/build
 BIN_DIR = $(ROOT_DIR)/bin
 
 CC = gcc
-FLAGS = -std=c11 -I $(ROOT_DIR) -I $(INC_DIR)
+FLAGS = -I $(ROOT_DIR) -I $(INC_DIR)
 
 
 
