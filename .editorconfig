@@ -6,7 +6,7 @@ root = true
 # Unix-style newlines with a newline ending every file
 [*]
 end_of_line = lf
-insert_final_newline = true
+insert_final_newline = false
 
 # Matches multiple files with brace expansion notation
 # Set default charset
@@ -22,8 +22,8 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-# Indentation override for all JS under lib directory
-[lib/**.js]
+# Indentation override for all JS
+[*.js]
 indent_style = space
 indent_size = 2
 
@@ -32,8 +32,8 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
-# For HTML
-[*.html]
+# For HTML CSS
+[*.{html, css}]
 indent_style = space
 indent_size = 2
 
