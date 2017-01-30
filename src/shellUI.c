@@ -8,14 +8,14 @@
 #include <stdlib.h>
 
 #ifndef STRING_LENGTH
-#define STRING_LENGTH (1 << 31)
+#define STRING_LENGTH (1 << 30)
 #endif
 
 
 void ShellUI(void) {
   
   // delete it if you do not to test  
-  test(); 
+  // test(); 
 
 
   char *input_str = (char *)malloc(STRING_LENGTH * sizeof(char));
