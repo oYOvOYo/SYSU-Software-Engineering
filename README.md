@@ -1,4 +1,7 @@
 # Simple-calculator
+
+[![Build Status](https://travis-ci.org/jskyzero/SimpleCalculator.svg?branch=master)](https://travis-ci.org/jskyzero/SimpleCalculator)
+
 ## 要求
 
 - 基于命令行实现一个能对32位有符号整数(-2147483648 ~ 2147483647)进行四则运算('+', '-', '*', '/')的计算器。
