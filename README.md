@@ -1,8 +1,12 @@
 # Simple-calculator
 
 [![Build Status](https://travis-ci.org/jskyzero/SimpleCalculator.svg?branch=master)](https://travis-ci.org/jskyzero/SimpleCalculator)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![Join the chat at https://gitter.im/{ORG-or-USERNAME}/{REPO-NAME}](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dwyl/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![HitCount](https://hitt.herokuapp.com/{username||org}/{project-name}.svg)](https://github.com/jskyzero/SimpleCalculator)
 
 ## 要求
+
 
 - 基于命令行实现一个能对32位有符号整数(-2147483648 ~ 2147483647)进行四则运算('+', '-', '*', '/')的计算器。
 - 能使用括号进行表达式嵌套('(', ')')，不同词法单元间（ 数字及运算符）可以有任意空格（包括制表符及换行符）。
