@@ -70,7 +70,7 @@ void test(void) {
   strcpy(input_str + brackets_length, in_str);
   memset(input_str + brackets_length + strlen(in_str), ')', brackets_length);
   strcpy(input_str + (2 * brackets_length + strlen(in_str)), end_str);
-  //   puts(input_str);
+  // puts(input_str);
   //   assert(0 == strcmp(input_str, "(1)+1"));
   assert(2 == calculate(input_str));
   free(input_str);

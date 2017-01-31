@@ -42,3 +42,4 @@ test: $(BIN_DIR)/SimpleCalculator
 clean:
 	-rm -rf $(BIN_DIR)
 	-rm -rf $(OBJ_DIR)
+	-rm -rf $(TEST_DIR)/output

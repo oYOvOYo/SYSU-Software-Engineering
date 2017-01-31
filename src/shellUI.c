@@ -6,9 +6,10 @@
 #include "shellUI.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #ifndef STRING_LENGTH
-#define STRING_LENGTH (1 << 30)
+#define STRING_LENGTH (INT_MAX / 2)
 #endif
 
 
