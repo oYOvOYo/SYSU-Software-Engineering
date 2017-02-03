@@ -1,13 +1,14 @@
-/*.demo-perspective-photo {
+
+.demo-perspective-photo {
   position: absolute;
   width: 100%;
   height: 200px;
-  top: 200px;
+  top: 50px;
   background-color: #fff;
   zoom: 2;
-}*/
+}
 
-/*.demo-perspective-photo #stage {
+.demo-perspective-photo #stage {
   width: 100%;
   height: 200px;
   -webkit-perspective: 800px;
@@ -17,7 +18,7 @@
   -moz-transition: top 0.5s;
   transition: top 0.5s;
   position: relative;
-}*/
+}
 
 .demo-perspective-photo #container {
   position: absolute;
@@ -28,9 +29,9 @@
   margin-left: -32px;
   margin-top: -18px;
   cursor: pointer;
-  /*-webkit-transition: -webkit-transform 1s;
+  -webkit-transition: -webkit-transform 1s;
   -moz-transition: -moz-transform 1s;
-  transition: transform 1s;*/
+  transition: transform 1s;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -39,14 +40,14 @@
 }
 
 .demo-perspective-photo .piece {
-  /*width: 128px;*/
-  /*overflow: hidden;*/
-  /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);*/
-  /*-webkit-transition: opacity 1s, -webkit-transform 1s;*/
-  /*-moz-transition: opacity 1s, -moz-transform 1s;*/
-  /*transition: opacity 1s, transform 1s;*/
+  width: 128px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-transition: opacity 1s, -webkit-transform 1s;
+  -moz-transition: opacity 1s, -moz-transform 1s;
+  transition: opacity 1s, transform 1s;
   position: absolute;
-  /*bottom: 0;*/
+  bottom: 0;
 }
 
 /*.demo-perspective-photo .example {

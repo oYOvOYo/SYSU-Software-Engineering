@@ -1,20 +1,31 @@
-div{
-    font-size: 100px;
-    position: absolute;
-    left: 50%;
-    right: 50%;
-    -webkit-animation: objectRotate 10s ease-in-out infinite 0.1s;
-    animation: objectRotate 10s ease-in-out infinite 0.1s;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-}
-img {
-  height: 100px;
-  width: 100px;
-  /*border: 1px solid black;*/
+div {
   position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 36px;
+  cursor: pointer;
+  -webkit-animation: objectRotate 10s ease-in-out infinite 0.1s;
+  animation: objectRotate 10s ease-in-out infinite 0.1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   zoom: 2;
+}
+
+img {
+  /*position: absolute;
+  width: 128px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);*/
+  width: 128px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-transition: opacity 1s, -webkit-transform 1s;
+  -moz-transition: opacity 1s, -moz-transform 1s;
+  transition: opacity 1s, transform 1s;
+  position: absolute;
+  bottom: 0;
 }
 
 @-webkit-keyframes objectRotate {
