@@ -33,7 +33,7 @@ indent_style = space
 indent_size = 2
 
 # For HTML CSS
-[*.{html, css}]
+[*.{html,css}]
 indent_style = space
 indent_size = 2
 

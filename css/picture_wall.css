@@ -1,11 +1,20 @@
-div {
+div{
     font-size: 100px;
     position: absolute;
-    margin-left: 50%;
-    margin-right: 50%;
-    color: red;
-    -webkit-animation: objectRotate 5s ease-in-out infinite 0.1s;
-    animation: objectRotate 5s ease-in-out infinite 0.1s;
+    left: 50%;
+    right: 50%;
+    -webkit-animation: objectRotate 10s ease-in-out infinite 0.1s;
+    animation: objectRotate 10s ease-in-out infinite 0.1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+img {
+  height: 100px;
+  width: 100px;
+  /*border: 1px solid black;*/
+  position: absolute;
+  zoom: 2;
 }
 
 @-webkit-keyframes objectRotate {
