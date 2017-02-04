@@ -10,22 +10,13 @@ div {
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  zoom: 2;
 }
 
 img {
-  /*position: absolute;
-  width: 128px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);*/
+  position: absolute;
   width: 128px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  -webkit-transition: opacity 1s, -webkit-transform 1s;
-  -moz-transition: opacity 1s, -moz-transform 1s;
-  transition: opacity 1s, transform 1s;
-  position: absolute;
-  bottom: 0;
 }
 
 @-webkit-keyframes objectRotate {
