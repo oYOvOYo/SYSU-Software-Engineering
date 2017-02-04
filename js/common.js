@@ -33,7 +33,7 @@ window.onload = function(){
   var Github = createElementByTagName("a");
   Github.href="https://github.com/jskyzero";
   Github.textContent = "Github";
-  nav.appendAllChild([headerTitle, twitter, Github]);
+  nav.appendAllChild([headerTitle, Github, twitter]);
   header.appendChild(nav);
   body.insertBefore(header, body.children[0]);
 
