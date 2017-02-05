@@ -3,12 +3,14 @@ body {
 }
 
 div.stage {
-  width: 100%;
+  width: 80%;
   height: 500px;
+  margin: 25px 10% 25px 10%;
   border: 1px solid black;
-  transform-style: preserve-3d;  
-  -webkit-animation: objectRotate 5s ease-in-out infinite 0.1s;
-  animation: objectRotate 5s ease-in-out infinite 0.1s;
+  /*background-color: gray;*/
+  transform-style: preserve-3d;
+  -webkit-animation: squareRotate 5s ease-in-out infinite 0.1s;
+  animation: squareRotate 5s ease-in-out infinite 0.1s;
 }
 
 div.perspective {
@@ -22,7 +24,7 @@ div.perspective {
   transform: rotateX(-33.5deg) rotateY(45deg);
 }
 
-div.object {
+div.square {
   width: 100px;
   height: 100px;
   position: absolute;
@@ -33,38 +35,69 @@ div.object {
   /*background: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.3) 100%)*/
 }
 
-div.object:nth-child(1) {
+div.square:nth-child(1) {
   background-color: #FF0000;
   transform: rotateY(90deg) translateZ(50px);
 }
 
-div.object:nth-child(2) {
+div.square:nth-child(2) {
   background-color: #FFFF00;
   transform: rotateY(90deg) translateZ(-50px);
 }
 
-div.object:nth-child(3) {
+div.square:nth-child(3) {
   background-color: #008000;
   transform: rotateX(90deg) translateZ(-50px);
 }
 
-div.object:nth-child(4) {
+div.square:nth-child(4) {
   background-color: #FF9800;
   transform: rotateX(90deg) translateZ(50px);
   
 }
 
-div.object:nth-child(5) {
+div.square:nth-child(5) {
   background-color: #673AB7;
   transform: translateZ(50px);
 }
 
-div.object:nth-child(6) {
+div.square:nth-child(6) {
   background-color: #2196F3;
   transform: translateZ(-50px);
 }
 
-@-webkit-keyframes objectRotate {
+div.sphere {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0.5;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+div.sphere:nth-child(1) {
+  transform: rotateY(45deg);
+}
+
+div.sphere:nth-child(2) {
+  transform: rotateY(90deg);
+}
+
+div.sphere:nth-child(3) {
+  transform: rotateY(135deg);
+}
+
+div.sphere:nth-child(4) {
+  transform: rotateY(0deg);
+}
+
+div.tetrahedron {
+  
+}
+
+@-webkit-keyframes squareRotate {
   0% {
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
@@ -95,7 +128,7 @@ div.object:nth-child(6) {
   }
 }
 
-@keyframes objectRotate {
+@keyframes squareRotate {
   0% {
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
