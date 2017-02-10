@@ -20,6 +20,8 @@ void show_error_message(ERROR err) {
     case OVER_FLOW_ERROR:
       puts("OVER_FLOW_ERROR");
       break;
+    default:
+      break;
   }
 }
 
