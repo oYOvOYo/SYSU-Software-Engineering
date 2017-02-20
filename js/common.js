@@ -28,7 +28,7 @@ window.onload = function(){
   var nav = createElementByTagName("nav");
 
   var twitter = createElementByTagName("a");
-  twitter.href="https://twitter.com/jskyzer0";
+  twitter.href="https://twitter.com/jskyzero";
   twitter.textContent="twitter";
   var Github = createElementByTagName("a");
   Github.href="https://github.com/jskyzero";
