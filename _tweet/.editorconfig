@@ -1,0 +1,6 @@
+[*]
+end_of_line = lf
+
+[*.{html,css,js}]
+indent_sytyle = space
+indent_size = 2

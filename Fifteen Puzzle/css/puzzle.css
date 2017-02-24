@@ -70,26 +70,28 @@ nav > a:hover{
     height: 900px;
     float: left;
     position: relative;
-    background-image: url("../picture/restart.jpg");
-    background-size: 900px 900px;
-
+    background: top center url("../picture/bg.jpg");
+    background-size: auto 900px;
 }
 
 #music {
     width: 900px;
 }
+
 /*帮助信息*/
 #page > .help {
     width: 900px;
     text-align: center;
     font-size: 32pt;
     font-family: Cat, sans-serif;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #win {
     position: absolute;
     bottom: 100px;
-    opacity: 0;
+    opacity: 1;
 }
 /*重置按钮*/
 #reset {
@@ -223,7 +225,6 @@ aside {
     height: 900px;
     min-height: 450px;
     float: right;
-    background-color: ;
     background-image: -webkit-repeating-linear-gradient(-45deg, papayawhip, yellow 5px, white 5px, #ccc 10px);
 }
 
