@@ -91,7 +91,7 @@ nav > a:hover{
 #win {
     position: absolute;
     bottom: 100px;
-    opacity: 1;
+    opacity: 0;
 }
 /*重置按钮*/
 #reset {
