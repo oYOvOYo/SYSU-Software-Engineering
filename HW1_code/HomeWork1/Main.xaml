@@ -1,0 +1,154 @@
+﻿<Page
+    x:Class="HomeWork1.Main"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HomeWork1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView x:Name="mySplitView" DisplayMode="CompactInline"
+                   IsPaneOpen="False" CompactPaneLength="48" OpenPaneLength="200">
+            <!-- SplitView content -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="选择一个动物吧" 
+                           Style="{ThemeResource TitleTextBlockStyle}"
+                           TextAlignment="Center"
+                           Margin="10"
+                           Grid.ColumnSpan="3"/>
+                
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Button  x:Name="CatButton" Click="CatButton_Click"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        Margin="20">
+                        <Image Grid.Row="1" Grid.Column="0" Source="./Assets/cat.png" Margin="5"/>
+                    </Button>
+                    <TextBlock Text="选择Cat" TextAlignment="Center"  VerticalAlignment="Top"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Button  x:Name="DogButton" Click="DogButton_Click"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        Margin="20">
+                        <Image Grid.Row="1" Grid.Column="0" Source="./Assets/dog.png" Margin="5"/>
+                    </Button>
+                    <TextBlock Text="选择Dog" TextAlignment="Center"  VerticalAlignment="Top"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="3">
+                    <Button  x:Name="PigButton" Click="PigButton_Click"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        Margin="20">
+                        <Image Grid.Row="1" Grid.Column="0" Source="./Assets/pig.png" Margin="5"/>
+                    </Button>
+                    <TextBlock Text="选择Pig" TextAlignment="Center" VerticalAlignment="Top"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{StaticResource SystemControlBackgroundChromeMediumBrush}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="20" Background="{StaticResource SystemControlDisabledChromeHighBrush}">
+                        <TextBlock Text="你的选择" TextAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" />
+                        <Image x:Name="YourImg"  Opacity="0"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="20" Background="{StaticResource SystemControlDisabledChromeHighBrush}">
+                        <TextBlock Text="系统的选择" TextAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}"/>
+                        <Image x:Name="RightImg"  Opacity="0"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="4" Grid.ColumnSpan="3"  Margin="10" Background="{StaticResource SystemControlBackgroundChromeMediumLowBrush}">
+                    <Image x:Name="LoseImg" Source="./Assets/lose.png"  Margin="30" Opacity="0"/>
+                    <Image x:Name="WinImg"  Source="./Assets/smile.png" Margin="30" Opacity="0"/>
+                </Grid>
+                <TextBlock x:Name="WinText" 
+                           Grid.Column="3" Grid.Row="4" Opacity="0"
+                           Text="You Win" TextAlignment="Center"  VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
+                <TextBlock x:Name="LoseText" 
+                           Grid.Column="0" Grid.Row="4" Opacity="0"
+                           Text="You Lose" TextAlignment="Center"  VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            </Grid>
+            <SplitView.Pane>
+                <!-- Pane content -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Canvas Grid.Row="0">
+                        <SymbolIcon  Symbol="Back" Height="48" Width="48"/>
+                    </Canvas>
+                    <Button Name="BackButton"  Grid.Row="0" Height="40" HorizontalAlignment="Stretch" Margin="4"
+                            Click="BackButton_Click"/>
+                    <TextBlock  Grid.Row="0"
+                                    Margin="52,0,0,0"
+                                    Text="回到Animal界面"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                                    VerticalAlignment="Center" />
+
+                    <Canvas Grid.Row="1">
+                        <SymbolIcon  Symbol="Favorite" Height="48" Width="48"/>
+                    </Canvas>
+                    <Button Grid.Row="1" Name="LetMeWin"  Height="40" HorizontalAlignment="Stretch" Margin="4"
+                            Click="LetMeWin_Click"/>
+                    <TextBlock  Grid.Row="1"
+                                    Margin="52,0,0,0"
+                                    Text="让我赢一把"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                                    VerticalAlignment="Center" />
+
+                    <Canvas Grid.Row="2">
+                        <SymbolIcon  Symbol="UnFavorite" Height="48" Width="48"/>
+                    </Canvas>
+                    <Button Grid.Row="2" Name="LetMeLose"  Height="40" HorizontalAlignment="Stretch" Margin="4"
+                            Click="LetMeLose_Click"/>
+                    <TextBlock  Grid.Row="2"
+                                    Margin="52,0,0,0"
+                                    Text="独孤求败"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                                    VerticalAlignment="Center" />
+                    
+                    <Canvas Grid.Row="3">
+                        <SymbolIcon  Symbol="ReportHacked" Height="48" Width="48"/>
+                    </Canvas>
+                    <Button Grid.Row="3"  Height="40" HorizontalAlignment="Stretch" Margin="4"/>
+                    <TextBlock  Grid.Row="3"
+                                    Margin="52,0,0,0"
+                                    Text="咳咳咳待补充"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}" 
+                                    VerticalAlignment="Center" />
+
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="mySplitView.DisplayMode" Value="Inline"/>
+                        <Setter Target="mySplitView.IsPaneOpen" Value="True"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

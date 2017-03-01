@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="HomeWork1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HomeWork1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <HyperlinkButton  BorderBrush="Gray" BorderThickness="2" Width="100" Height="50" Content="童话王国" Margin="0,143,0,0" Click="HyperlinkButton_Click" VerticalAlignment="Top"/>
+        <Button x:Name="SpeakButton" Content="Speak" HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top" Height="50" Width="100" Click="SpeakButton_Click"/>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.006,0.211" Width="100" Height="50" Click="OKButton_Click"/>
+        <TextBlock x:Name="OutputText" HorizontalAlignment="Left" Margin="105,88,0,105" TextWrapping="Wrap" Text="" Width="245"/>
+        <TextBox x:Name="InputText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="123,10,0,0" Width="100" Height="50" TextAlignment="Left"/>
+
+    </Grid>
+</Page>
