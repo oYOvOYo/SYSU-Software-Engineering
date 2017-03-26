@@ -1,0 +1,1 @@
+mysql -u root -p Lab1 --port=3333
