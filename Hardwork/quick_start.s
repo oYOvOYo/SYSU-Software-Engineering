@@ -94,6 +94,10 @@ main:
 
   move $t7, $t6
 
+# logic  instructions
+# sll srl and andi or  ori nor 
+  ori $t0, $t0, 1
+
 # control structures
 # branch 
   b orz # unconditional branch to program label target 
