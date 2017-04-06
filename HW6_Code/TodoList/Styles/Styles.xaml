@@ -1,0 +1,8 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
+  <!--Right Now No Styles, When I need I will add in future-->
+  <SolidColorBrush Color="Azure" x:Name="AppViewColor"/>
+
+</ResourceDictionary>
