@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="ToolBox.View.TelNumber"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ToolBox.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="10*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid Grid.Column="1">
+        <Grid.RowDefinitions>
+          <RowDefinition Height ="auto"/>
+          <RowDefinition Height ="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Tel Number" TextAlignment="Center"
+                           Style="{StaticResource HeaderTextBlockStyle}"/>
+
+        <Grid Grid.Row="1">
+          <SplitView Padding="0,0,20,0">
+            <StackPanel>
+              <Grid>
+                <TextBlock Grid.Row="1" MaxWidth="160" Text="Input Tel:" 
+                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                <TextBox x:Name="InputBox" Margin="160,10,10,10" Height="48"  TextWrapping="Wrap"/>
+              </Grid>
+              <Grid>
+                <CheckBox x:Name="UseXML" VerticalAlignment="Center" Width="160"/>
+                <TextBlock Text="Use XML(default JSON)" VerticalAlignment="Center" Margin="30,0,0,0"/>
+                <CommandBar Grid.Row="0" Background="White"  Margin="260,0,0,0">
+                  <AppBarButton Label="Search" Icon="Find" Click="AppBarButton_Click"/>
+                </CommandBar>
+              </Grid>
+              <Grid>
+                <TextBlock Grid.Row="2" MaxWidth="160" Text="Back Message" 
+                           VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Style="{StaticResource SubheaderTextBlockStyle}"/>
+                <TextBox x:Name="BackMessageBox" Margin="160,10,10,10" MinHeight="300" TextWrapping="Wrap"/>
+              </Grid>
+
+              <Grid>
+                <TextBlock Grid.Row="2" MaxWidth="160" Text="Tel From:" 
+                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                               Style="{StaticResource SubheaderTextBlockStyle}"/>
+                <TextBox x:Name="OutputBox" Margin="160,10,10,10" Height="48"  TextWrapping="Wrap"/>
+              </Grid>
+
+            </StackPanel>
+          </SplitView>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Grid>
+</Page>
