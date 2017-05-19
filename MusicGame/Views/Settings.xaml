@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="MusicGame.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MusicGame.Views"
+    xmlns:Converters="using:MusicGame.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Config, Source={StaticResource Locator}}">
+
+  <Page.Resources>
+    <Converters:IntBoolConverter x:Key="IntBoolConverter" />
+  </Page.Resources>
+
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <VisualStateManager.VisualStateGroups>
+      <VisualStateGroup>
+        <VisualState>
+          <VisualState.StateTriggers>
+            <AdaptiveTrigger MinWindowWidth="840" />
+          </VisualState.StateTriggers>
+          <VisualState.Setters>
+            <Setter Target="Help.Width" Value="400" />
+          </VisualState.Setters>
+        </VisualState>
+      </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="Settings" Margin="20,0,0,0"
+               Style="{StaticResource TitleTextBlockStyle}" />
+    <Grid Grid.Row="1" Margin="20,10,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="auto" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Grid.Column="0">
+        <StackPanel Margin="0,0,0,20">
+          <Button Style="{StaticResource CustomButtonStyle}" Command="{Binding ChooseFolderCommand}">
+            <TextBlock Text="Choose folder Path" Foreground="{StaticResource MyColor5}"></TextBlock>
+          </Button>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock Text="Round Numbers" Style="{ThemeResource BodyTextBlockStyle}" />
+          <StackPanel Orientation="Horizontal">
+            <RadioButton Content="3"
+                         IsChecked="{x:Bind UserConfig.RoundNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=3, Mode=TwoWay}" />
+            <RadioButton Content="4"
+                         IsChecked="{x:Bind UserConfig.RoundNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=4, Mode=TwoWay}" />
+            <RadioButton Content="5"
+                         IsChecked="{x:Bind UserConfig.RoundNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=5, Mode=TwoWay}" />
+            <!--<RadioButton Content="5" Tag="5" Command="{Binding ChooseRoundNumberCommand}"
+                         CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />-->
+          </StackPanel>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock Text="Each Round Choices Numbers" Style="{ThemeResource BodyTextBlockStyle}" />
+          <StackPanel Orientation="Horizontal">
+            <RadioButton Content="4"
+                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=4, Mode=TwoWay}" />
+            <RadioButton Content="6"
+                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=6, Mode=TwoWay}" />
+            <RadioButton Content="10"
+                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=10, Mode=TwoWay}" />
+          </StackPanel>
+        </StackPanel>
+        <StackPanel>
+          <ToggleSwitch Header="Difficulty automatically increased"
+                        OffContent="No" OnContent="Yes"
+                        IsOn="{x:Bind UserConfig.DifficultyIncreased, Mode=TwoWay}" />
+        </StackPanel>
+      </StackPanel>
+      <StackPanel x:Name="Help" Grid.Column="1"
+                  Width="0">
+        <TextBlock>
+          <Bold>Helps</Bold>
+          <LineBreak />
+          <Run>
+              1.Open your Powershell
+          </Run>
+          <LineBreak />
+          <Run>
+              2.Enter the follow code
+          </Run>
+          <LineBreak />
+          <Run FontFamily="Consolas">&#160;&#160;shutdown /s /t 5</Run>
+          <LineBreak />
+          <Run>
+              3.You can find the helps in tan π/2.
+          </Run>
+          <LineBreak />
+        </TextBlock>
+      </StackPanel>
+      <TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="By jskyzero 2017 (R)" />
+    </Grid>
+  </Grid>
+</Page>
