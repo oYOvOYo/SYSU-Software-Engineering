@@ -91,7 +91,7 @@ namespace MusicGame
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
-            ServiceLocator.Current.GetInstance<Model.UserConfigServer>().SaveConfig(
+            ServiceLocator.Current.GetInstance<Models.UserConfigServer>().SaveConfig(
                 ServiceLocator.Current.GetInstance<UserConfigViewModel>().UserConfig);
             deferral.Complete();
         }

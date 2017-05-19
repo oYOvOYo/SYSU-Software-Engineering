@@ -22,7 +22,7 @@ namespace MusicGame.Views
     /// </summary>
     public sealed partial class Settings : Page
     {
-        public Model.UserConfig UserConfig => ((ViewModel.UserConfigViewModel)DataContext).UserConfig;
+        public Models.UserConfig UserConfig => ((ViewModel.UserConfigViewModel)DataContext).UserConfig;
 
         public Settings()
         {

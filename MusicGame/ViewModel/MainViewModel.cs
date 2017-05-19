@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
-using MusicGame.Model;
+using MusicGame.Models;
 
 namespace MusicGame.ViewModel
 {
@@ -14,8 +14,8 @@ namespace MusicGame.ViewModel
     {
         private readonly INavigationService _navigationService;
         private RelayCommand<string> _navigateCommand;
-        private RelayCommand _sendMessageCommand;
-        private RelayCommand _showDialogCommand;
+        //private RelayCommand _sendMessageCommand;
+        //private RelayCommand _showDialogCommand;
 
         public RelayCommand<string> NavigateCommand
         {
@@ -28,37 +28,37 @@ namespace MusicGame.ViewModel
             }
         }
 
-        public RelayCommand SendMessageCommand
-        {
-            get
-            {
-                return _sendMessageCommand
-                    ?? (_sendMessageCommand = new RelayCommand(
-                    () =>
-                    {
-                        Messenger.Default.Send(
-                            new NotificationMessageAction<string>(
-                                "Testing",
-                                reply =>
-                                {
-                                }));
-                    }));
-            }
-        }
+        //public RelayCommand SendMessageCommand
+        //{
+        //    get
+        //    {
+        //        return _sendMessageCommand
+        //            ?? (_sendMessageCommand = new RelayCommand(
+        //            () =>
+        //            {
+        //                Messenger.Default.Send(
+        //                    new NotificationMessageAction<string>(
+        //                        "Testing",
+        //                        reply =>
+        //                        {
+        //                        }));
+        //            }));
+        //    }
+        //}
 
-        public RelayCommand ShowDialogCommand
-        {
-            get
-            {
-                return _showDialogCommand
-                       ?? (_showDialogCommand = new RelayCommand(
-                           async () =>
-                           {
-                               var dialog = ServiceLocator.Current.GetInstance<IDialogService>();
-                               await dialog.ShowMessage("Hello Universal Application", "it works...");
-                           }));
-            }
-        }
+        //public RelayCommand ShowDialogCommand
+        //{
+        //    get
+        //    {
+        //        return _showDialogCommand
+        //               ?? (_showDialogCommand = new RelayCommand(
+        //                   async () =>
+        //                   {
+        //                       var dialog = ServiceLocator.Current.GetInstance<IDialogService>();
+        //                       await dialog.ShowMessage("Hello Universal Application", "it works...");
+        //                   }));
+        //    }
+        //}
 
         public MainViewModel(
             INavigationService navigationService)

@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MusicGame.Model;
+using MusicGame.Models;
 using Windows.Storage.Pickers;
 
 namespace MusicGame.ViewModel
 {
     public class UserConfigViewModel : ViewModelBase
     {
-        private Model.UserConfigServer _userConfigServer;
-        private Model.UserConfig _userConfig;
+        private UserConfigServer _userConfigServer;
+        private UserConfig _userConfig;
         private RelayCommand _chooseFolderCommand;
 
         public UserConfig UserConfig
@@ -38,7 +38,7 @@ namespace MusicGame.ViewModel
             }
         }
 
-        public UserConfigViewModel(Model.UserConfigServer userConfigServer)
+        public UserConfigViewModel(UserConfigServer userConfigServer)
         {
             _userConfigServer = userConfigServer;
             InitialConfig();

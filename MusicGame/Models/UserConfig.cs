@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicGame.Model
+namespace MusicGame.Models
 {
     public class UserConfig
     {
