@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace MusicGame.Models
@@ -14,5 +16,28 @@ namespace MusicGame.Models
         public Boolean Selected { get; set; }
         public BitmapImage AlbumCover { get; set; }
         public Boolean Used { get; set; }
+
+        public static async Task<Song> CreateSong(StorageFile file)
+        {
+            MusicProperties songProperties = await file.Properties.GetMusicPropertiesAsync();
+            StorageItemThumbnail currentThumb = await file.GetThumbnailAsync(
+                ThumbnailMode.MusicView,
+                200,
+                ThumbnailOptions.UseCurrentScale);
+
+            var albumCover = new BitmapImage();
+            albumCover.SetSource(currentThumb);
+
+            var song = new Song();
+            song.Id = 0;
+            song.Title = songProperties.Title;
+            song.Artist = songProperties.Artist;
+            song.Album = songProperties.Album;
+            song.Selected = false;
+            song.Used = false;
+            song.AlbumCover = albumCover;
+            song.SongFile = file;
+            return song;
+        }
     }
 }

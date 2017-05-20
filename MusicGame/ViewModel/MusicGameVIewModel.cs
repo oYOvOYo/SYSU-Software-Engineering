@@ -10,6 +10,10 @@ using MusicGame.Models;
 using Microsoft.Practices.ServiceLocation;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Command;
 
 namespace MusicGame.ViewModel
 {
@@ -18,290 +22,312 @@ namespace MusicGame.ViewModel
         private bool _isLoding;
         private bool _isPlaying;
         private int _totalScore;
+        private int _round;
         private string _instruction;
+        private string _result;
+        private Visibility _playAgainButton;
         private UserConfig _config;
         private List<StorageFile> _songFiles;
         private ObservableCollection<Song> _songs;
         private Song _selectSong;
         private FilesServer _filesServer;
 
-        public bool IsLoding { get => _isLoding; set { _isLoding = value; RaisePropertyChanged(() => IsLoding); } }
+        public Uri MediaUri
+        {
+            get => SelectSong.SongFile != null ? new Uri(SelectSong.SongFile.Path) : null;
+        }
+
+        public bool IsLoding
+        {
+            get => _isLoding; set
+            {
+                _isLoding = value;
+                RaisePropertyChanged(() => IsLoding);
+            }
+        }
+
         public bool IsPlaying { get => _isPlaying; set => _isPlaying = value; }
-        public string Instruction { get => _instruction; set => _instruction = value; }
+
+        public string Instruction
+        {
+            get => _instruction;
+            set { _instruction = value; RaisePropertyChanged(() => Instruction); }
+        }
+
+        public string Result
+        {
+            get => _result; set
+            {
+                _result = value;
+                RaisePropertyChanged(() => Result);
+            }
+        }
+
+        public Visibility PlayAgainButton
+        {
+            get => _playAgainButton;
+            set { _playAgainButton = value; RaisePropertyChanged(() => PlayAgainButton); }
+        }
+
         public int TotalScore { get => _totalScore; set => _totalScore = value; }
+        public int Round { get => _round; set => _round = value; }
         public UserConfig Config { get => _config; set => _config = value; }
         public List<StorageFile> SongFiles { get => _songFiles; set => _songFiles = value; }
         public ObservableCollection<Song> Songs { get => _songs; set => _songs = value; }
-        public Song SelectSong { get => _selectSong; set { _selectSong = value; RaisePropertyChanged(() => SelectSong); } }
+        public Song SelectSong { get => _selectSong; set { _selectSong = value; RaisePropertyChanged(() => MediaUri); } }
 
         public MusicGameViewModel(FilesServer filesServer)
         {
             _filesServer = filesServer;
+            Songs = new ObservableCollection<Song>();
+            SelectSong = new Song();
         }
 
-        public async void InitialViewModel()
+        public async Task InitialViewModel()
         {
             IsLoding = true;
+            PlayAgainButton = Visibility.Collapsed;
+            Instruction = "";
+            Result = "";
             Config = ServiceLocator.Current.GetInstance<UserConfigViewModel>().UserConfig;
             SongFiles = await _filesServer.GetAllFiles(Config.FolderPath, ".mp3");
-            var file = SongFiles[0];
-
-            MusicProperties songProperties = await file.Properties.GetMusicPropertiesAsync();
-            StorageItemThumbnail currentThumb = await file.GetThumbnailAsync(
-                ThumbnailMode.MusicView,
-                200,
-                ThumbnailOptions.UseCurrentScale);
-
-            var albumCover = new BitmapImage();
-            albumCover.SetSource(currentThumb);
-
-            var song = new Song();
-            song.Id = 0;
-            song.Title = songProperties.Title;
-            song.Artist = songProperties.Artist;
-            song.Album = songProperties.Album;
-            song.Selected = false;
-            song.Used = false;
-            song.AlbumCover = albumCover;
-            song.SongFile = file;
-            SelectSong = song;
-
             IsLoding = false;
         }
 
-        //private async void CountDown_Completed(object sender, object e)
-        //{
-        //    if (!IsPlaying)
-        //    {
-        //        // Start playing music
-        //        var song = PickSong();
+        private RelayCommand _countFinishedCommand;
 
-        //        // Play the music
-        //        MyMediaElement.SetSource(
-        //            await song.SongFile.OpenAsync(FileAccessMode.Read),
-        //            song.SongFile.ContentType);
+        public RelayCommand CountFinishedCommand
+        {
+            get
+            {
+                return _countFinishedCommand ??
+                    (_countFinishedCommand = new RelayCommand(
+                        () =>
+                        {
+                            CountDown_Completed();
+                        }));
+            }
+        }
 
-        //        // Start countdown
-        //        StartCountdown();
-        //    }
-        //    else
-        //    {
-        //        MyMediaElement.Stop();
-        //        Song correctSong = Songs.FirstOrDefault(p => p.Selected);
-        //        correctSong.Selected = false;
-        //        correctSong.Used = true;
-        //        DisplayCorrectSong(correctSong);
-        //        int addScore = (-1) * (int)MyProgressBar.Value;
-        //        _totalScore += addScore;
-        //        _round++;
-        //        ResultTextBlock.Text = String.Format("Score: {0}, Total Score after {1} Rounds: {2}", addScore, _round, _totalScore);
-        //        if (_round >= 5)
-        //        {
-        //            InstructionTextBlock.Text = String.Format("Game Over... You scored: {0}", _totalScore);
-        //            PlayAgainButton.Visibility = Visibility.Visible;
-        //        }
-        //        else
-        //        {
-        //            StartCooldown();
-        //        }
-        //    }
-        //}
+        public void CountDown_Completed()
+        {
+            if (!IsPlaying)
+            {
+                // Start playing music
+                SelectSong = PickSong();
+                // Play the music
+                Messenger.Default.Send(SelectSong.SongFile, "play");
+                // Start countdown
+                StartCountdown();
+            }
+            else
+            {
+                Messenger.Default.Send(SelectSong.SongFile, "stop");
+                Song correctSong = Songs.FirstOrDefault(p => p.Selected);
+                correctSong.Selected = false;
+                correctSong.Used = true;
+                DisplayCorrectSong(correctSong);
+                int addScore = (-1) * 100;
+                TotalScore += addScore;
+                Round++;
+                Result = String.Format("Score: {0}, Total Score after {1} Rounds: {2}", addScore, Round, TotalScore);
+                if (_round >= 5)
+                {
+                    Instruction = String.Format("Game Over... You scored: {0}", _totalScore);
+                    PlayAgainButton = Visibility.Visible;
+                }
+                else
+                {
+                    StartShortCountdown();
+                }
+            }
+        }
 
-        //private void DisplayCorrectSong(Song correctSong)
-        //{
-        //    TitleTextBlock.Text = String.Format("{0}", correctSong.Title);
-        //    ArtistTextBlock.Text = String.Format("{0}", correctSong.Artist);
-        //    AlbumTextBlock.Text = String.Format("{0}", correctSong.Album);
-        //    ResultImage.Source = correctSong.AlbumCover;
-        //}
+        private void DisplayCorrectSong(Song correctSong)
+        {
+            RaisePropertyChanged(() => SelectSong);
+        }
 
-        //private async void Grid_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    StartUpProgressRing.IsActive = true;
+        private RelayCommand _gridLoadCommand;
 
-        //    AllSongs = await SetupMusicList();
-        //    await PrepareNewGame();
+        public RelayCommand GridLoadCommand
+        {
+            get
+            {
+                return _gridLoadCommand ??
+                    (_gridLoadCommand = new RelayCommand(
+                    async () =>
+                    {
+                        IsLoding = true;
+                        await InitialViewModel();
+                        await PrepareNewGame();
+                        IsLoding = false;
+                        StartShortCountdown();
+                    }));
+            }
+        }
 
-        //    StartUpProgressRing.IsActive = false;
+        private async Task<List<StorageFile>> PickRandomSongs(List<StorageFile> allSongs, int pickNumber)
+        {
+            Random random = new Random();
+            int songCount = allSongs.Count;
+            var randomSongs = new List<StorageFile>();
 
-        //    StartCooldown();
-        //}
+            while (randomSongs.Count < pickNumber)
+            {
+                var randomNumber = random.Next(songCount);
+                var randomSong = allSongs[randomNumber];
 
-        //private async Task<List<StorageFile>> PickRandomSongs(ObservableCollection<StorageFile> allSongs, int pickNumber)
-        //{
-        //    Random random = new Random();
-        //    int songCount = allSongs.Count;
-        //    var randomSongs = new List<StorageFile>();
+                MusicProperties randomSongMusicProperties =
+                                    await randomSong.Properties.GetMusicPropertiesAsync();
 
-        //    while (randomSongs.Count < pickNumber)
-        //    {
-        //        var randomNumber = random.Next(songCount);
-        //        var randomSong = allSongs[randomNumber];
+                bool isDuplicate = false;
+                foreach (var song in randomSongs)
+                {
+                    MusicProperties songMusicProperties =
+                        await song.Properties.GetMusicPropertiesAsync();
 
-        //        MusicProperties randomSongMusicProperties =
-        //                            await randomSong.Properties.GetMusicPropertiesAsync();
+                    // Find random songs But:
+                    // (1) Don't pick the same song twice.
+                    // (2) Don't pick a song from an album that I've already picked.
 
-        //        bool isDuplicate = false;
-        //        foreach (var song in randomSongs)
-        //        {
-        //            MusicProperties songMusicProperties =
-        //                await song.Properties.GetMusicPropertiesAsync();
+                    if (String.IsNullOrEmpty(randomSongMusicProperties.Album)
+                        || randomSongMusicProperties.Album == songMusicProperties.Album)
+                    {
+                        isDuplicate = true;
+                    }
+                }
+                if (!isDuplicate)
+                {
+                    randomSongs.Add(randomSong);
+                }
+            }
+            return randomSongs;
+        }
 
-        //            // Find random songs But:
-        //            // (1) Don't pick the same song twice.
-        //            // (2) Don't pick a song from an album that I've already picked.
+        private Song PickSong()
+        {
+            Random random = new Random();
+            var unusedSongs = Songs.Where(p => !p.Used);
+            var randomNumber = random.Next(unusedSongs.Count());
+            var randomSong = unusedSongs.ElementAt(randomNumber);
+            randomSong.Selected = true;
+            return randomSong;
+        }
 
-        //            if (String.IsNullOrEmpty(randomSongMusicProperties.Album)
-        //                || randomSongMusicProperties.Album == songMusicProperties.Album)
-        //            {
-        //                isDuplicate = true;
-        //            }
-        //        }
-        //        if (!isDuplicate)
-        //        {
-        //            randomSongs.Add(randomSong);
-        //        }
-        //    }
-        //    return randomSongs;
-        //}
+        private RelayCommand _playAgainCommand;
 
-        //private Song PickSong()
-        //{
-        //    Random random = new Random();
-        //    var unusedSongs = Songs.Where(p => !p.Used);
-        //    var randomNumber = random.Next(unusedSongs.Count());
-        //    var randomSong = unusedSongs.ElementAt(randomNumber);
-        //    randomSong.Selected = true;
-        //    return randomSong;
-        //}
+        public RelayCommand PlayAgainCommand
+        {
+            get
+            {
+                return _playAgainCommand
+                       ?? (_playAgainCommand = new RelayCommand(
+                           async () =>
+                           {
+                               PlayAgainButton = Visibility.Collapsed;
+                               IsLoding = true;
+                               await PrepareNewGame();
+                               IsLoding = false;
+                           }));
+            }
+        }
 
-        //private async void PlayAgainButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    PlayAgainButton.Visibility = Visibility.Collapsed;
-        //    StartUpProgressRing.IsActive = true;
-        //    await PrepareNewGame();
-        //    StartUpProgressRing.IsActive = false;
-        //}
+        private async Task PopulateSongList(List<StorageFile> files)
+        {
+            int id = 0;
 
-        //private async Task PopulateSongList(List<StorageFile> files)
-        //{
-        //    int id = 0;
+            foreach (var file in files)
+            {
+                Song song = await Song.CreateSong(file);
+                song.Id = id;
+                Songs.Add(song);
+                id++;
+            }
+        }
 
-        //    foreach (var file in files)
-        //    {
-        //        MusicProperties songProperties = await file.Properties.GetMusicPropertiesAsync();
+        private async Task PrepareNewGame()
+        {
+            Songs.Clear();
 
-        //        StorageItemThumbnail currentThumb = await file.GetThumbnailAsync(
-        //            ThumbnailMode.MusicView,
-        //            200,
-        //            ThumbnailOptions.UseCurrentScale);
+            // State management
+            Instruction = "Get Ready :)";
+            _totalScore = 0;
 
-        //        var albumCover = new BitmapImage();
-        //        albumCover.SetSource(currentThumb);
+            // Choose random songs from library.
+            var randomSongFiles = await PickRandomSongs(SongFiles, 10);
 
-        //        var song = new Song();
-        //        song.Id = id;
-        //        song.Title = songProperties.Title;
-        //        song.Artist = songProperties.Artist;
-        //        song.Album = songProperties.Album;
-        //        song.Selected = false;
-        //        song.Used = false;
-        //        song.AlbumCover = albumCover;
-        //        song.SongFile = file;
+            // Pluck off meta data from selected songs.
+            await PopulateSongList(randomSongFiles);
+            StartShortCountdown();
+        }
 
-        //        Songs.Add(song);
-        //        id++;
-        //    }
-        //}
+        public async void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Ignore clicks when we are in cooldown
+            if (!IsPlaying)
+            {
+                return;
+            }
 
-        //private async Task PrepareNewGame()
-        //{
-        //    Songs.Clear();
+            // CountDown.Pause();
+            Messenger.Default.Send(SelectSong.SongFile, "stop");
 
-        //    // State management
-        //    InstructionTextBlock.Text = "Get Ready :)";
-        //    ResultTextBlock.Text = "";
-        //    TitleTextBlock.Text = "";
-        //    ArtistTextBlock.Text = "";
-        //    AlbumTextBlock.Text = "";
-        //    ResultImage.Source = null;
-        //    _totalScore = 0;
-        //    _round = 0;
+            Song clickedSong = (Song)e.ClickedItem;
+            Song correctSong = Songs.FirstOrDefault(p => p.Selected);
 
-        //    // Choose random songs from library.
-        //    var randomSongs = await PickRandomSongs(AllSongs, 10);
+            // Evaluate the user's selection
+            Uri uri = null;
+            int addScore = 0;
 
-        //    // Pluck off meta data from selected songs.
-        //    await PopulateSongList(randomSongs);
-        //    StartCooldown();
-        //}
+            if (clickedSong.Selected)
+            {
+                uri = new Uri("ms-appx:///Assets/correct.png");
+                addScore = 100;
+            }
+            else
+            {
+                uri = new Uri("ms-appx:///Assets/incorrect.png");
+                addScore = (-1) * 100;
+            }
 
-        //private async void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
-        //{
-        //    // Ignore clicks when we are in cooldown
-        //    if (!_playingMusic)
-        //    {
-        //        return;
-        //    }
+            // Setting the picture.
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            var fileStream = await file.OpenAsync(FileAccessMode.Read);
+            await clickedSong.AlbumCover.SetSourceAsync(fileStream);
 
-        //    CountDown.Pause();
-        //    MyMediaElement.Stop();
+            _totalScore += addScore;
+            _round++;
+            Result = String.Format("Score: {0}, Total Score after {1} Rounds: {2}", addScore, _round, _totalScore);
+            DisplayCorrectSong(correctSong);
 
-        //    Song clickedSong = (Song)e.ClickedItem;
-        //    Song correctSong = Songs.FirstOrDefault(p => p.Selected);
+            clickedSong.Used = true;
+            correctSong.Selected = false;
+            correctSong.Used = true;
 
-        //    // Evaluate the user's selection
-        //    Uri uri = null;
-        //    int addScore = 0;
+            if (_round >= 5)
+            {
+                Instruction = String.Format("Game Over... You scored: {0}", _totalScore);
+                PlayAgainButton = Visibility.Visible;
+            }
+            else
+            {
+                StartShortCountdown();
+            }
+        }
 
-        //    if (clickedSong.Selected)
-        //    {
-        //        uri = new Uri("ms-appx:///Assets/correct.png");
-        //        addScore = (int)MyProgressBar.Value;
-        //    }
-        //    else
-        //    {
-        //        uri = new Uri("ms-appx:///Assets/incorrect.png");
-        //        addScore = (-1) * (int)MyProgressBar.Value;
-        //    }
+        private void StartShortCountdown()
+        {
+            IsPlaying = false;
+            Instruction = String.Format("Get ready for The Round {0}", Round + 1);
+            Messenger.Default.Send("short", "count");
+        }
 
-        //    // Setting the picture.
-        //    StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
-        //    var fileStream = await file.OpenAsync(FileAccessMode.Read);
-        //    await clickedSong.AlbumCover.SetSourceAsync(fileStream);
-
-        //    _totalScore += addScore;
-        //    _round++;
-        //    ResultTextBlock.Text = String.Format("Score: {0}, Total Score after {1} Rounds: {2}", addScore, _round, _totalScore);
-        //    DisplayCorrectSong(correctSong);
-
-        //    clickedSong.Used = true;
-        //    correctSong.Selected = false;
-        //    correctSong.Used = true;
-
-        //    if (_round >= 5)
-        //    {
-        //        InstructionTextBlock.Text = String.Format("Game Over... You scored: {0}", _totalScore);
-        //        PlayAgainButton.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        StartCooldown();
-        //    }
-        //}
-
-        //private void StartCooldown()
-        //{
-        //    _playingMusic = false;
-        //    InstructionTextBlock.Text = String.Format("Get ready for round {0}...", _round + 1);
-        //    ShortCountDown.Begin();
-        //}
-
-        //private void StartCountdown()
-        //{
-        //    _playingMusic = true;
-        //    InstructionTextBlock.Text = "Playing Music...♪";
-        //    CountDown.Begin();
-        //}
+        private void StartCountdown()
+        {
+            IsPlaying = true;
+            Instruction = "Playing Music...♪";
+            Messenger.Default.Send("normal", "count");
+        }
     }
 }

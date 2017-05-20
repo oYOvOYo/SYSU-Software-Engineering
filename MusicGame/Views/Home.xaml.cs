@@ -20,44 +20,65 @@ namespace MusicGame.Views
     /// </summary>
     public sealed partial class Home : Page
     {
-        private Boolean _playingMusic = false;
-        private int _round = 0;
-        private int _totalScore = 0;
-        private ObservableCollection<StorageFile> AllSongs;
-        private ObservableCollection<Song> Songs;
-
         public Home()
         {
             this.InitializeComponent();
 
-            ((ViewModel.MusicGameViewModel)DataContext).InitialViewModel();
-
-            Messenger.Default.Register<string>(
+            Messenger.Default.Register<StorageFile>(
                 this,
                 "play",
                 HandlePLayMessage);
 
             Messenger.Default.Register<string>(
                 this,
+                "count",
+                (str) =>
+                {
+                    switch (str)
+                    {
+                        case "short":
+                            ShortCountDown.Begin();
+                            break;
+
+                        case "normal":
+                            CountDown.Begin();
+                            break;
+                    }
+                });
+
+            Messenger.Default.Register<StorageFile>(
+                this,
                 "stop",
                 HandleStopMessage);
-
-            // Songs = new ObservableCollection<Song>();
         }
 
-        private void HandlePLayMessage(string obj)
+        private async void HandlePLayMessage(StorageFile myStorageFile)
         {
+            var fileStream = await myStorageFile.OpenAsync(FileAccessMode.Read);
+            MyMediaElement.SetSource(fileStream, myStorageFile.ContentType);
             MyMediaElement.Play();
         }
 
-        private void HandleStopMessage(string obj)
+        private void HandleStopMessage(StorageFile myStorageFile)
         {
+            //var fileStream = await myStorageFile.OpenAsync(FileAccessMode.Read);
+            //MyMediaElement.SetSource(fileStream, myStorageFile.ContentType);
             MyMediaElement.Stop();
         }
 
         private void ClickCheck_Click(object sender, RoutedEventArgs e)
         {
             ButtonText.Text = (Int32.Parse(ButtonText.Text) + 1).ToString();
+        }
+
+        private void ShortCountDown_Completed(object sender, object e)
+        {
+            ((ViewModel.MusicGameViewModel)DataContext).CountDown_Completed();
+        }
+
+        private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ((ViewModel.MusicGameViewModel)DataContext).SongGridView_ItemClick(sender, e);
         }
     }
 }
