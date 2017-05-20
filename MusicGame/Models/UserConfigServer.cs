@@ -19,7 +19,7 @@ namespace MusicGame.Models
                 Config = new UserConfig()
                 {
                     RoundNumber = 4,
-                    EachRoundChoicesNumber = 9,
+                    EachRoundChoicesNumber = 12,
                     DifficultyIncreased = false,
                     FolderPath = KnownFolders.MusicLibrary.Path
                 };
