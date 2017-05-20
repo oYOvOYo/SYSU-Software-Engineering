@@ -21,7 +21,7 @@
             <AdaptiveTrigger MinWindowWidth="840" />
           </VisualState.StateTriggers>
           <VisualState.Setters>
-            <Setter Target="Help.Width" Value="400" />
+            <Setter Target="Column1.Width" Value="400" />
           </VisualState.Setters>
         </VisualState>
       </VisualStateGroup>
@@ -35,7 +35,7 @@
     <Grid Grid.Row="1" Margin="20,10,0,0">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="auto" />
+        <ColumnDefinition x:Name="Column1" Width="0" />
       </Grid.ColumnDefinitions>
       <StackPanel Grid.Column="0">
         <StackPanel Margin="0,0,0,20">
@@ -59,12 +59,12 @@
         <StackPanel>
           <TextBlock Text="Each Round Choices Numbers" Style="{ThemeResource BodyTextBlockStyle}" />
           <StackPanel Orientation="Horizontal">
-            <RadioButton Content="4"
-                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=4, Mode=TwoWay}" />
             <RadioButton Content="6"
                          IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=6, Mode=TwoWay}" />
-            <RadioButton Content="10"
-                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=10, Mode=TwoWay}" />
+            <RadioButton Content="12"
+                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=12, Mode=TwoWay}" />
+            <RadioButton Content="18"
+                         IsChecked="{x:Bind UserConfig.EachRoundChoicesNumber, Converter={StaticResource IntBoolConverter}, ConverterParameter=18, Mode=TwoWay}" />
           </StackPanel>
         </StackPanel>
         <StackPanel>
@@ -73,24 +73,13 @@
                         IsOn="{x:Bind UserConfig.DifficultyIncreased, Mode=TwoWay}" />
         </StackPanel>
       </StackPanel>
-      <StackPanel x:Name="Help" Grid.Column="1"
-                  Width="0">
+      <StackPanel x:Name="Help" Grid.Column="1">
         <TextBlock>
-          <Bold>Helps</Bold>
-          <LineBreak />
-          <Run>
-              1.Open your Powershell
-          </Run>
-          <LineBreak />
-          <Run>
-              2.Enter the follow code
-          </Run>
-          <LineBreak />
-          <Run FontFamily="Consolas">&#160;&#160;shutdown /s /t 5</Run>
-          <LineBreak />
-          <Run>
-              3.You can find the helps in tan π/2.
-          </Run>
+          <Bold>Helps</Bold><LineBreak />
+          <Run>1.Open your Powershell</Run><LineBreak />
+          <Run>2.Enter the follow code</Run><LineBreak />
+          <Run FontFamily="Consolas">&#160;&#160;shutdown /s /t 5</Run><LineBreak />
+          <Run>3.You can find the helps in tan π/2.</Run>
           <LineBreak />
         </TextBlock>
       </StackPanel>

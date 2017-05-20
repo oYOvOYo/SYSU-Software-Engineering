@@ -1,15 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MusicGame.Models;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -23,11 +16,7 @@ namespace MusicGame.Views
         public Home()
         {
             this.InitializeComponent();
-
-            Messenger.Default.Register<StorageFile>(
-                this,
-                "play",
-                HandlePLayMessage);
+            MoePicture_Yande.Styles.Win2D.initialGlass(background);
 
             Messenger.Default.Register<string>(
                 this,
@@ -43,8 +32,18 @@ namespace MusicGame.Views
                         case "normal":
                             CountDown.Begin();
                             break;
+
+                        case "stopAll":
+                            CountDown.Stop();
+                            ShortCountDown.Stop();
+                            break;
                     }
                 });
+
+            Messenger.Default.Register<StorageFile>(
+               this,
+               "play",
+               HandlePLayMessage);
 
             Messenger.Default.Register<StorageFile>(
                 this,
@@ -57,28 +56,35 @@ namespace MusicGame.Views
             var fileStream = await myStorageFile.OpenAsync(FileAccessMode.Read);
             MyMediaElement.SetSource(fileStream, myStorageFile.ContentType);
             MyMediaElement.Play();
+            ((ViewModel.MusicGameViewModel)DataContext).IsPlaying = true;
         }
 
         private void HandleStopMessage(StorageFile myStorageFile)
         {
-            //var fileStream = await myStorageFile.OpenAsync(FileAccessMode.Read);
-            //MyMediaElement.SetSource(fileStream, myStorageFile.ContentType);
             MyMediaElement.Stop();
-        }
-
-        private void ClickCheck_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonText.Text = (Int32.Parse(ButtonText.Text) + 1).ToString();
-        }
-
-        private void ShortCountDown_Completed(object sender, object e)
-        {
-            ((ViewModel.MusicGameViewModel)DataContext).CountDown_Completed();
+            ((ViewModel.MusicGameViewModel)DataContext).IsPlaying = false;
         }
 
         private void SongGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ((ViewModel.MusicGameViewModel)DataContext).SongGridView_ItemClick(sender, e);
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            MyMediaElement.Stop();
+            ShortCountDown.Stop();
+            CountDown.Stop();
+        }
+
+        private void CountDown_Completed(object sender, object e)
+        {
+            ((ViewModel.MusicGameViewModel)DataContext).CountDown_Completed();
+        }
+
+        private void ShortCountDown_Completed(object sender, object e)
+        {
+            ((ViewModel.MusicGameViewModel)DataContext).ShortCountDown_Completed();
         }
     }
 }

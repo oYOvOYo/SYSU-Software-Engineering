@@ -25,7 +25,6 @@ namespace MusicGame.Views
         public AppShell()
         {
             this.InitializeComponent();
-            MainFrame.Navigate(typeof(Home));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

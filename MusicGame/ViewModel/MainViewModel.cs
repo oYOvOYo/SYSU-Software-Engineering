@@ -14,8 +14,6 @@ namespace MusicGame.ViewModel
     {
         private readonly INavigationService _navigationService;
         private RelayCommand<string> _navigateCommand;
-        //private RelayCommand _sendMessageCommand;
-        //private RelayCommand _showDialogCommand;
 
         public RelayCommand<string> NavigateCommand
         {
@@ -27,38 +25,6 @@ namespace MusicGame.ViewModel
                            p => !string.IsNullOrEmpty(p)));
             }
         }
-
-        //public RelayCommand SendMessageCommand
-        //{
-        //    get
-        //    {
-        //        return _sendMessageCommand
-        //            ?? (_sendMessageCommand = new RelayCommand(
-        //            () =>
-        //            {
-        //                Messenger.Default.Send(
-        //                    new NotificationMessageAction<string>(
-        //                        "Testing",
-        //                        reply =>
-        //                        {
-        //                        }));
-        //            }));
-        //    }
-        //}
-
-        //public RelayCommand ShowDialogCommand
-        //{
-        //    get
-        //    {
-        //        return _showDialogCommand
-        //               ?? (_showDialogCommand = new RelayCommand(
-        //                   async () =>
-        //                   {
-        //                       var dialog = ServiceLocator.Current.GetInstance<IDialogService>();
-        //                       await dialog.ShowMessage("Hello Universal Application", "it works...");
-        //                   }));
-        //    }
-        //}
 
         public MainViewModel(
             INavigationService navigationService)

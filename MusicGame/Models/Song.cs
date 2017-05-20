@@ -13,7 +13,6 @@ namespace MusicGame.Models
         public String Artist { get; set; }
         public String Album { get; set; }
         public StorageFile SongFile { get; set; }
-        public Boolean Selected { get; set; }
         public BitmapImage AlbumCover { get; set; }
         public Boolean Used { get; set; }
 
@@ -33,7 +32,6 @@ namespace MusicGame.Models
             song.Title = songProperties.Title;
             song.Artist = songProperties.Artist;
             song.Album = songProperties.Album;
-            song.Selected = false;
             song.Used = false;
             song.AlbumCover = albumCover;
             song.SongFile = file;
