@@ -8,4 +8,5 @@ L\1.1.SQL"
 ```
 
 [difference-between-numeric-float-and-decimal-in-sql-server](http://stackoverflow.com/questions/1056323/difference-between-numeric-float-and-decimal-in-sql-server)
+
 [wikipedia MySQL](https://zh.wikipedia.org/wiki/MySQL)
