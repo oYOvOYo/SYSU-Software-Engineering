@@ -1,5 +1,10 @@
 # this folder stores some documents
 docs
+
 # excute file
 *.exe
 1
+
+#obj file
+*.obj
+*.o
