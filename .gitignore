@@ -4,6 +4,7 @@ docs
 # excute file
 *.exe
 1
+hello
 
 #obj file
 *.obj
