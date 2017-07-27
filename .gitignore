@@ -1,3 +1,9 @@
 *~
 *.sw[po]
 .ipynb_checkpoints
+
+# for virtualenv 
+venv
+
+# for vscode
+.vscode
