@@ -4,7 +4,7 @@ email:        "jskyzero@outlook.com"
 description:  "A basic jekyll theme"
 logo:         "logo.png"
 url:          ""
-baseurl:      ""
+baseurl:      "/_site"
 
 # requirement
 plugins: [jekyll-paginate]
