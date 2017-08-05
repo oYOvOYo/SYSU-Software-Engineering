@@ -13,6 +13,6 @@ Just use like common jekyll theme, I'll add more detail to this part if I finish
 
 ## Projects
 - [x] As a basic Theme
-- [ ] Finished HTML part
+- [x] Finished HTML part
 - [ ] Finished CSS part
 - [ ] add JavaScrpt part

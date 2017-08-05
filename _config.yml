@@ -2,8 +2,20 @@
 title:        "Cards"
 email:        "jskyzero@outlook.com"
 description:  "A basic jekyll theme"
+logo:         "logo.png"
 url:          ""
 baseurl:      ""
+
+# requirement
+plugins: [jekyll-paginate]
+
+# 分页显示文章列表
+paginate:     3
+
+# default author settings
+author:             "Nishiki"
+author_img:         "Nishiki.jpg"
+author_img_folder:  "author"
 
 # follow settings
 github_username:  "jskyzero"

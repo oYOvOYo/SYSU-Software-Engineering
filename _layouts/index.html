@@ -1,17 +1,5 @@
-<!DOCTYPE html> 
+---
+layout : default
+---
 
-{% include head.html %}
-
-<html>
-
-{% include header.html %} 
-
-<body>
-    {% for post in site.posts %}
-        <a href="{{ post.url }}">{{ post.title }}</a> 
-    {% endfor %}
-</body>
-
-{% include footer.html %}
-
-</html>
+    {{ content }}

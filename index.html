@@ -1,0 +1,61 @@
+---
+layout : index
+---
+
+{% for post in paginator.posts %}
+
+<article class="style{{ forloop.index | plus:1 }}">
+    <div class="cover">
+        <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ post.thumbnail}}" alt="" />
+    </div>
+    <div class="details">
+        <a href="{{ post.url | prepend:site.baseurl | prepend:site.url }}">
+            <h2>{{ post.title }}</h2>
+        </a>
+        <p>{{ post.excerpt }}</p>
+    </div>
+    <div class="post_info">
+        {% if post.author and post.author_img %}
+        
+        <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author_img_folder }}/{{ post.author_img }}" alt="" />
+        <strong>{{ post.author }}</strong>
+        
+        {% else %}
+        
+        <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author_img_folder }}/{{ site.author_img }}" alt="" />
+        <strong>{{ site.author }}</strong>
+        
+        {% endif %}
+
+        <span>{{ post.date |  date_to_string }}</span>
+    </div>
+</article>
+
+{% endfor %}
+
+<!-- 分页链接 -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+  {% else %}
+    <span>&laquo; Prev</span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+  {% else %}
+    <span>Next &raquo;</span>
+  {% endif %}
+</div>
+{% endif %}

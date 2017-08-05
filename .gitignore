@@ -1,2 +1,6 @@
 # for jekyll
 _site
+
+# now for develop
+_posts
+assets/img/
