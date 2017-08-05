@@ -1,0 +1,10 @@
+# global site settings
+title:        "Cards"
+email:        "jskyzero@outlook.com"
+description:  "A basic jekyll theme"
+url:          ""
+baseurl:      ""
+
+# follow settings
+github_username:  "jskyzero"
+twitter_username: "jskyzero"
