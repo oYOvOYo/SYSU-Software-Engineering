@@ -15,9 +15,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 		display: block;
 	}
 
+@-ms-viewport {
+    width: device-width;
+}
+
+@media screen and (max-width: 480px) {
+
+    html, body {
+        min-width: 320px;
+    }
+}
+    
 body {
     width: 100%;
     line-height: 1;
+    -ms-overflow-style: scrollbar;
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
 
