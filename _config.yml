@@ -17,7 +17,7 @@ paginate:     12
 
 # default author settings
 author:             "Nishiki"
-author_img:         "Nishiki.jpg"
+author_img:         "Nishiki.png"
 author_img_folder:  "author"
 
 # follow settings
