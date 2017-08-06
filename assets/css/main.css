@@ -52,6 +52,9 @@ img {
     line-height: 1.75;
 }
 
+    #post img {
+        border-radius: 5px;
+    }
 
     #post p {
         margin: 0 0 1em 0;
@@ -416,7 +419,25 @@ header {
             font-family: "Source Sans Pro", Helvetica, sans-serif;
         }
 
+.pagination {
+    width: 100%;
+    margin: 20px;
+    vertical-align: center;
+}
+.pagination .icon.style2{
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 48px;
+}
 
+.pagination .fa-arrow-circle-left {
+    float: left;
+}
+
+.pagination .fa-arrow-circle-right {
+    float: right;
+}
 
 /* inner */
 #inner {
