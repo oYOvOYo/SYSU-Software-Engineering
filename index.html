@@ -12,7 +12,7 @@ layout : default
         <a href="{{ post.url | prepend:site.baseurl | prepend:site.url }}">
             <h2>{{ post.title }}</h2>
         </a>
-        <p>{{ post.excerpt }}</p>
+        <!-- <p>{{ post.excerpt }}</p> -->
     </div>
     <div class="post_info">
         {% if post.author and post.author_img %}
@@ -26,8 +26,8 @@ layout : default
         <strong>{{ site.author }}</strong>
         
         {% endif %}
-
-        <span>{{ post.date |  date_to_string }}</span>
+        <!-- https://learn.cloudcannon.com/jekyll/date-formatting/ -->
+        <span>{{ post.date |  date: "%y/%m/%d" }}</span>
     </div>
 </article>
 

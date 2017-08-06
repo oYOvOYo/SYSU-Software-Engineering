@@ -9,8 +9,11 @@ baseurl:      "/_site"
 # requirement
 plugins: [jekyll-paginate]
 
+# 转换
+markdown:    kramdown
+
 # 分页显示文章列表
-paginate:     3
+paginate:     12
 
 # default author settings
 author:             "Nishiki"
