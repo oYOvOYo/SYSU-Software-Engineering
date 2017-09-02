@@ -1,0 +1,569 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Fri May 26 12:38:11 2017
+# Process ID: 15248
+# Log file: D:/multi-CPU/vivado.log
+# Journal file: D:/multi-CPU\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/大二下/计组实验/单周期CPU/CPU/CPU.xpr
+close_project
+open_project D:/multi-CPU/CPU.xpr
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_simulation
+reset_run synth_1
+launch_runs synth_1
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1
+wait_on_run synth_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+launch_simulation
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+close_sim
+launch_simulation
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_simulation
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+close_sim
+launch_simulation
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1
+wait_on_run impl_1
+launch_simulation
+source CPU_sim.tcl
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+run 10 ns
+restart
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 10 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+restart
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+run 30 ns
+restart
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+close_sim
+launch_simulation
+source CPU_sim.tcl
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+restart
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+remove_forces { {/CPU_sim/uut/Regfile/register[20]} }
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns
+run 50 ns

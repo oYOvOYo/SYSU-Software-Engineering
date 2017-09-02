@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Webtalk v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Sat May 27 10:57:37 2017
+# Process ID: 16280
+# Log file: D:/multi-CPU/CPU.sim/sim_1/behav/webtalk.log
+# Journal file: D:/multi-CPU/CPU.sim/sim_1/behav\webtalk.jou
+#-----------------------------------------------------------
+source D:/multi-CPU/CPU.sim/sim_1/behav/xsim.dir/CPU_sim_behav/webtalk/xsim_webtalk.tcl -notrace

@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/RAM.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/Data_Selector3.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/Data_selector2.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/Regfile.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/PCj.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/imports/new/Data_selector4.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/PC4.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/PC01.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/CU.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/Reg.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/InsMem.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/PC.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/Extend.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/ALU.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/CPU.v"
+verilog xil_defaultlib  "../../../CPU.srcs/sources_1/new/CPU_sim.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
