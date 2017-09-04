@@ -4,7 +4,7 @@ layout : default
 
 <div class="row">
   {% for post in paginator.posts %}
-  <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3" id="card">
       <article class="style{{ forloop.index | plus:1 }} ">
           <div class="cover">
             <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ post.thumbnail}}" alt="" />
@@ -20,13 +20,17 @@ layout : default
       
             <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author_img_folder }}/{{ post.author_img }}" alt=""
             />
-            <strong>{{ post.author }}</strong> {% else %}
+            <span>{{ post.author }}</span> 
+            
+            {% else %}
       
             <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author_img_folder }}/{{ site.author_img }}" alt=""
             />
-            <strong>{{ site.author }}</strong> {% endif %}
+            <span>{{ site.author }}</span> 
+            
+            {% endif %}
             <!-- https://learn.cloudcannon.com/jekyll/date-formatting/ -->
-            <span>{{ post.date |  date: "%y/%m/%d" }}</span>
+            <span class="time">{{ post.date |  date: "%y/%m/%d" }}</span>
           </div>
         </article>
   </div>

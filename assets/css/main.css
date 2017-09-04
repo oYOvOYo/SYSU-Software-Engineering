@@ -7,11 +7,11 @@ body {
 
 /* main */
 #main {
-  padding: 20px 0 20px 0;
+  padding: 10px 0;
 }
 
-  #main div.row div {
-    padding: 0 0.5em;
+  #main div.row #card {
+    padding: 0.5em;
   }
 
   #main article {
@@ -22,7 +22,66 @@ body {
   }
     #main article:hover {
       box-shadow: rgba(0, 0, 0, 0.247059) 0px 14px 45px, rgba(0, 0, 0, 0.219608) 0px 10px 18px
-	  }
+    }
+
+  #main article .cover {
+      width: 100%;
+      height: 244px;
+      padding: 0px;
+      display: block;
+      border-radius: 4px;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+  }
+  
+    #main article .cover img {
+      width:100%;
+      height: 100%;
+      object-fit: cover;
+      /* width: auto;
+      height: 100%;
+      display: block;
+      transform: translate(-12.5%,0); */
+    }
+
+  #main article .details {
+      height: 80px;
+      padding: 16px;
+      line-height: 48px;
+      overflow: hidden;
+  }
+
+      #main article .details h2 {
+          line-height: 48px;
+          font-size: 20px;
+      }
+
+
+  #main article .post_info {
+      padding: 16px;
+      border-top: 1px solid rgba(0,0,0,.1); 
+      line-height: 44px;
+      vertical-align: center;
+      overflow: hidden;
+  }
+
+      #main article .post_info img{
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          line-height: 40px;
+          vertical-align: middle;
+      }
+
+      #main article .post_info span{
+          letter-spacing: 1px;
+          margin-left: 10px;
+      }
+
+      #main article .post_info span.time{
+          float: right;
+      }
 
 
 /* header */
