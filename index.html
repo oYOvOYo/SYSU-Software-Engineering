@@ -39,22 +39,10 @@ layout : default
 
 <!-- 分页链接 -->
 {% if paginator.total_pages > 1 %}
-<div class="pagination">
+<div id="pagination">
   {% if paginator.previous_page %}
   <a class="icon style2 fa-arrow-circle-left" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"><span class="label">&laquo; Prev</span></a>  {% else %}
-  <!-- <span>&laquo; Prev</span> -->
   {% endif %}
-
-  <!-- {% for page in (1..paginator.total_pages) %}
-    {% if page == paginator.page %}
-      <em>{{ page }}</em>
-    {% elsif page == 1 %}
-      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-    {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-    {% endif %}
-  {% endfor %} -->
-
   {% if paginator.next_page %}
   <a class="icon style2 fa-arrow-circle-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"><span class="label">Next &raquo;</span></a>  {% else %}
   <!-- <span>Next &raquo;</span> -->
