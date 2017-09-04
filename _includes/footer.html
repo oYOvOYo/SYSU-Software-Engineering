@@ -1,29 +1,31 @@
 <!-- Footer -->
 <footer>
   <div class="container">
-    <div class="follow">
-      <ul>
-        {% if site.twitter_username %}
-        <li><a href="https://twitter.com/{{ site.twitter_username }}" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-        {% endif %} {% if site.github_username %}
-        <li><a href="https://github.com/{{ site.github_username }}" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
-        {% endif %} {% if site.email %}
-        <li><a href="mailto:{{ site.email }}" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-        {% endif %}
-      </ul>
-    </div>
-
-    <div class="copyright">
-      Copyright&nbsp;©&nbsp;
-      <script type="text/javascript">
-        var fd = new Date();
-        document.write(fd.getFullYear());
-      </script>&nbsp; {{ site.title }}
-    </div>
-
-    <div class="develop">
-      <li>Design: <a href="https://github.com/jskyzero">jskyzero</a></li>
-      <li>Power by : <a href="http://jekyllcn.com/">Jekyll</a></li>
+    <div class="row">
+      <div class="follow col-md-3 col-12">
+          <ul>
+            {% if site.twitter_username %}
+            <li><a href="https://twitter.com/{{ site.twitter_username }}" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+            {% endif %} {% if site.github_username %}
+            <li><a href="https://github.com/{{ site.github_username }}" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+            {% endif %} {% if site.email %}
+            <li><a href="mailto:{{ site.email }}" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+            {% endif %}
+          </ul>
+        </div>
+    
+        <div class="copyright col-md-6 col-12">
+          Copyright&nbsp;©&nbsp;
+          <script type="text/javascript">
+            var fd = new Date();
+            document.write(fd.getFullYear());
+          </script>&nbsp; {{ site.title }}
+        </div>
+    
+        <div class="develop col-md-3 col-12">
+          <li>Design: <a href="https://github.com/jskyzero">jskyzero</a></li>
+          <li>Power by : <a href="http://jekyllcn.com/">Jekyll</a></li>
+        </div>
     </div>
   </div>
 </footer>

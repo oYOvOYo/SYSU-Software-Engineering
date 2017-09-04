@@ -5,6 +5,29 @@ body {
   background: #F8F8F9;
 }
 
+
+
+/* pagination */
+.pagination {
+  width: 100%;
+  margin: 20px;
+  vertical-align: center;
+}
+  .pagination .icon.style2{
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 48px;
+  }
+
+  .pagination .fa-arrow-circle-left {
+    float: left;
+  }
+
+  .pagination .fa-arrow-circle-right {
+    float: right;
+  }
+
 /* main */
 #main {
   padding: 10px 0;
@@ -116,15 +139,13 @@ footer {
   padding: 40px 0 40px 0;
   background: #f0f0f0;
   overflow: hidden;
+  text-align: center;
 }
-  footer .container {
-      display: flex;
-      align-items: center;
-  }
 
   footer .follow ul {
     margin: 0px;
     padding: 0px;
+    line-height: 48px;
   }
     footer .follow ul li {
         margin-left: 10px;
@@ -132,8 +153,12 @@ footer {
     }
 
   footer .copyright {
+      line-height: 48px;
       margin:0 auto;
-      text-align: center;
+  }
+
+  footer .develop {
+    line-height: 24px;
   }
 
 /* a */
