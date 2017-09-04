@@ -20,3 +20,5 @@ If you want use bundle, just copy the gems folder's files to your folder, then m
 - [x] Finished HTML part
 - [x] Finished CSS part
 - [x] add JavaScrpt part ( In fact the javascript file is empty
+
+- [x] add bootstrp v4
