@@ -1,7 +1,25 @@
 body {
-  background-color: #FCFCFC !important;
+  background: #F8F8F9 !important;
 }
 
-p {
-  text-align: center;
+header {
+  background: #fff;
+  border-bottom: 1px solid #dee0e1;
+}
+
+header a .title {
+  margin-right: 30px;
+  font-weight: 900;
+  color: #585858;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+header a .description {
+  color: #585858;
+  letter-spacing: 4.8px;
+  font-size: 16px;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
