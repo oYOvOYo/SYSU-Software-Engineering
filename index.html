@@ -7,9 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon shortcut" type="image/ico" href="https://jskyzero.github.io/img/favicon.ico">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/color-picker.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
+  <style>
+    body {
+      text-align: center;
+    }
+
+    #color-box {
+      width: 50vw;
+      height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,8 +35,10 @@
     </div>
   </header>
 
-  <input value="ffcc00" class="jscolor {width:500, height:500,
-  borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#666'}">
+  <section id="color-picker"></section>
+  <p id="color-value">color:</p>
+  <div id="color-box">
+  </div>
 
   <footer>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -40,6 +55,22 @@
 
     <!-- Scripts -->
     <script src="/js/main.js"></script>
+    <script src="/js/color-picker.js"></script>
+    <script>
+      var container = document.querySelector('#color-picker'),
+        color_box = document.querySelector('#color-box'),
+        color_value = document.querySelector('#color-value'),
+        picker = new ColorPicker(container, false);
+      picker.fit = function () {
+        this.picker.style.left = this.picker.style.top = ""; // do nothing ...
+      };
+      picker.picker.classList.add('static');
+      picker.enter(container);
+      picker.on("change", function (color) {
+        color_box.style.backgroundColor = '#' + color;
+        color_value.innerHTML = "color:" + color;
+      });
+    </script>
   </footer>
 </body>
 
