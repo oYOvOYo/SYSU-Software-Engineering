@@ -11,18 +11,6 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
-  <style>
-    body {
-      text-align: center;
-    }
-
-    #color-box {
-      width: 50vw;
-      height: 150px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
 </head>
 
 <body>
@@ -35,12 +23,77 @@
     </div>
   </header>
 
-  <section id="color-picker"></section>
-  <p id="color-value">color:</p>
-  <div id="color-box">
+  <div class="container">
+    <br>
+    <div class="row">
+      <div class="col-1 col-sm-2 col-md-1 col-lg-2"></div>
+      <div id="color-picker" class="col-10 col-sm-8 col-md-5 col-lg-4"></div>
+      <div class="col-1 col-sm-2 d-md-none"></div>
+      <div class="col-1 col-sm-2 d-md-none"></div>
+      <div id="color-box" class="col-10 col-sm-8 col-md-5 col-lg-4">
+        <button type="button" class="btn btn-primary">提交</button>
+        <button type="button" class="btn btn-primary">提交</button>
+        <button type="button" class="btn btn-primary">提交</button>
+      </div>
+      <div class="col-1 col-sm-2 col-md-1 col-lg-2"></div>
+    </div>
+    <p id="color-value">color:</p><br>
+    <div id="your-history">
+      <span>历史</span>
+    </div><br>
+    <div id="me-history">
+        <span>历史</span>
+    </div><br>
+
+    <div id="menu">
+      <button type="button" class="btn btn-outline-info">帮助</button>
+      <button type="button" class="btn btn-outline-primary" 
+              data-toggle="modal" data-target="#settingsModal">设置</button>
+    </div><br>
+
+    <div id="alerts">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+          <strong>请注意</strong> 开始游戏前需要在下面绑定对方的IP地址
+        </div>
+    </div>
   </div>
 
+
+  <!-- Modal -->
+  <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalLabel">设置</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <span class="input-group-addon">自己IP</span>
+            <input type="text" class="form-control" value="127.0.0.1">
+          </div>
+          <br>
+          <div class="input-group">
+            <span class="input-group-addon">对方IP</span>
+            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">绑定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
   <footer>
+    <p class="container">By jskyzero</p>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"></script>
@@ -70,6 +123,7 @@
         color_box.style.backgroundColor = '#' + color;
         color_value.innerHTML = "color:" + color;
       });
+      picker.set("#F8F8F9");
     </script>
   </footer>
 </body>

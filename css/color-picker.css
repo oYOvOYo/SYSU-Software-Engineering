@@ -32,7 +32,8 @@
 .color-picker-h {
   position:relative;
   /* width:20px; */
-  width: 5vw;
+  /* width: 5vw; */
+  width:10%;
   height:150px;
   float:right;
   /* border-left:1px solid; */
@@ -72,7 +73,8 @@
 .color-picker-sv {
   position:relative;
   /* width:150px; */
-  width: 45vw;
+  /* width: 45vw; */
+  width: 90%;
   height:150px;
   float:left;
   /* background:transparent url('color-picker-sv.png') no-repeat 50% 50%; */
@@ -127,6 +129,7 @@
 }
 
 .color-picker.static {
+  width: 100%;
   display:inline-block !important;
   position:static !important;
   top:0 !important;
