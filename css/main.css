@@ -17,7 +17,7 @@ header a .title {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
 
-header a .description {
+.description {
   color: #585858;
   letter-spacing: 4.8px;
   font-size: 16px;
@@ -25,7 +25,6 @@ header a .description {
 }
 
 @media screen and (max-width: 736px) {
-
   header a .description {
     display: none;
   }
@@ -41,9 +40,15 @@ body {
   }
 
 #color-picker {
-  margin: 15px;
-}
-#color-box {
-  margin: 15px;
   height: 150px;
+}
+
+#color-box {
+  height: 150px;
+}
+
+.history_color {
+  width: 48px;
+  height: 48px;
+  margin: 2px;
 }

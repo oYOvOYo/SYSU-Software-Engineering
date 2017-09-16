@@ -23,41 +23,53 @@
     </div>
   </header>
 
-  <div class="container">
-    <br>
+  <div class="container"><br>
+    <div id="menu">
+      <button type="button" class="btn btn-outline-primary">开始</button>
+      <button type="button" class="btn  btn-outline-danger">结束</button>
+      <button type="button" class="btn btn-outline-info">帮助</button>
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#settingsModal">设置</button>
+    </div><br>
+
     <div class="row">
       <div class="col-1 col-sm-2 col-md-1 col-lg-2"></div>
-      <div id="color-picker" class="col-10 col-sm-8 col-md-5 col-lg-4"></div>
-      <div class="col-1 col-sm-2 d-md-none"></div>
-      <div class="col-1 col-sm-2 d-md-none"></div>
-      <div id="color-box" class="col-10 col-sm-8 col-md-5 col-lg-4">
-        <button type="button" class="btn btn-primary">提交</button>
-        <button type="button" class="btn btn-primary">提交</button>
-        <button type="button" class="btn btn-primary">提交</button>
+      <div class="col-10 col-sm-8 col-md-5 col-lg-4">
+        <div id="color-picker" class="border border-0"></div>
+      </div>
+      <div class="col-1 col-sm-2 d-md-none d-lg-none"></div>
+      <div class="col-1 col-sm-2 d-md-none d-lg-none"></div>
+      <div class="col-10 col-sm-8 col-md-5 col-lg-4">
+        <div id="color-box" class="border border-0 d-table w-100">
+          <div class="align-middle d-table-cell">
+            <button type="button" class="btn btn-primary">提交</button>
+          </div>
+        </div>
       </div>
       <div class="col-1 col-sm-2 col-md-1 col-lg-2"></div>
     </div>
     <p id="color-value">color:</p><br>
-    <div id="your-history">
-      <span>历史</span>
-    </div><br>
-    <div id="me-history">
-        <span>历史</span>
-    </div><br>
-
-    <div id="menu">
-      <button type="button" class="btn btn-outline-info">帮助</button>
-      <button type="button" class="btn btn-outline-primary" 
-              data-toggle="modal" data-target="#settingsModal">设置</button>
-    </div><br>
-
-    <div id="alerts">
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-          <strong>请注意</strong> 开始游戏前需要在下面绑定对方的IP地址
+    <div>
+      <div class="ta history">
+        <span class="description">Ta选择过</span>
+        <div>
+          <img class="rounded-circle border border-primary history_color">
+          <img class="rounded-circle border border-primary history_color">
         </div>
+      </div><br>
+      <div class="me history">
+        <span class="description">我选择过</span>
+        <div>
+          <img class="rounded-circle border border-primary history_color">
+          <img class="rounded-circle border border-primary history_color">
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+
+    <div id="alert_box">
+      
     </div>
   </div>
 
@@ -79,7 +91,7 @@
           </div>
           <br>
           <div class="input-group">
-            <span class="input-group-addon">对方IP</span>
+            <span class="input-group-addon">Ta的IP</span>
             <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
           </div>
         </div>
@@ -93,7 +105,7 @@
 
   <hr>
   <footer>
-    <p class="container">By jskyzero</p>
+    <p class="container description">By jskyzero</p>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"></script>
@@ -101,10 +113,10 @@
       crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
       crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.0.1/lazyload.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.0.1/lazyload.min.js"></script>
     <script>
       new LazyLoad();
-    </script>
+    </script> -->
 
     <!-- Scripts -->
     <script src="/js/main.js"></script>

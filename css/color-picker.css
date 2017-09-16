@@ -16,9 +16,9 @@
 }
 .color-picker-control {
   /* border:1px solid #000; */
-  -webkit-box-shadow:1px 5px 10px rgba(0,0,0,.5);
+  /* -webkit-box-shadow:1px 5px 10px rgba(0,0,0,.5);
   -moz-box-shadow:1px 5px 10px rgba(0,0,0,.5);
-  box-shadow:1px 5px 10px rgba(0,0,0,.5);
+  box-shadow:1px 5px 10px rgba(0,0,0,.5); */
 }
 .color-picker-control *,
 .color-picker-control *:before,
