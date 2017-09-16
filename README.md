@@ -16,7 +16,7 @@
 
 + v0.1 basic index.html
   + responsive view also for mobile
-  + transform ip infomation into color
+  + transform ip infomation into color [No Use]
   + basic color picker tools
 
 ## LICENSE
