@@ -18,6 +18,10 @@
   + responsive view also for mobile
   + transform ip infomation into color [No Use]
   + basic color picker tools
++ v0.2 basic game
+  + can bind to eachother
+  + can select color
+  + can end game
 
 ## LICENSE
 
