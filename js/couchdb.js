@@ -3,14 +3,21 @@
   win[DB] = function bootstrap_alert() {
     var DB_URL = "https://couchdb.jskyzero.top/color-of-mood/"
 
+    this.initialAjax = () => {
+      $.ajaxSetup({
+        headers: {
+          "Authorization": "Basic " + btoa("color-of-mood-player" + ":" + "color-of-mood")
+        }, xhrFields: {
+          withCredentials: true
+        }
+      })
+    }
+
     this.test_connection = (errorHandler, successHandler) => {
       $.ajax({
         method: "GET",
         url: DB_URL + "aa",
-        headers: {
-          "Authorization": "Basic " + btoa("color-of-mood-player" + ":" + "color-of-mood")
-        },
-        error:(jqXHR, textStatus, errorThrown ) => {
+        error: (jqXHR, textStatus, errorThrown) => {
           console.log(jqXHR.responseText);
           errorHandler();
         }
