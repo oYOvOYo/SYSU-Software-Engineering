@@ -28,7 +28,7 @@
       <button type="button" class="btn btn-outline-primary begin" disabled>开始</button>
       <button type="button" class="btn  btn-outline-danger end" disabled>结束</button>
       <button type="button" class="btn btn-outline-info helps" data-toggle="modal" data-target="#helpsModal">帮助</button>
-      <button type="button" class="btn btn-outline-primary settings" data-toggle="modal" data-target="#settingsModal">设置</button>
+      <button type="button" class="btn btn-outline-primary settings" disabled data-toggle="modal" data-target="#settingsModal">设置</button>
     </div><br>
 
     <div class="row">
@@ -89,12 +89,12 @@
           <br>
           <div class="input-group">
             <span class="input-group-addon">Ta的IP</span>
-            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+            <input type="text" class="form-control ta" placeholder="127.0.0.1" aria-label="127.0.0.1">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary bindding">绑定</button>
+          <button type="button" class="btn btn-primary bindding" disabled>绑定</button>
         </div>
       </div>
     </div>
@@ -136,6 +136,8 @@
 
     <!-- Scripts -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="js/alert.js"></script>
+    <script src="js/couchdb.js"></script>
     <script src="js/main.js"></script>
     <script src="js/color-picker.js"></script>
     <script>

@@ -1,34 +1,33 @@
 $(document).ready(function () {
   'use strict';
 
-  var alert = new bootstrap_alert();
-  var ip_url = "http://ip-api.com/json";
+  var alert = new Alert();
+  var db = new CouchDB();
+  var me_ip, ta_ip;
+  var ip_url = "https://api.ipify.org?format=json";
 
   console.log("Welcome to Color-of-Mood");
+  alert.warning('注意','开始游戏前请在设置里面绑定对方IP');
+  
+  db.test_connection(()=>{
+    alert.danger('错误','无法连接服务器');
+  }, ()=> {
+    alert.primary('恭喜','连接服务器成功，可以绑定对方IP');
+    $('#settingsModal button.btn.btn-primary.bindding')[0].disabled = false;
+  });
+
   $.get(ip_url,responseText => {
-    $('#settingsModal .input-group input.me').val(responseText.query);
-    console.log("Your ip is ", responseText.query);
+    console.log("Your ip is ", responseText.ip);
+    alert.primary('恭喜', '更新IP成功，可以点击设置查看当前IP');
+
+    $('#settingsModal .input-group input.me').val(responseText.ip);
+    $('#menu .settings')[0].disabled = false;
   });
 
   $('#settingsModal button.btn.btn-primary.bindding').on( "click", ()=>{
-    alert.warning('请注意','开始游戏前请在设置里面绑定对方IP');
+     me_ip = $('#settingsModal .input-group input.me')[0].value;
+     ta_ip = $('#settingsModal .input-group input.ta')[0].value;
   })
-  
-  $('#menu .begin')[0].disabled = false;
-
-  // $(".alert").alert('close');
-  function bootstrap_alert() { 
-    this.alert = (type, strong, message) => {
-      $('#alert_box').append('\
-      <div class="alert alert-'+ type + ' alert-dismissible fade show" role="alert">\
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
-          <span aria-hidden="true">&times;</span></button>\
-        <strong>'+ strong + '</strong>' + message + '</div>');
-    }
-    this.warning = (strong, message) => {
-      this.alert('warning', strong, message);
-    }
-  }
 })
 
 
