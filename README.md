@@ -64,6 +64,7 @@ Don't lose the key file! you won't be able to decrypt an encrypted if you lose t
   + DES 算法的基本过程是换位和置换。（具体的操作将在下文模块部分提到）
 + 项目结构
 + 模块分解
+![how to process](docs/process.png)
 + 数据机构
 + 类C语言算法算法过程
 
