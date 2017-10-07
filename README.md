@@ -1,6 +1,9 @@
 # Data Encryption Standard (DES)
 `jskyzero` `2017/10/02`
 
+[![Build Status](https://travis-ci.org/jskyzero/DES.svg?branch=master)](https://travis-ci.org/jskyzero/DES)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
 ## Overview
 > The Data Encryption Standard (DES) is a block cipher (a form of shared secret encryption) that was selected by the National Bureau of Standards as an official Federal Information Processing Standard (FIPS) for the United States in 1976 and which has subsequently enjoyed widespread use internationally. It is based on a symmetric-key algorithm that uses a 56-bit key.
 
