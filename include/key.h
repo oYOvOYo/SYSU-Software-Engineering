@@ -12,7 +12,7 @@
 #include <time.h>
 // for rand
 #include <stdlib.h>
-// for FILE, fopen, fclose,  
+// for FILE, fopen, fclose, fprintf, fscanf
 #include <stdio.h>
 
 // for uint8_t and other self define types

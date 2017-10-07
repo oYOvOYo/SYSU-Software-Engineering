@@ -63,9 +63,23 @@ Don't lose the key file! you won't be able to decrypt an encrypted if you lose t
   + DES 的采用64位密钥,但由于每8位中的最后1位用于奇偶校验,实际有效密钥长度为56位。密钥可以是任意的56位的数,且可随时改变。其中极少量的数被认为是弱密钥,但能容易地避开它们。所有的保密性依赖于密钥。
   + DES 算法的基本过程是换位和置换。（具体的操作将在下文模块部分提到）
 + 项目结构
+  ```
+  .
+  ├── bin         // 执行文件
+  ├── build       // 中间生成文件
+  ├── docs        // 文档
+  ├── include     // 头文件
+  ├── LICENSE     // 证书
+  ├── makefile    // 生成执行文件脚本
+  ├── README.md   // 说明文件
+  └── src         // 源代码
+  ```
 + 模块分解
+大致处理流程如图所示
 ![how to process](docs/process.png)
-+ 数据机构
+
+
++ 数据结构
 + 类C语言算法算法过程
 
 ## Reference

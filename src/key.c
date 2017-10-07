@@ -22,6 +22,7 @@ void generate_key(uint8_t* key) {
 // save key to file
 void save_key(char* file_path, uint8_t* key) {
   FILE* out = fopen(file_path, "wb");
+  check_file_open(out, file_path, "wb");
 
   for (int i = 0; i < 8; i++) {
     fprintf(out, "%c", key[i]);
@@ -33,6 +34,7 @@ void save_key(char* file_path, uint8_t* key) {
 // read key from file
 void read_key(char * file_path, uint8_t* key) {
   FILE* in = fopen(file_path, "rb");
+  check_file_open(in, file_path, "rb");
 
   for (int i = 0; i < 8; i++) {
     if (fscanf(in, "%c", &key[i]) <= 0)

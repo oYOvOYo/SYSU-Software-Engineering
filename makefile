@@ -13,10 +13,10 @@ FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3 -std=c11
 
 all: mkdir $(BIN_DIR)/des
 
-$(BIN_DIR)/des: $(OBJ_DIR)/main.o $(OBJ_DIR)/key.o
+$(BIN_DIR)/des: $(OBJ_DIR)/main.o $(OBJ_DIR)/key.o $(OBJ_DIR)/def.o $(OBJ_DIR)/process.o
 	$(CC) $(FLAGS) $^ -o $@
 
-$(BIN_DIR)/test: $(OBJ_DIR)/test.o $(OBJ_DIR)/key.o
+$(BIN_DIR)/test: $(OBJ_DIR)/test.o $(OBJ_DIR)/key.o $(OBJ_DIR)/def.o $(OBJ_DIR)/process.o
 	$(CC) $(FLAGS) $^ -o $@
 
 test: all $(BIN_DIR)/test
