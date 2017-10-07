@@ -9,7 +9,7 @@ BIN_DIR = $(ROOT_DIR)/bin
 TEST_DIR = $(ROOT_DIR)/test
 
 CC = gcc
-FLAGS = -I $(ROOT_DIR) -I $(INC_DIR)
+FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3
 
 $(BIN_DIR)/des: $(OBJ_DIR)/main.o
 	$(CC) $(FLAGS) $^ -o $@
