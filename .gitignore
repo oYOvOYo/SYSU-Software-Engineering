@@ -1,6 +1,8 @@
 # add by jskyzero 
 # Executables
 bin
+# test files 
+test
 
 # Prerequisites
 *.d

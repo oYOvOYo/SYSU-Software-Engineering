@@ -9,9 +9,9 @@ BIN_DIR = $(ROOT_DIR)/bin
 TEST_DIR = $(ROOT_DIR)/test
 
 CC = gcc
-FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3
+FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3 -std=c11
 
-all: $(OBJ_DIR) $(BIN_DIR) $(BIN_DIR)/des
+all: mkdir $(BIN_DIR)/des
 
 $(BIN_DIR)/des: $(OBJ_DIR)/main.o $(OBJ_DIR)/key.o
 	$(CC) $(FLAGS) $^ -o $@
@@ -31,11 +31,8 @@ test: all $(BIN_DIR)/test
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(FLAGS) $^ -c -o $@
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
+mkdir:
+	mkdir -p $(TEST_DIR) $(OBJ_DIR) $(BIN_DIR)
 
 clean:
 	-rm -rf $(BIN_DIR)
