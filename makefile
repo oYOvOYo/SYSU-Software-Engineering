@@ -11,10 +11,12 @@ TEST_DIR = $(ROOT_DIR)/test
 CC = gcc
 FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3
 
-$(BIN_DIR)/des: $(OBJ_DIR)/main.o
+$(BIN_DIR)/des: $(OBJ_DIR)/main.o $(OBJ_DIR)/key.o
 	$(CC) $(FLAGS) $^ -o $@
 
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.c
+# Makefile中的%标记和系统通配符*的区别
+# http://www.cnblogs.com/warren-wong/p/3979270.html
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR) $(BIN_DIR)
 	$(CC) $(FLAGS) $^ -c -o $@
 
