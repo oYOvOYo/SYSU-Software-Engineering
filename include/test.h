@@ -1,8 +1,8 @@
 /*
  *
- * main.h
+ * test.h
  * 
- * header file of main.c 
+ * header file of test.c 
  * 
  * 
  * */

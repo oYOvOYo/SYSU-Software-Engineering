@@ -11,14 +11,31 @@ TEST_DIR = $(ROOT_DIR)/test
 CC = gcc
 FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3
 
+all: $(OBJ_DIR) $(BIN_DIR) $(BIN_DIR)/des
+
 $(BIN_DIR)/des: $(OBJ_DIR)/main.o $(OBJ_DIR)/key.o
 	$(CC) $(FLAGS) $^ -o $@
+
+$(BIN_DIR)/test: $(OBJ_DIR)/test.o $(OBJ_DIR)/key.o
+	$(CC) $(FLAGS) $^ -o $@
+
+test: all $(BIN_DIR)/test
+	# test key is same
+	$(BIN_DIR)/des -g $(TEST_DIR)/test.key
+	$(BIN_DIR)/test $(TEST_DIR)/test.key $(TEST_DIR)/test.key.new
+	diff $(TEST_DIR)/test.key $(TEST_DIR)/test.key.new > /dev/null || \
+	(echo "Test $@ failed" && exit 1)
 
 # Makefile中的%标记和系统通配符*的区别
 # http://www.cnblogs.com/warren-wong/p/3979270.html
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(OBJ_DIR) $(BIN_DIR)
 	$(CC) $(FLAGS) $^ -c -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
 clean:
 	-rm -rf $(BIN_DIR)

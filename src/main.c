@@ -9,7 +9,7 @@
 
 #include <main.h>
 
-int main (int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
 
   if (argc < 2) {
 		printf("You must provide at least 1 parameter, where you specify the action.");
@@ -23,7 +23,7 @@ int main (int argc, char* argv[]) {
       printf("Invalid of parameter specified. Usage: run_des -g keyfile.key");
 			return 1;
     }
-    // argv[2] 
+    generate_and_sava_key(argv[2]);
 
   } else if ((strcpy(action_type, ACTION_ENCRYPT) == 0 ) ||
              (strcpy(action_type, ACTION_DECRYPT))) {
