@@ -16,7 +16,8 @@
 #include <stdio.h>
 // for exit
 #include <stdlib.h>
-
+// for memcpy
+#include <string.h>
 
 // process type
 typedef enum {
@@ -35,5 +36,9 @@ typedef enum {
 
 // check whether file is open success
 void check_file_open(FILE* file, char* file_path, char* mode);
+// convert uint8 to uint64
+void uint8_to_uint64(uint8_t* array, uint64_t* num);
+// convert uint64 to uint8
+void uint64_to_uint8(uint64_t* num, uint8_t* array);
 
 #endif

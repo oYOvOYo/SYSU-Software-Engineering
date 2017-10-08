@@ -2,7 +2,7 @@
  *
  * process.c
  *
- * main part of des
+ * main read/print part of des
  *
  *
  * */
