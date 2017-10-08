@@ -3,6 +3,7 @@
     "main.h": "c",
     "stdio.h": "c",
     "def.h": "c",
-    "string.h": "c"
+    "string.h": "c",
+    "stdint.h": "c"
   }
 }

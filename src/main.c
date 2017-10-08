@@ -19,7 +19,6 @@ int main(int argc, char* argv[]) {
   char* action_type = argv[1];
 
   if (strcmp(action_type, ACTION_GENERATE_KEY) == 0) {
-
     if (argc != 3) {
       printf("Invalid of parameter specified. Usage: run_des -g keyfile.key");
       return 1;
@@ -29,10 +28,11 @@ int main(int argc, char* argv[]) {
 
   } else {
     PROCESS_TYPE process_type = UNDEFINED_MODE;
-    process_type = (strcpy(action_type, ACTION_ENCRYPT) == 0) ? ENCRYPTION_MODE
-                                                              : UNDEFINED_MODE;
-    process_type = (strcpy(action_type, ACTION_DECRYPT) == 0) ? DECRYPTION_MODE
-                                                              : UNDEFINED_MODE;
+    if (strcmp(action_type, ACTION_ENCRYPT) == 0)
+      process_type = ENCRYPTION_MODE;
+    if (strcmp(action_type, ACTION_DECRYPT) == 0)
+      process_type = DECRYPTION_MODE;
+
     if (argc != 5 || process_type == UNDEFINED_MODE) {
       printf(
           "Invalid of parameters specified. Usage: run_des [-e|-d] keyfile.key "

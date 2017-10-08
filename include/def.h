@@ -30,6 +30,9 @@ typedef enum {
 #define ACTION_ENCRYPT "-e"
 #define ACTION_DECRYPT "-d"
 
+// const value
+#define UNIT_SIZE 8
+
 // check whether file is open success
 void check_file_open(FILE* file, char* file_path, char* mode);
 

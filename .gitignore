@@ -2,7 +2,7 @@
 # Executables
 bin
 # test files 
-test
+test/test.*
 
 # Prerequisites
 *.d

@@ -9,7 +9,9 @@ BIN_DIR = $(ROOT_DIR)/bin
 TEST_DIR = $(ROOT_DIR)/test
 
 CC = gcc
-FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3 -std=c11
+# FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3 -std=c11
+FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -g -std=c11
+
 
 all: mkdir $(BIN_DIR)/des
 
@@ -25,6 +27,11 @@ test: all $(BIN_DIR)/test
 	$(BIN_DIR)/test $(TEST_DIR)/test.key $(TEST_DIR)/test.key.new
 	diff $(TEST_DIR)/test.key $(TEST_DIR)/test.key.new > /dev/null || \
 	(echo "Test $@ failed" && exit 1)
+	./bin/des -e $(TEST_DIR)/test.key $(TEST_DIR)/example $(TEST_DIR)/test.example.enc
+	./bin/des -d $(TEST_DIR)/test.key $(TEST_DIR)/test.example.enc $(TEST_DIR)/test.example.new
+	diff $(TEST_DIR)/test.example.new $(TEST_DIR)/example > /dev/null || \
+	(echo "Test $@ failed" && exit 1)
+
 
 # Makefile中的%标记和系统通配符*的区别
 # http://www.cnblogs.com/warren-wong/p/3979270.html
