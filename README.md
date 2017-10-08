@@ -117,7 +117,7 @@ Don't lose the key file! you won't be able to decrypt an encrypted if you lose t
   ```
 
 ## Reference
-+ [FIPS 46-3, Data Encryption Standard (DES) (withdrawn May 19, 2005)](docs/FIPS 46-3, Data Encryption Standard (DES) (withdrawn May 19, 2005).pdf)
++ [FIPS 46-3, Data Encryption Standard (DES) (withdrawn May 19, 2005)](https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf)
 + [Data Encryption Standard (Wikipedia)](https://en.wikipedia.org/wiki/Data_Encryption_Standard)
 + [DES supplementary material (Wikipedia)](https://en.wikipedia.org/wiki/DES_supplementary_material)
 + [github/tarequeh/DES](https://github.com/tarequeh/DES)
