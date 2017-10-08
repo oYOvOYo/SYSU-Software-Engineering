@@ -17,4 +17,4 @@ void process_unit(PROCESS_TYPE process_type, uint64_t* sub_keys,
 // iteration
 void iteration_unit(uint64_t* block, uint64_t sub_key);
 // feistel function
-uint64_t feistel(uint64_t* num);
+uint64_t feistel(uint64_t num);
