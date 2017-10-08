@@ -41,4 +41,9 @@ void uint8_to_uint64(uint8_t* array, uint64_t* num);
 // convert uint64 to uint8
 void uint64_to_uint8(uint64_t* num, uint8_t* array);
 
+// map bit of uint64
+void map_uint64(uint64_t* num, uint8_t* table);
+// procude mask from 1 bit to 64 bit
+uint64_t mask_uint64(uint8_t index);
+
 #endif

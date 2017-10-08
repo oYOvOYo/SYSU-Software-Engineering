@@ -50,3 +50,9 @@ void generate_and_sava_key(char* file_path) {
   generate_key(key);
   save_key(file_path, key);
 }
+
+// generate sub key
+void generate_sub_key(uint8_t* key, uint64_t sub_keys) {
+  uint64_t key64;
+  uint8_to_uint64(key, &key64);
+}
