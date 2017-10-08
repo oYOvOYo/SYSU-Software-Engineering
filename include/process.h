@@ -15,6 +15,8 @@
 #include <def.h>
 // for key part
 #include <key.h>
+// for des main part
+#include <des.h>
 
 // process file
 void process(PROCESS_TYPE process_type, char* key_file_path, char* in_file_path,

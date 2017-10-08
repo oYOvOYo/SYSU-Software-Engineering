@@ -21,8 +21,13 @@ int main(int argc, char* argv[]) {
   save_key(argv[2], new_key);
 
   // test map
-  uint64_t initial_num = 0x11, last_num = initial_num;
-  uint8_t table[] = {5, 2, 3, 4, 1};
-  map_uint64(&last_num, table);
+  uint64_t initial_num = (uint64_t)0x11;
+  uint64_t last_num = initial_num;
+  uint8_t table1[] = {2, 1};
+  uint8_t table2[] = {2, 1};
+  map_uint64(&last_num, table1, 2);
+  map_uint64(&last_num, table2, 2);
   assert(last_num == initial_num);
+
+  // test map
 }

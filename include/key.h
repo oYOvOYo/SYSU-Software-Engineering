@@ -32,4 +32,4 @@ void read_key(char* file_path, uint8_t* key);
 void generate_and_sava_key(char* file_path);
 
 // generate sub key
-void generate_sub_key(uint8_t* key, uint64_t sub_keys);
+void generate_sub_key(uint8_t* key, uint64_t* sub_keys);

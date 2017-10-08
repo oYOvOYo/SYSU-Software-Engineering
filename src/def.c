@@ -27,22 +27,24 @@ void uint64_to_uint8(uint64_t* num, uint8_t* array) {
 }
 
 // map bit of uint64
-void map_uint64(uint64_t* num, uint8_t* table) {
+void map_uint64(uint64_t* num, const uint8_t* table, uint8_t length) {
   uint64_t initial = *num;
   uint64_t answer = initial;
   uint64_t need_bit;
-  for (uint8_t i = 0; i < sizeof(table) - 1; i++) {
+  for (uint8_t i = 0; i < length; i++) {
     // first we set i bit to zero
-    answer = answer & (~mask_uint64(i + 1));
+    answer = answer & (~mask_uint64(i));
     // then we store need bit
-    need_bit = ((initial & mask_uint64(table[i])) >> (table[i] -1 ));
-    // last we set i bit to 
-    answer = answer | (need_bit << ((i + 1) - 1));
+    uint64_t temp = mask_uint64(table[i] - 1);
+    need_bit = ((initial & mask_uint64(table[i] - 1)) >> (table[i] -1 ));
+    // last we set i bit to need bit
+    answer = answer | (need_bit << i);
   }
   *num = answer; 
 }
 
-// procude mask from 1 bit to 64 bit
+// procude mask from 0 bit to 63 bit
 uint64_t mask_uint64(uint8_t index) {
-  return (uint64_t)(1 << (index - 1));
+  uint64_t num = 1;
+  return num << index;
 }

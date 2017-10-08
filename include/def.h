@@ -34,6 +34,8 @@ typedef enum {
 // const value
 #define UNIT_SIZE 8
 
+
+
 // check whether file is open success
 void check_file_open(FILE* file, char* file_path, char* mode);
 // convert uint8 to uint64
@@ -42,8 +44,8 @@ void uint8_to_uint64(uint8_t* array, uint64_t* num);
 void uint64_to_uint8(uint64_t* num, uint8_t* array);
 
 // map bit of uint64
-void map_uint64(uint64_t* num, uint8_t* table);
-// procude mask from 1 bit to 64 bit
+void map_uint64(uint64_t* num, const uint8_t* table, uint8_t length);
+// procude mask from 0 bit to 63 bit
 uint64_t mask_uint64(uint8_t index);
 
 #endif

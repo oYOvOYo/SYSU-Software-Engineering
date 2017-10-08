@@ -4,6 +4,7 @@
     "stdio.h": "c",
     "def.h": "c",
     "string.h": "c",
-    "stdint.h": "c"
+    "stdint.h": "c",
+    "des.h": "c"
   }
 }
