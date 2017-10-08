@@ -37,7 +37,8 @@ void process(PROCESS_TYPE process_type, char* key_file_path, char* in_file_path,
           memset(block_unit + 8 - padding_size,padding_size, padding_size);
         }
         fwrite(block_unit, 1, 8, out);
-        
+
+        // add additional padding block
         if (padding_size == 8) {
           memset(block_unit, padding_size, 8);
           fwrite(block_unit, 1, 8, out);
@@ -54,15 +55,6 @@ void process(PROCESS_TYPE process_type, char* key_file_path, char* in_file_path,
   }
 
 
-  // for (long i = 0; i < block_num; i++) {
-  //   if (i + 1 == block_num && last_block_size > 0) {
-  //     fread(block_unit, 1, last_block_size, in);
-
-  //   } else {
-  //     fread(block_unit, 1, 8, in); 
-  //   }
-  //   fwrite(block_unit, 1, 8, out);
-  // }
   fclose(in);
   fclose(out);
 }
