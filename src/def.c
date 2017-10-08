@@ -43,8 +43,17 @@ void map_uint64(uint64_t* num, const uint8_t* table, uint8_t length) {
   *num = answer; 
 }
 
-// procude mask from 0 bit to 63 bit
+// procude each bit mask from 0 bit to 63 bit
 uint64_t mask_uint64(uint8_t index) {
   uint64_t num = 1;
   return num << index;
+}
+
+// procude mask from 0 bit to 63 bit
+uint64_t mask_uint64_from_to(uint8_t begin, uint8_t end) {
+  uint64_t left_mask = UINT64_MAX << begin ;
+  uint64_t right_mask = UINT64_MAX >> (64 - end - 1);
+  // save the join part
+  uint64_t num = left_mask & right_mask;
+  return num;
 }

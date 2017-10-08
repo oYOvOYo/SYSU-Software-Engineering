@@ -77,7 +77,7 @@ Don't lose the key file! you won't be able to decrypt an encrypted if you lose t
 + 模块分解
 大致处理流程如图所示
 ![how to process](docs/process.png)
-
+![how to process key](docs/key_process.png)
 
 + 数据结构
 + 类C语言算法算法过程

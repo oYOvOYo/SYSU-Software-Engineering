@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
   save_key(argv[2], new_key);
 
   // test map
-  uint64_t initial_num = (uint64_t)0x11;
+  uint64_t initial_num = (uint64_t)0xF0;
   uint64_t last_num = initial_num;
   uint8_t table1[] = {2, 1};
   uint8_t table2[] = {2, 1};
@@ -29,5 +29,9 @@ int main(int argc, char* argv[]) {
   map_uint64(&last_num, table2, 2);
   assert(last_num == initial_num);
 
-  // test map
+  // test mask_uint64_from_to
+  initial_num = mask_uint64_from_to(4, 7);
+  assert(last_num == initial_num);
+  assert(mask_uint64_from_to(0, 63) == UINT64_MAX);
+  assert(mask_uint64_from_to(63, 63) == mask_uint64(63));
 }
