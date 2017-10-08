@@ -66,7 +66,7 @@ void generate_sub_key(uint8_t* key, uint64_t* sub_keys) {
   uint8_to_uint64(key, &key64);
   map_uint64(&key64, PERMUTED_CHOICE_1, 56);
   uint64_t C = key64 & mask_uint64_from_to(0, 27);
-  uint64_t D = key64 & mask_uint64_from_to(28, 55) >> 28;
+  uint64_t D = (key64 & mask_uint64_from_to(28, 55)) >> 28;
   for (uint8_t i = 1; i <= 16; i++) {
     // loop shift
     switch (i) {
@@ -74,20 +74,20 @@ void generate_sub_key(uint8_t* key, uint64_t* sub_keys) {
       case 2:
       case 9:
       case 16:
-        C = ((C & mask_uint64_from_to(1, 27)) >> 1) &
+        C = ((C & mask_uint64_from_to(1, 27)) >> 1) |
             ((C & mask_uint64_from_to(0, 0)) << 28);
-        D = ((D & mask_uint64_from_to(1, 27)) >> 1) &
+        D = ((D & mask_uint64_from_to(1, 27)) >> 1) |
             ((D & mask_uint64_from_to(0, 0)) << 28);
         break;
       default:
-        C = ((C & mask_uint64_from_to(2, 27)) >> 2) &
+        C = ((C & mask_uint64_from_to(2, 27)) >> 2) |
             ((C & mask_uint64_from_to(0, 1)) << 27);
-        D = ((D & mask_uint64_from_to(2, 27)) >> 2) &
+        D = ((D & mask_uint64_from_to(2, 27)) >> 2) |
             ((D & mask_uint64_from_to(0, 1)) << 27);
         break;
     }
     // compression
-    key64 = 0 | C | (D << 28);
+    key64 = C | (D << 28);
     map_uint64(&key64, PERMUTED_CHOICE_2, 48);
     sub_keys[i - 1] = key64 & mask_uint64_from_to(0, 47);
   }

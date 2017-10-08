@@ -7,6 +7,7 @@
         "request": "launch",
         "program": "${workspaceRoot}/bin/des",
         "args": ["-e", "test/test.key", "test/example", "test/test.example.enc"],
+        // "args": ["-d", "test/test.key", "test/test.example.enc", "test/test.example.new"],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}",
         "environment": [],

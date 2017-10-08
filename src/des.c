@@ -70,7 +70,7 @@ void process_unit(PROCESS_TYPE process_type, uint64_t* sub_keys,
   uint8_to_uint64(block8_array, block);
 
   map_uint64(block, INTIAL_PERMUTATION, 64);
-
+  
   if (process_type == ENCRYPTION_MODE) {
     for (uint8_t i = 0; i < 16; i++) {
       iteration_unit(block, sub_keys[i]);
@@ -80,10 +80,11 @@ void process_unit(PROCESS_TYPE process_type, uint64_t* sub_keys,
       iteration_unit(block, sub_keys[i - 1]);
     }
   }
+
   // swap output R16L16
-  uint64_t left = ((*block) & mask_uint64_from_to(32, 63)) << 32;
+  uint64_t left = ((*block) & mask_uint64_from_to(32, 63)) >> 32;
   uint64_t right = (*block) & mask_uint64_from_to(0, 31);
-  *block = left & (right >> 32); 
+  *block = left | (right << 32);
 
   map_uint64(block, INVERSE_PERMUTATION, 64);
 
@@ -95,24 +96,24 @@ void process_unit(PROCESS_TYPE process_type, uint64_t* sub_keys,
 void iteration_unit(uint64_t* block, uint64_t sub_key) {
   // Given two blocks L and R of bits, LR denotes the block
   // consisting of the bits of L followed by the bits of R.
-  uint64_t left = ((*block) & mask_uint64_from_to(32, 63)) << 32;
+  uint64_t left = ((*block) & mask_uint64_from_to(32, 63)) >> 32;
   uint64_t right = (*block) & mask_uint64_from_to(0, 31);
 
   uint64_t new_left = right;
   map_uint64(&right, MESSAGE_EXPANSION, 48);
   uint64_t new_right = left ^ feistel(right ^ sub_key);
-  *block = new_left & (new_right >> 32); 
+  *block = new_right | (new_left << 32);
 }
 
-uint64_t feistel(uint64_t num) { 
+uint64_t feistel(uint64_t num) {
   uint64_t ans = 0;
   for (int i = 0; i < 8; i++) {
-    uint64_t input = (num & mask_uint64_from_to(6 * i, 6 * i + 5)) << (6 * i );
-    uint64_t x = (input & mask_uint64_from_to (1, 4)) << 1;
-    uint64_t y = (input & mask_uint64(0)) & 
-                 ((input & mask_uint64(5)) << 4);
-    ans = ans | (S_BOX[i][y * 16 + x] >> (4 * i)); 
+    uint64_t input = (num & mask_uint64_from_to(6 * i, 6 * i + 5)) >> (6 * i);
+    uint64_t x = (input & mask_uint64_from_to(1, 4)) >> 1;
+    uint64_t y = (input & mask_uint64(0)) & ((input & mask_uint64(5)) >> 4);
+    uint64_t output = S_BOX[i][y * 16 + x] << (4 * i);
+    ans = ans | output;
   }
   map_uint64(&ans, P_PERMUTATION, 32);
-  return ans; 
+  return (ans & mask_uint64_from_to(0, 31));
 }

@@ -9,8 +9,8 @@ BIN_DIR = $(ROOT_DIR)/bin
 TEST_DIR = $(ROOT_DIR)/test
 
 CC = gcc
-# FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3 -std=c11
-FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -g -std=c11
+FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -O3 -std=c11
+# FLAGS = -I $(ROOT_DIR) -I $(INC_DIR) -g -std=c11
 
 
 all: mkdir $(BIN_DIR)/des
