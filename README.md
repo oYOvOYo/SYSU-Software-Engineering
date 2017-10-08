@@ -5,7 +5,7 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 ## Overview
-> The Data Encryption Standard (DES) is a block cipher (a form of shared secret encryption) that was selected by the National Bureau of Standards as an official Federal Information Processing Standard (FIPS) for the United States in 1976 and which has subsequently enjoyed widespread use internationally. It is based on a symmetric-key algorithm that uses a 56-bit key.
+The Data Encryption Standard (DES) is a block cipher (a form of shared secret encryption) that was selected by the National Bureau of Standards as an official Federal Information Processing Standard (FIPS) for the United States in 1976 and which has subsequently enjoyed widespread use internationally. It is based on a symmetric-key algorithm that uses a 56-bit key.
 
 This implementation wants to make the DES more readable and more structured, I refered some other's implementation like [github/tarequeh/DES](https://github.com/tarequeh/DES).
 
@@ -74,14 +74,50 @@ Don't lose the key file! you won't be able to decrypt an encrypted if you lose t
   ├── README.md   // 说明文件
   └── src         // 源代码
   ```
-+ 模块分解
-大致处理流程如图所示
++ 流程概述
+  + 大致处理流程如图所示
+  + 图一是总体流程，首先先进行一次变换，和这次变换对应的一次最后输出前有一次逆变换。
+  + 处理过程就是交换左右，右边的和常量进行一些复杂的异或运算。
+  + 最后交换左右输出
 ![how to process](docs/process.png)
+  + 关于密匙生成，就是把有效位分成两部分，循环移位。
+  + 然后按照给出的方法进行变换
 ![how to process key](docs/key_process.png)
-
++ 模块分解
+  + 接受参数的外壳模块
+  + 密匙的生成/存取模块
+  + 输入输入的读写模块
+  + 公用的定义/函数模块
+  + 核心的块加密模块
 + 数据结构
+  + DES中没有复杂的数据需要什么特殊结构，用数组足矣。
+  + 关于数据类型，这里选用`uint8_t`和`uint64_t`。
 + 类C语言算法算法过程
+  ```C
+  // 这里省略了冗杂部分，尽量描述核心逻辑
+  // block -> 加密单元
+  // keys  -> 子密匙串
+
+  // 初次变换
+  INITIAL_PERMUTATION(block);
+  // 16次迭代，解密的话是反向
+  LOOP i from 1 to 16:
+    block => left, right;
+    new_left = right;
+    // 密匙是48位，32位的right需要先扩充映射
+    // f 指 使用 S-Box 生成的feistel函数
+    new_right = left ^ f(keys[i] ^ extend(right));
+    left, right => block
+  END
+  // 交换左右输出
+  block => left, right;
+  right, left => block
+  // 反向变换
+  INVERSE_INITIAL_PERMUTATIN(block);
+  ```
 
 ## Reference
-+ [数据加密标准](https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96)
++ [FIPS 46-3, Data Encryption Standard (DES) (withdrawn May 19, 2005)](docs/FIPS 46-3, Data Encryption Standard (DES) (withdrawn May 19, 2005).pdf)
++ [Data Encryption Standard (Wikipedia)](https://en.wikipedia.org/wiki/Data_Encryption_Standard)
++ [DES supplementary material (Wikipedia)](https://en.wikipedia.org/wiki/DES_supplementary_material)
 + [github/tarequeh/DES](https://github.com/tarequeh/DES)
