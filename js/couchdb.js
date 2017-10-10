@@ -16,13 +16,27 @@
     this.test_connection = (errorHandler, successHandler) => {
       $.ajax({
         method: "GET",
-        url: DB_URL + "aa",
+        url: DB_URL + "helloworld",
         error: (jqXHR, textStatus, errorThrown) => {
           console.log(jqXHR.responseText);
           errorHandler();
         }
       }).done(function (meg) {
-        // console.log(meg);
+        console.log(meg);
+        successHandler();
+      });
+    }
+
+    this.add_self = (self_ip) => {
+      $.ajax({
+        method: "GET",
+        url: DB_URL + "self_ip",
+        error: (jqXHR, textStatus, errorThrown) => {
+          console.log(jqXHR.responseText);
+          errorHandler();
+        }
+      }).done(function (meg) {
+        console.log(meg);
         successHandler();
       });
     }
