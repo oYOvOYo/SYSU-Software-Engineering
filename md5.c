@@ -1,5 +1,6 @@
 /*
  * MD5 algorithm implemented in C.
+ *
  * jskyzero 2017/10/16 SYSU
  * 
  */
@@ -45,15 +46,15 @@ void uint8_to_uint32(uint8_t* array, uint32_t* num) {
 void uint32_to_uint8(uint32_t* num, uint8_t* array) {
   memcpy(array, num, 4);
 }
-
+// unit pricess
 void process_unit(uint8_t* block, uint32_t* ans) {
   uint32_t a, b, c, d, X, g, swap_temp;
-
+  // store old value
   a = ans[0];
   b = ans[1];
   c = ans[2];
   d = ans[3];
-
+  // loop for 64 times
   for (uint8_t i = 0, j = 0; i < 64; i++) {
     if (i < 16) {
       g = (b & c) | ((~b) & d);
@@ -68,8 +69,9 @@ void process_unit(uint8_t* block, uint32_t* ans) {
       g = c ^ (b | (~d));
       j = (7 * i ) % 16;
     }
-
+    // read data
     uint8_to_uint32(block + (4 * j), &X);
+    // I made a mistake here, so I write
     // you should always be calm
     swap_temp = d;
     d = c;
@@ -77,13 +79,13 @@ void process_unit(uint8_t* block, uint32_t* ans) {
     b = b + LEFTROTATE((a + g + T[i] + X ), r[i]);
     a = swap_temp;
   }
-
+  // store back
   ans[0] += a;
   ans[1] += b;
   ans[2] += c;
   ans[3] += d;
 }
-
+// print final answer when in little ending
 void print_md5(int32_t* ans, char * message) {
   uint8_t * ans_p = (uint8_t *)ans;
   for (uint8_t i = 0; i < 16; i++)
@@ -102,7 +104,6 @@ int main(int argc, char*argv[]) {
     printf("check you hava read right for %s\n", argv[1]);
     exit(1);
   }
-
   // caluate info about file length
   fseek(in, 0L, SEEK_END);
   long file_size = ftell(in);
@@ -112,16 +113,14 @@ int main(int argc, char*argv[]) {
   uint8_t padding_size = 64 - last_block_size;
   unsigned long total_block_num = file_size / 64 + 1;
   unsigned long now_read_block_num = 0;
-  
   // initial block_unit
   uint8_t block_unit[64];
   memset(block_unit, 0, 64);
   uint32_t answer_buffer[] = { 0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476,};
-
   // process file
   while (fread(block_unit, 1, 64, in)) {
     now_read_block_num++;
-
+    // check is last block
     if (now_read_block_num == total_block_num) {
       // if (fread(block_unit, 1, last_block_size, in)) {
         memset(block_unit + last_block_size, 0x80, 1);
@@ -138,12 +137,12 @@ int main(int argc, char*argv[]) {
     } else {
       process_unit(block_unit, answer_buffer);
     }
-
+    // always init to default
     memset(block_unit, 0, 64);
   }
-
+  // print ans
   print_md5(answer_buffer, argv[1]);
-
+  // close file
   fclose(in);
   return 0;
  }
