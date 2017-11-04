@@ -1,19 +1,4 @@
-# Cplusplus-Study
-`jskyzero` `2017/11/01`
+# x509
+`jskyzero` `2017/11/04`
 
-![cpp_logo.png](https://isocpp.org/files/img/cpp_logo.png)
-
-## About Cplusplus
-
-+ C++ is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation.。
-+ C++ is standardized by the International Organization for Standardization (ISO), with the latest standard version ratified and published by ISO in December 2014 as ISO/IEC 14882:2014 (informally known as C++14). The C++ programming language was initially standardized in 1998 as ISO/IEC 14882:1998, which was then amended by the C++03, ISO/IEC 14882:2003, standard.
-
-## [Get Start](https://isocpp.org/get-started)
-
-1. Download A Envirment(compiler, editor and other tools)
-2. Hardwork
-
-## Reference
-
-+ [cplusplus.com](http://www.cplusplus.com/)
-+ [isocpp](https://isocpp.org)
+> 在密码学中，X.509是由ITU-T为了公开密钥基础建设（PKI）与授权管理基础建设（PMI）提出的产业标准。X.509标准，规范了公开密钥认证、证书吊销列表、授权证书、证书路径验证算法等。
