@@ -222,7 +222,45 @@ We know if you want a X.509 certificate, you need a CA (Certificate Authority) p
   415:d=1  hl=4 l= 257 prim:  BIT STRING
   ```
 
+以上，虽然没有自己编程查看具体的数据字段内容，但是完整了模拟了整个证书申请的过程，并查看了证书的主要字段的内容，至于具体字段的分布，可以参考下面的RFC文档。
 
+## How it works
+
+X509主要解决的问题是公钥发布，我们将证书交给去权威机构发布，权威机构的公钥是大家都知道的，因而可以安全和它通信，权威机构的每份证书包含一些关键字段（比如机构/路径/有效时间等），还需要拥有者的私钥的签名，这样就可以安全的将公钥发布。
+
+```
+   +---+
+   | C |                       +------------+
+   | e | <-------------------->| End entity |
+   | r |       Operational     +------------+
+   | t |       transactions          ^
+   | i |      and management         |  Management
+   | f |       transactions          |  transactions        PKI
+   | i |                             |                     users
+   | c |                             v
+   | a | =======================  +--+------------+  ==============
+   | t |                          ^               ^
+   | e |                          |               |         PKI
+   |   |                          v               |      management
+   | & |                       +------+           |       entities
+   |   | <---------------------|  RA  |<----+     |
+   | C |  Publish certificate  +------+     |     |
+   | R |                                    |     |
+   | L |                                    |     |
+   |   |                                    v     v
+   | R |                                +------------+
+   | e | <------------------------------|     CA     |
+   | p |   Publish certificate          +------------+
+   | o |   Publish CRL                     ^      ^
+   | s |                                   |      |  Management
+   | i |                +------------+     |      |  transactions
+   | t | <--------------| CRL Issuer |<----+      |
+   | o |   Publish CRL  +------------+            v
+   | r |                                      +------+
+   | y |                                      |  CA  |
+   +---+                                      +------+
+                      Figure 1. PKI Entities
+```
 
 ## Reference
 
