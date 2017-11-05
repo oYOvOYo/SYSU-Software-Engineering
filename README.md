@@ -154,7 +154,73 @@ We know if you want a X.509 certificate, you need a CA (Certificate Authority) p
   ```
 
 + process request
-
+  ```
+  openssl x509 -req -days 365 -in user.req -CA root.crt -CAkey root -set_serial 01 -out user.crt
+  Signature ok
+  subject=/C=CN/ST=GuangZhou/L=GuangDong/O=MOONS/CN=jskyzero
+  Getting CA Private Key
+  # print details
+  openssl asn1parse -i -in user.crt    0:d=0  hl=4 l= 672 cons: SEQUENCE
+    4:d=1  hl=4 l= 392 cons:  SEQUENCE
+    8:d=2  hl=2 l=   1 prim:   INTEGER           :01
+   11:d=2  hl=2 l=  13 cons:   SEQUENCE
+   13:d=3  hl=2 l=   9 prim:    OBJECT            :sha256WithRSAEncryption
+   24:d=3  hl=2 l=   0 prim:    NULL
+   26:d=2  hl=2 l=  88 cons:   SEQUENCE
+   28:d=3  hl=2 l=  11 cons:    SET
+   30:d=4  hl=2 l=   9 cons:     SEQUENCE
+   32:d=5  hl=2 l=   3 prim:      OBJECT            :countryName
+   37:d=5  hl=2 l=   2 prim:      PRINTABLESTRING   :CN
+   41:d=3  hl=2 l=  18 cons:    SET
+   43:d=4  hl=2 l=  16 cons:     SEQUENCE
+   45:d=5  hl=2 l=   3 prim:      OBJECT            :stateOrProvinceName
+   50:d=5  hl=2 l=   9 prim:      UTF8STRING        :GuangZHou
+   61:d=3  hl=2 l=  18 cons:    SET
+   63:d=4  hl=2 l=  16 cons:     SEQUENCE
+   65:d=5  hl=2 l=   3 prim:      OBJECT            :localityName
+   70:d=5  hl=2 l=   9 prim:      UTF8STRING        :GuangDong
+   81:d=3  hl=2 l=  14 cons:    SET
+   83:d=4  hl=2 l=  12 cons:     SEQUENCE
+   85:d=5  hl=2 l=   3 prim:      OBJECT            :organizationName
+   90:d=5  hl=2 l=   5 prim:      UTF8STRING        :MOONS
+   97:d=3  hl=2 l=  17 cons:    SET
+   99:d=4  hl=2 l=  15 cons:     SEQUENCE
+  101:d=5  hl=2 l=   3 prim:      OBJECT            :commonName
+  106:d=5  hl=2 l=   8 prim:      UTF8STRING        :jskyzero
+  116:d=2  hl=2 l=  30 cons:   SEQUENCE
+  118:d=3  hl=2 l=  13 prim:    UTCTIME           :171105051443Z
+  133:d=3  hl=2 l=  13 prim:    UTCTIME           :181105051443Z
+  148:d=2  hl=2 l=  88 cons:   SEQUENCE
+  150:d=3  hl=2 l=  11 cons:    SET
+  152:d=4  hl=2 l=   9 cons:     SEQUENCE
+  154:d=5  hl=2 l=   3 prim:      OBJECT            :countryName
+  159:d=5  hl=2 l=   2 prim:      PRINTABLESTRING   :CN
+  163:d=3  hl=2 l=  18 cons:    SET
+  165:d=4  hl=2 l=  16 cons:     SEQUENCE
+  167:d=5  hl=2 l=   3 prim:      OBJECT            :stateOrProvinceName
+  172:d=5  hl=2 l=   9 prim:      UTF8STRING        :GuangZhou
+  183:d=3  hl=2 l=  18 cons:    SET
+  185:d=4  hl=2 l=  16 cons:     SEQUENCE
+  187:d=5  hl=2 l=   3 prim:      OBJECT            :localityName
+  192:d=5  hl=2 l=   9 prim:      UTF8STRING        :GuangDong
+  203:d=3  hl=2 l=  14 cons:    SET
+  205:d=4  hl=2 l=  12 cons:     SEQUENCE
+  207:d=5  hl=2 l=   3 prim:      OBJECT            :organizationName
+  212:d=5  hl=2 l=   5 prim:      UTF8STRING        :MOONS
+  219:d=3  hl=2 l=  17 cons:    SET
+  221:d=4  hl=2 l=  15 cons:     SEQUENCE
+  223:d=5  hl=2 l=   3 prim:      OBJECT            :commonName
+  228:d=5  hl=2 l=   8 prim:      UTF8STRING        :jskyzero
+  238:d=2  hl=3 l= 159 cons:   SEQUENCE
+  241:d=3  hl=2 l=  13 cons:    SEQUENCE
+  243:d=4  hl=2 l=   9 prim:     OBJECT            :rsaEncryption
+  254:d=4  hl=2 l=   0 prim:     NULL
+  256:d=3  hl=3 l= 141 prim:    BIT STRING
+  400:d=1  hl=2 l=  13 cons:  SEQUENCE
+  402:d=2  hl=2 l=   9 prim:   OBJECT            :sha256WithRSAEncryption
+  413:d=2  hl=2 l=   0 prim:   NULL
+  415:d=1  hl=4 l= 257 prim:  BIT STRING
+  ```
 
 
 
