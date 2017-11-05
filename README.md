@@ -85,6 +85,73 @@ We know if you want a X.509 certificate, you need a CA (Certificate Authority) p
   642:d=1  hl=4 l= 257 prim:  BIT STRING
   ```
 + create request
+  1. first create user rsa private key and public key
+  ```
+  # generate rsa private key
+  openssl genrsa 1024 > user
+  # (unnecessary)produce public from private key
+  openssl rsa -inform PEM -in user -pubout  -outform PEM -out user.pub
+  ```
+  2. create request
+  ```
+  openssl req -new -key user -out user.req
+  You are about to be asked to enter information that will be incorporated
+  into your certificate request.
+  What you are about to enter is what is called a Distinguished Name or a DN.
+  There are quite a few fields but you can leave some blank
+  For some fields there will be a default value,
+  If you enter '.', the field will be left blank.
+  -----
+  Country Name (2 letter code) [AU]:CN
+  State or Province Name (full name) [Some-State]:GuangZhou
+  Locality Name (eg, city) []:GuangDong
+  Organization Name (eg, company) [Internet Widgits Pty Ltd]:MOONS
+  Organizational Unit Name (eg, section) []:
+  Common Name (e.g. server FQDN or YOUR name) []:jskyzero
+  Email Address []:
+
+  Please enter the following 'extra' attributes
+  to be sent with your certificate request
+  A challenge password []:
+  An optional company name []:
+
+  # print request content
+  openssl asn1parse -i -in user.req
+    0:d=0  hl=4 l= 408 cons: SEQUENCE
+    4:d=1  hl=4 l= 257 cons:  SEQUENCE
+    8:d=2  hl=2 l=   1 prim:   INTEGER           :00
+   11:d=2  hl=2 l=  88 cons:   SEQUENCE
+   13:d=3  hl=2 l=  11 cons:    SET
+   15:d=4  hl=2 l=   9 cons:     SEQUENCE
+   17:d=5  hl=2 l=   3 prim:      OBJECT            :countryName
+   22:d=5  hl=2 l=   2 prim:      PRINTABLESTRING   :CN
+   26:d=3  hl=2 l=  18 cons:    SET
+   28:d=4  hl=2 l=  16 cons:     SEQUENCE
+   30:d=5  hl=2 l=   3 prim:      OBJECT            :stateOrProvinceName
+   35:d=5  hl=2 l=   9 prim:      UTF8STRING        :GuangZhou
+   46:d=3  hl=2 l=  18 cons:    SET
+   48:d=4  hl=2 l=  16 cons:     SEQUENCE
+   50:d=5  hl=2 l=   3 prim:      OBJECT            :localityName
+   55:d=5  hl=2 l=   9 prim:      UTF8STRING        :GuangDong
+   66:d=3  hl=2 l=  14 cons:    SET
+   68:d=4  hl=2 l=  12 cons:     SEQUENCE
+   70:d=5  hl=2 l=   3 prim:      OBJECT            :organizationName
+   75:d=5  hl=2 l=   5 prim:      UTF8STRING        :MOONS
+   82:d=3  hl=2 l=  17 cons:    SET
+   84:d=4  hl=2 l=  15 cons:     SEQUENCE
+   86:d=5  hl=2 l=   3 prim:      OBJECT            :commonName
+   91:d=5  hl=2 l=   8 prim:      UTF8STRING        :jskyzero
+  101:d=2  hl=3 l= 159 cons:   SEQUENCE
+  104:d=3  hl=2 l=  13 cons:    SEQUENCE
+  106:d=4  hl=2 l=   9 prim:     OBJECT            :rsaEncryption
+  117:d=4  hl=2 l=   0 prim:     NULL
+  119:d=3  hl=3 l= 141 prim:    BIT STRING
+  263:d=2  hl=2 l=   0 cons:   cont [ 0 ]
+  265:d=1  hl=2 l=  13 cons:  SEQUENCE
+  267:d=2  hl=2 l=   9 prim:   OBJECT            :sha256WithRSAEncryption
+  278:d=2  hl=2 l=   0 prim:   NULL
+  280:d=1  hl=3 l= 129 prim:  BIT STRING
+  ```
 
 + process request
 
