@@ -18,14 +18,14 @@
   height: 1.6em;
   border-radius: 4px;
 }
-.heroes li.selected:hover {
-  background-color: #BBD8DC !important;
-  color: white;
-}
 .heroes li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
+}
+.heroes li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
 }
 .heroes .text {
   position: relative;
@@ -44,4 +44,16 @@
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
 }
