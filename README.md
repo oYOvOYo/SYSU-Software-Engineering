@@ -1,4 +1,8 @@
-# Hello
+# Work-Better
+`jskzero` `2017/11/07`
+
+
+# old readme
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
