@@ -15,5 +15,8 @@
 <div *ngIf="userService.isLoginIn()">
   <label>Welcome</label>
   <label>{{ user.name }}</label>
+  <div *ngIf="img_url">
+    <img src="{{ img_url }}" alt="">
+  </div>
   <button (click)="login_out()">Login Out</button>
 </div>

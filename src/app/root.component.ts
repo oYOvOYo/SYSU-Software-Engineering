@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 
-const html = `
-<h1>Work Hard</h1>
-<app-login-in></app-login-in>
-`;
+import { UserService } from './user.service';
 // <router-outlet></router-outlet>
 
 @Component({
   selector: 'app-root',
-  template: html
+  templateUrl: './root.component.html'
 })
 export class RootComponent {
-
+  constructor(private userService: UserService) {
+  }
 }
 

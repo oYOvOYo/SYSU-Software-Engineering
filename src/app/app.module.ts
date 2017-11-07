@@ -10,8 +10,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user.service';
+import { TodoService } from './todo.service';
 import { RootComponent } from './root.component';
 import { LoginInComponent } from './login-in.component';
+import { TodoComponent } from './todo.component';
 
 
 @NgModule({
@@ -25,8 +27,12 @@ import { LoginInComponent } from './login-in.component';
   declarations: [
     RootComponent,
     LoginInComponent,
+    TodoComponent,
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    TodoService,
+  ],
   bootstrap: [RootComponent]
 })
 export class AppModule { }
