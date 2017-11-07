@@ -46,6 +46,12 @@ export class UserService {
     return this.http.get(this.user_info_url, {headers: this.getHeaders()})
     .toPromise()
     .then(response => response.json())
-    .then(json => json.avatar_url);
+    .then(json => json.avatar_url)
+    .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 }
