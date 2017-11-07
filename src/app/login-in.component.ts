@@ -1,16 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-root',
-  template: `
-  <h1>work hard</h1>`
-})
-export class LoginInComponent implements OnInit {
-  // constructor(private heroService: HeroService) { }
+import { User } from './user';
+import { UserService } from './user.service';
 
-      ngOnInit(): void {
-        // this.heroService.getHeroes()
-        //   .then(heroes =>
-        //     this.heroes = heroes.slice(1, 5));
-      }
+
+
+@Component({
+  selector: 'app-login-in',
+  templateUrl: './login-in.component.html',
+})
+
+export class LoginInComponent implements OnInit {
+  user: User;
+
+  constructor(private userService: UserService) {
+    this.user = new User;
+  }
+
+  ngOnInit(): void {
+  }
+
+  login_in(): void {
+    this.userService.setUser(User);
+  }
+
+  login_out(): void {
+    this.userService.setUser(undefined);
+  }
 }

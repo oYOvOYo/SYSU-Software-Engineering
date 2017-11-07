@@ -1,0 +1,19 @@
+<h2>
+  user
+</h2>
+<div *ngIf="!userService.isLoginIn()">
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="user.name" placeholder="name" />
+  </div>
+  <div>
+    <label>token: </label>
+    <input [(ngModel)]="user.token" placeholder="gits token" type="password" />
+  </div>
+  <button (click)="login_in()">Login in</button>
+</div>
+<div *ngIf="userService.isLoginIn()">
+  <label>Welcome</label>
+  <label>{{ user.name }}</label>
+  <button (click)="login_out()">Login Out</button>
+</div>

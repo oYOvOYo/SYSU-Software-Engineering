@@ -9,6 +9,8 @@ import { HttpModule } from '@angular/http';
 // import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { UserService } from './user.service';
+import { RootComponent } from './root.component';
 import { LoginInComponent } from './login-in.component';
 
 
@@ -17,13 +19,14 @@ import { LoginInComponent } from './login-in.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   declarations: [
-    LoginInComponent
+    RootComponent,
+    LoginInComponent,
   ],
-  providers: [],
-  bootstrap: [LoginInComponent]
+  providers: [UserService],
+  bootstrap: [RootComponent]
 })
 export class AppModule { }
