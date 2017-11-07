@@ -20,6 +20,7 @@ import 'rxjs/add/operator/switchMap';
       </div>
       <button (click)="goBack()">Back</button>
     </div>
+    <button (click)="save()">Save</button>
   `
 })
 export class HeroDetailComponent implements OnInit {
@@ -37,6 +38,11 @@ export class HeroDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.heroService.update(this.hero)
+      .then(() => this.goBack());
   }
 
   // @Input() hero: Hero;
