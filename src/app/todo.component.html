@@ -1,1 +1,20 @@
 <h2> Todo </h2>
+<ul class="todos">
+    <li *ngFor="let todo of todos"
+      [class.selected]="todo === select_todo"
+      (click)="onSelect(todo)">
+      <span class="badge">{{todo.id}}</span> {{todo.title}}
+      <button *ngIf="todo.isFinished !== true" class="finished"
+      (click)="finished(todo); $event.stopPropagation()">x</button>
+    </li>
+  </ul>
+  <div *ngIf="select_todo">
+    <h2>
+      {{select_todo.title | uppercase}}
+    </h2>
+    <div>
+        <label>name: </label>
+        <input [(ngModel)]="select_todo.detail" placeholder="detail"/>
+      </div>
+    <button (click)="update(select_todo)">Update</button>
+  </div>

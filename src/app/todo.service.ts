@@ -15,13 +15,48 @@ export class TodoService {
 
   constructor(private http: Http,
     private userService: UserService) {
+  }
 
-    this.getRowFile().then(id => console.log(id));
+  saveToGists(config): void {
+    this.getGistId()
+      .then(id =>
+        this.http.patch(this.userService.getGistsUrl() + '/' + id,
+          this.configToGistFormat(config),
+          { headers: this.userService.getHeaders() })
+          .toPromise()
+          .then(response => { console.log('Save', response.statusText); }));
+  }
+
+  updateTodo(todo): void {
+    this.getRowFile()
+    .then(config => {
+      config.todos.forEach(each_todo => {
+        if (each_todo.title === todo.title) {
+          each_todo.detail = todo.detail;
+          each_todo.isFinished = todo.isFinished;
+        }
+      });
+      return config;
+    })
+    .then(config => this.saveToGists(config));
+  }
+
+  addTodo(todo): void {
+    this.getRowFile()
+      .then(config => {
+        if (config.todos === undefined) {
+          config.todos = [todo];
+        } else {
+          config.todos.push(todo);
+        }
+        return config;
+      })
+      .then(config => this.saveToGists(config));
   }
 
   getTodos(): Promise<Todo[]> {
     return this.getRowFile()
-      .then(obj => obj.todos as Todo[])
+      .then(config => config.todos as Todo[])
       .catch(this.handleError);
   }
 
@@ -57,8 +92,26 @@ export class TodoService {
   createNewGist(): Promise<String> {
     console.log('create new config file');
 
-    const templateFile = `
-    {
+    return this.http.post(this.userService.getGistsUrl(),
+      this.initialConfigToGistFormat(),
+      { headers: this.userService.getHeaders() })
+      .toPromise()
+      .then(response => response.json().id);
+  }
+
+  configToGistFormat(config): string {
+    const file = {
+      'description': this.gists_description,
+      files: {
+        'work-better': {
+          'content': JSON.stringify(config, null, ' ')
+        }
+      }};
+    return JSON.stringify(file);
+  }
+
+  initialConfigToGistFormat(): string {
+    return `{
       "description": "` + this.gists_description + `",
       "public": false,
       "files": {
@@ -67,10 +120,6 @@ export class TodoService {
         }
       }
     }`;
-    return this.http.post(this.userService.getGistsUrl(), templateFile,
-      { headers: this.userService.getHeaders() })
-      .toPromise()
-      .then(response => response.json().id);
   }
 
   private handleError(error: any): Promise<any> {
