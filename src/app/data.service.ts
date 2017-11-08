@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { Todo } from './todo';
 import { Timer } from './timer';
 import { UserData } from './config';
+import { Alert } from './alert.service';
 import { UserService } from './user.service';
 
 @Injectable()
@@ -14,7 +15,8 @@ export class DataService {
   private config_filename = 'work-better';
 
   constructor(private http: Http,
-    private userService: UserService) {
+    private userService: UserService,
+    private alert: Alert) {
   }
 
   saveToGists(config: UserData): Promise<void> {
@@ -24,21 +26,25 @@ export class DataService {
           this.configToGistFormat(config),
           { headers: this.userService.getHeaders() })
           .toPromise()
-          .then(response => { console.log('Save', response.statusText); }));
+          .then(response => {
+            this.alert.alert('primary', 'Great!', 'Save Success');
+            console.log('Save', response.statusText);
+          }));
   }
 
-  updateTodo(todo: Todo): Promise<void> {
+  updateTodo(title: string, todo: Todo): Promise<void> {
     return this.getRowFile()
-    .then(config => {
-      config.todos.forEach(each_todo => {
-        if (each_todo.title === todo.title) {
-          each_todo.detail = todo.detail;
-          each_todo.isFinished = todo.isFinished;
-        }
-      });
-      return config;
-    })
-    .then(config => this.saveToGists(config));
+      .then(config => {
+        config.todos.forEach(each_todo => {
+          if (each_todo.title === title) {
+            each_todo.title = todo.title;
+            each_todo.detail = todo.detail;
+            each_todo.isFinished = todo.isFinished;
+          }
+        });
+        return config;
+      })
+      .then(config => this.saveToGists(config));
   }
 
   addTodo(todo: Todo): Promise<void> {
@@ -125,7 +131,8 @@ export class DataService {
         'work-better': {
           'content': JSON.stringify(config, null, ' ')
         }
-      }};
+      }
+    };
     return JSON.stringify(file);
   }
 

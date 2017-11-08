@@ -31,6 +31,14 @@ export class UserService {
     const header = new Headers;
     const authorization = 'Basic ' + new Buffer(this.user.name + ':' + this.user.token).toString('base64');
     header.set('Authorization', authorization);
+    // header.set('Cache-Control', 'no-cache');
+    return header;
+  }
+
+  getOptionsHeader(): Headers {
+    const header = new Headers;
+    const authorization = 'Basic ' + new Buffer(this.user.name + ':' + this.user.token).toString('base64');
+    header.set('Authorization', authorization);
     return header;
   }
 

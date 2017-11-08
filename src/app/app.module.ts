@@ -11,6 +11,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user.service';
 import { DataService } from './data.service';
+import { Alert } from './alert.service';
 import { RootComponent } from './root.component';
 import { LoginInComponent } from './login-in.component';
 import { DashBoardComponent } from './dashboard.component';
@@ -36,6 +37,7 @@ import { TimerComponent } from './timer.component';
   providers: [
     UserService,
     DataService,
+    Alert,
   ],
   bootstrap: [RootComponent]
 })

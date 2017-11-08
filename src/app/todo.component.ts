@@ -15,6 +15,7 @@ export class TodoComponent implements OnInit {
 
   todos: Todo[];
   new_todo: Todo;
+  update_title: string;
   select_todo: Todo;
 
   constructor(private userService: UserService,
@@ -27,20 +28,32 @@ export class TodoComponent implements OnInit {
 
   fresh() {
     this.dataService.getTodos()
-      .then(all_todos => this.todos = all_todos);
+      .then(all_todos => {
+        this.todos = all_todos;
+        // console.log(all_todos);
+      });
   }
 
   onSelect(todo: Todo) {
+    this.update_title = todo.title;
     this.select_todo = todo;
   }
 
   finished(todo: Todo) {
     todo.isFinished = true;
-    this.update(todo);
+    this.dataService
+    .updateTodo(todo.title, todo)
+    .then(obj => {
+      this.fresh();
+    });
   }
 
   update(todo: Todo) {
-    this.dataService.updateTodo(todo);
+    this.dataService
+      .updateTodo(this.update_title, todo)
+      .then(obj => {
+        this.fresh();
+      });
   }
 
   create() {
@@ -49,7 +62,7 @@ export class TodoComponent implements OnInit {
 
   add(todo: Todo) {
     this.dataService.addTodo(todo).then(obj => {
-      this.fresh();
+      // this.fresh();
     });
   }
 }

@@ -2,6 +2,9 @@ body {
   background: #F8F8F9;
 }
 
+div.alert span {
+  margin-left: 10px;
+}
 
 div.input-group {
   margin: 10px 0px 10px 0px;
