@@ -1,5 +1,10 @@
-<h1>Work Hard</h1>
+<h1>Work Better</h1>
 <app-login-in></app-login-in>
 <div *ngIf="userService.isLoginIn()">
+  <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/todo">Todo</a>
+      <a routerLink="/timer">Timer</a>
+  </nav>
   <router-outlet></router-outlet>
 </div>

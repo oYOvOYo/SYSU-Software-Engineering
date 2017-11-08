@@ -1,0 +1,8 @@
+<h2> DashBoard </h2>
+<h3>recent todos</h3>
+<ul class="todos">
+    <li *ngFor="let todo of todos">
+      <span class="badge">{{todo.id}}</span> {{todo.title}}
+    </li>
+  </ul>
+<h3>recent timer</h3>

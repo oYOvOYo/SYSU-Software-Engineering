@@ -13,7 +13,9 @@ import { UserService } from './user.service';
 import { TodoService } from './todo.service';
 import { RootComponent } from './root.component';
 import { LoginInComponent } from './login-in.component';
+import { DashBoardComponent } from './dashboard.component';
 import { TodoComponent } from './todo.component';
+import { TimerComponent } from './timer.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { TodoComponent } from './todo.component';
   declarations: [
     RootComponent,
     LoginInComponent,
+    DashBoardComponent,
     TodoComponent,
+    TimerComponent,
   ],
   providers: [
     UserService,
