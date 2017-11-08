@@ -10,7 +10,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user.service';
-import { TodoService } from './todo.service';
+import { DataService } from './data.service';
 import { RootComponent } from './root.component';
 import { LoginInComponent } from './login-in.component';
 import { DashBoardComponent } from './dashboard.component';
@@ -35,7 +35,7 @@ import { TimerComponent } from './timer.component';
   ],
   providers: [
     UserService,
-    TodoService,
+    DataService,
   ],
   bootstrap: [RootComponent]
 })

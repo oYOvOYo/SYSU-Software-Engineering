@@ -5,20 +5,20 @@ import 'rxjs/add/operator/toPromise';
 
 import { Todo } from './todo';
 import { Timer } from './timer';
-import { Config } from './config';
+import { UserData } from './config';
 import { UserService } from './user.service';
 
 @Injectable()
-export class TodoService {
-  private gists_description = 'work-better config file';
+export class DataService {
+  private gists_description = 'work-better config f`ile';
   private config_filename = 'work-better';
 
   constructor(private http: Http,
     private userService: UserService) {
   }
 
-  saveToGists(config): void {
-    this.getGistId()
+  saveToGists(config: UserData): Promise<void> {
+    return this.getGistId()
       .then(id =>
         this.http.patch(this.userService.getGistsUrl() + '/' + id,
           this.configToGistFormat(config),
@@ -27,8 +27,8 @@ export class TodoService {
           .then(response => { console.log('Save', response.statusText); }));
   }
 
-  updateTodo(todo): void {
-    this.getRowFile()
+  updateTodo(todo: Todo): Promise<void> {
+    return this.getRowFile()
     .then(config => {
       config.todos.forEach(each_todo => {
         if (each_todo.title === todo.title) {
@@ -41,13 +41,26 @@ export class TodoService {
     .then(config => this.saveToGists(config));
   }
 
-  addTodo(todo): void {
-    this.getRowFile()
+  addTodo(todo: Todo): Promise<void> {
+    return this.getRowFile()
       .then(config => {
         if (config.todos === undefined) {
           config.todos = [todo];
         } else {
           config.todos.push(todo);
+        }
+        return config;
+      })
+      .then(config => this.saveToGists(config));
+  }
+
+  addTimer(timer: Timer): Promise<void> {
+    return this.getRowFile()
+      .then(config => {
+        if (config.timers === undefined) {
+          config.timers = [timer];
+        } else {
+          config.timers.push(timer);
         }
         return config;
       })
@@ -60,7 +73,13 @@ export class TodoService {
       .catch(this.handleError);
   }
 
-  getRowFile(): Promise<Config> {
+  getTimers(): Promise<Timer[]> {
+    return this.getRowFile()
+      .then(config => config.timers as Timer[])
+      .catch(this.handleError);
+  }
+
+  getRowFile(): Promise<UserData> {
     return this.getGistId()
       .then(id =>
         this.http.get(this.userService.getGistsUrl() + '/' + id,
@@ -116,7 +135,7 @@ export class TodoService {
       "public": false,
       "files": {
         "` + this.config_filename + `": {
-          "content": "` + JSON.stringify(new Config) + `"
+          "content": "` + JSON.stringify(new UserData) + `"
         }
       }
     }`;

@@ -17,7 +17,7 @@ export class LoginInComponent implements OnInit {
   constructor(private userService: UserService) {
     this.user = new User;
     this.user.name = 'jskyzero';
-    this.user.token = 'a79df060d395f0b31fdb6089c5e71e105274a6f2';
+    this.user.token = '27235ad815391cde2b5d50d2c61bfaaa86fe24b3';
   }
 
   ngOnInit(): void {

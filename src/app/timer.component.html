@@ -1,1 +1,9 @@
 <h2>Timer</h2>
+<div *ngIf="timer">
+  <label>{{timer.begin}}</label>
+  <label>{{timer.end}}</label>
+</div>
+<button (click)="start()">start</button>
+<button (click)="end()">end</button>
+
+

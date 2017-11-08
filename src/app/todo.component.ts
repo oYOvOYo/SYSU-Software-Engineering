@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './user';
 import { Todo } from './todo';
 import { UserService } from './user.service';
-import { TodoService } from './todo.service';
+import { DataService } from './data.service';
 
 
 @Component({
@@ -14,14 +14,19 @@ import { TodoService } from './todo.service';
 export class TodoComponent implements OnInit {
 
   todos: Todo[];
+  new_todo: Todo;
   select_todo: Todo;
 
   constructor(private userService: UserService,
-    private todoService: TodoService) {
+    private dataService: DataService) {
   }
 
-  ngOnInit(): void {
-    this.todoService.getTodos()
+  ngOnInit() {
+    this.fresh();
+  }
+
+  fresh() {
+    this.dataService.getTodos()
       .then(all_todos => this.todos = all_todos);
   }
 
@@ -35,6 +40,16 @@ export class TodoComponent implements OnInit {
   }
 
   update(todo: Todo) {
-    this.todoService.updateTodo(todo);
+    this.dataService.updateTodo(todo);
+  }
+
+  create() {
+    this.new_todo = new Todo;
+  }
+
+  add(todo: Todo) {
+    this.dataService.addTodo(todo).then(obj => {
+      this.fresh();
+    });
   }
 }

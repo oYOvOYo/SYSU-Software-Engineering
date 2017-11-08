@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './user';
 import { Todo } from './todo';
 import { UserService } from './user.service';
-import { TodoService } from './todo.service';
+import { DataService } from './data.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class DashBoardComponent implements OnInit {
   todos: Todo[];
 
   constructor(private userService: UserService,
-    private todoService: TodoService) {
+    private todoService: DataService) {
   }
 
   ngOnInit(): void {

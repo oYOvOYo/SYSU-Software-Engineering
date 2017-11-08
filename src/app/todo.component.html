@@ -1,20 +1,33 @@
 <h2> Todo </h2>
-<ul class="todos">
-    <li *ngFor="let todo of todos"
-      [class.selected]="todo === select_todo"
-      (click)="onSelect(todo)">
-      <span class="badge">{{todo.id}}</span> {{todo.title}}
-      <button *ngIf="todo.isFinished !== true" class="finished"
-      (click)="finished(todo); $event.stopPropagation()">x</button>
-    </li>
-  </ul>
-  <div *ngIf="select_todo">
-    <h2>
-      {{select_todo.title | uppercase}}
-    </h2>
-    <div>
-        <label>name: </label>
-        <input [(ngModel)]="select_todo.detail" placeholder="detail"/>
-      </div>
-    <button (click)="update(select_todo)">Update</button>
+<button (click)="create()">Create</button>
+<div *ngIf="new_todo">
+  <div>
+    <label>title: </label>
+    <input [(ngModel)]="new_todo.title" placeholder="title" />
   </div>
+  <div>
+    <label>detail </label>
+    <input [(ngModel)]="new_todo.detail" placeholder="detail" />
+  </div>
+  <button (click)="add(new_todo)">add</button>
+</div>
+
+
+<ul class="todos">
+  <li *ngFor="let todo of todos" [class.selected]="todo === select_todo" (click)="onSelect(todo)">
+    <span class="badge">{{todo.id}}</span> {{todo.title}}
+    <button *ngIf="todo.isFinished !== true" class="finished" (click)="finished(todo); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+
+
+<div *ngIf="select_todo">
+  <h2>
+    {{select_todo.title | uppercase}}
+  </h2>
+  <div>
+    <label>detail </label>
+    <input [(ngModel)]="select_todo.detail" placeholder="detail" />
+  </div>
+  <button (click)="update(select_todo)">Update</button>
+</div>
