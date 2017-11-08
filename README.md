@@ -7,7 +7,7 @@
 + work-better use github account and gits to store data, so you can get your data evevry where.
 + work-better is implemented by angularJS
 
-![preview](/src/assets/img/1 (1).png)
+![preview](/src/assets/img/1.png)
 
 ## Install & Run
 
@@ -26,9 +26,9 @@
   then open your browser to open the site
 
 ## More UI
-![preview](/src/assets/img/1 (3).png)
-![preview](/src/assets/img/1 (1).png)
-![preview](/src/assets/img/1 (2).png)
+![preview](/src/assets/img/3.png)
+![preview](/src/assets/img/2.png)
+![preview](/src/assets/img/4.png)
 
 ## ISSUE
 
