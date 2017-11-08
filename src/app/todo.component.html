@@ -12,9 +12,8 @@
   <button (click)="add(new_todo)">add</button>
 </div>
 
-
 <ul class="todos">
-  <li *ngFor="let todo of todos" [class.selected]="todo === select_todo" (click)="onSelect(todo)">
+  <li *ngFor="let todo of todos" [class.isFinished]="todo.isFinished === true" (click)="onSelect(todo)">
     <span class="badge">{{todo.id}}</span> {{todo.title}}
     <button *ngIf="todo.isFinished !== true" class="finished" (click)="finished(todo); $event.stopPropagation()">x</button>
   </li>

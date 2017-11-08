@@ -15,6 +15,8 @@ export class TimerComponent implements OnInit {
 
   timers: Timer[];
   timer: Timer;
+  getDate = Timer.getDate;
+  getElapsedTime = Timer.getElapsedTime;
 
   constructor(private userService: UserService,
     private dataService: DataService) {
@@ -27,11 +29,13 @@ export class TimerComponent implements OnInit {
 
   start(): void {
     this.timer = new Timer;
-    this.timer.begin =  new Date();
+    this.timer.begin = new Date();
   }
 
   end(): void {
     this.timer.end = new Date();
     this.dataService.addTimer(this.timer);
   }
+
+
 }

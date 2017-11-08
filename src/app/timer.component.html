@@ -7,3 +7,9 @@
 <button (click)="end()">end</button>
 
 
+<ul class="timers">
+    <li *ngFor="let each of timers"  >
+      <span class="data">{{ getDate(each) }}</span>
+      <span class="elapsed_time">{{ getElapsedTime(each) }}</span>
+    </li>
+</ul>
