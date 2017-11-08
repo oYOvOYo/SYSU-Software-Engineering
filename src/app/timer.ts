@@ -10,6 +10,6 @@ export class Timer {
   public static getElapsedTime(timer: Timer): number {
     const begin = new Date(timer.begin);
     const end = new Date(timer.end);
-    return begin.getTime() - end.getTime();
+    return end.getTime() - begin.getTime();
   }
 }

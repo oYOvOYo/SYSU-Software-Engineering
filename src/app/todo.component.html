@@ -1,32 +1,55 @@
-<h2> Todo </h2>
-<button (click)="create()">Create</button>
-<div *ngIf="new_todo">
-  <div>
-    <label>title: </label>
-    <input [(ngModel)]="new_todo.title" placeholder="title" />
-  </div>
-  <div>
-    <label>detail </label>
-    <input [(ngModel)]="new_todo.detail" placeholder="detail" />
-  </div>
-  <button (click)="add(new_todo)">add</button>
-</div>
+<div class="main">
 
-<ul class="todos">
-  <li *ngFor="let todo of todos" [class.isFinished]="todo.isFinished === true" (click)="onSelect(todo)">
-    <span class="badge">{{todo.id}}</span> {{todo.title}}
-    <button *ngIf="todo.isFinished !== true" class="finished" (click)="finished(todo); $event.stopPropagation()">x</button>
-  </li>
-</ul>
-
-
-<div *ngIf="select_todo">
-  <h2>
-    {{select_todo.title | uppercase}}
-  </h2>
-  <div>
-    <label>detail </label>
-    <input [(ngModel)]="select_todo.detail" placeholder="detail" />
+  <h2> Todo </h2>
+  <button *ngIf="!new_todo" (click)="create()" class="btn btn-outline-primary">Create</button>
+  <div *ngIf="new_todo">
+    <div class="">
+      <div class="input-group">
+        <span class="input-group-addon">title: </span>
+        <input class="form-control" [(ngModel)]="new_todo.title" placeholder="title" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">detail: </span>
+        <input class="form-control" [(ngModel)]="new_todo.detail" placeholder="detail" />
+      </div>
+    </div>
+    <button (click)="add(new_todo)" class="btn btn-outline-success">Add</button>
   </div>
-  <button (click)="update(select_todo)">Update</button>
+
+  <h3>All Todos</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-info">
+        <th scope="col">Title</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Finished</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos"
+      (click)="onSelect(todo)"
+      [class.table-success]="todo.isFinished === true"
+      [class.table-warning]="todo.isFinished !== true">
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.detail }}</td>
+        <td>
+          <button *ngIf="todo.isFinished !== true" class="btn btn-outline-success" (click)="finished(todo); $event.stopPropagation()">x</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="select_todo">
+    <div class="">
+      <div class="input-group">
+        <span class="input-group-addon">title: </span>
+        <input class="form-control" [(ngModel)]="select_todo.title" placeholder="title" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">detail: </span>
+        <input class="form-control" [(ngModel)]="select_todo.detail" placeholder="detail" />
+      </div>
+    </div>
+    <button (click)="update(select_todo)" class="btn btn-outline-info">Update</button>
+  </div>
 </div>

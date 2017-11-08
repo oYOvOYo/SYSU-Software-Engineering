@@ -15,18 +15,15 @@ export class LoginInComponent implements OnInit {
   img_url: string;
 
   constructor(private userService: UserService) {
-    this.user = new User;
-    this.user.name = 'jskyzero';
-    this.user.token = '27235ad815391cde2b5d50d2c61bfaaa86fe24b3';
   }
 
   ngOnInit(): void {
-    this.login_in();
-    console.log('login');
+    this.user = new User;
   }
 
   login_in(): void {
     this.userService.setUser(this.user);
+    console.log('login');
     this.userService.getImageUrl().then(url => this.img_url = url);
   }
 
