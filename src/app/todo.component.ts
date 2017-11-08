@@ -62,7 +62,12 @@ export class TodoComponent implements OnInit {
 
   add(todo: Todo) {
     this.dataService.addTodo(todo).then(obj => {
-      // this.fresh();
+      if (this.todos === undefined) {
+        this.todos = [todo];
+      } else {
+        this.todos.push(todo);
+      }
+      this.fresh();
     });
   }
 }

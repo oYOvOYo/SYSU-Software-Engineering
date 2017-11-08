@@ -61,6 +61,11 @@ export class TimerComponent implements OnInit {
     this.isCounting = false;
     this.timer.end = new Date();
     this.dataService.addTimer(this.timer).then(obj => {
+      if (this.timers === undefined) {
+        this.timers = [this.timer];
+      } else {
+        this.timers.push(this.timer);
+      }
       this.fresh();
     });
   }

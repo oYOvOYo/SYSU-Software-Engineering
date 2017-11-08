@@ -31,7 +31,9 @@ export class UserService {
     const header = new Headers;
     const authorization = 'Basic ' + new Buffer(this.user.name + ':' + this.user.token).toString('base64');
     header.set('Authorization', authorization);
-    // header.set('Cache-Control', 'no-cache');
+    // header.set('Cache-Control', 'must-revalidate');
+    // header.set('Last-Modified', document.lastModified);
+    // header.set('Access-Control-Request-Headers', 'authorization');
     return header;
   }
 
