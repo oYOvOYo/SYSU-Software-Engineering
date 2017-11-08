@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from './user';
 import { Todo } from './todo';
+import { Timer } from './timer';
 import { UserService } from './user.service';
 import { DataService } from './data.service';
 
@@ -14,13 +15,23 @@ import { DataService } from './data.service';
 export class DashBoardComponent implements OnInit {
 
   todos: Todo[];
+  timers: Timer[];
+  getDate = Timer.getDate;
+  getElapsedTime = Timer.getElapsedTime;
 
   constructor(private userService: UserService,
-    private todoService: DataService) {
+    private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.todoService.getTodos()
-      .then(all_todos => this.todos = all_todos.slice(-3));
+    this.fresh();
+  }
+
+  fresh() {
+    this.dataService.getRowFile()
+    .then(config => {
+      this.timers = config.timers.slice(-5);
+      this.todos = config.todos.slice(-5);
+    });
   }
 }

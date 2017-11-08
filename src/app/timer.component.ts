@@ -23,8 +23,12 @@ export class TimerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fresh();
+  }
+
+  fresh() {
     this.dataService.getTimers()
-      .then(all_timers => this.timers = all_timers.slice(-3));
+    .then(all_timers => this.timers = all_timers);
   }
 
   start(): void {
@@ -34,8 +38,9 @@ export class TimerComponent implements OnInit {
 
   end(): void {
     this.timer.end = new Date();
-    this.dataService.addTimer(this.timer);
+    this.dataService.addTimer(this.timer).then(obj => {
+      this.fresh();
+    });
   }
-
 
 }

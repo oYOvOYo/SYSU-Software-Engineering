@@ -6,3 +6,9 @@
     </li>
   </ul>
 <h3>recent timer</h3>
+<ul class="timers">
+    <li *ngFor="let each of timers"  >
+      <span class="data">{{ getDate(each) }}</span>
+      <span class="elapsed_time">{{ getElapsedTime(each) }}</span>
+    </li>
+</ul>
