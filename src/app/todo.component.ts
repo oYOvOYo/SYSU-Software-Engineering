@@ -29,7 +29,7 @@ export class TodoComponent implements OnInit {
   fresh() {
     this.dataService.getTodos()
       .then(all_todos => {
-        this.todos = all_todos;
+        this.todos = all_todos.reverse();
         // console.log(all_todos);
       });
   }
@@ -52,7 +52,7 @@ export class TodoComponent implements OnInit {
     this.dataService
       .updateTodo(this.update_title, todo)
       .then(obj => {
-        this.fresh();
+        // this.fresh();
       });
   }
 

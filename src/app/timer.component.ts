@@ -48,7 +48,7 @@ export class TimerComponent implements OnInit {
 
   fresh() {
     this.dataService.getTimers()
-      .then(all_timers => this.timers = all_timers);
+      .then(all_timers => this.timers = all_timers.reverse());
   }
 
   start(): void {

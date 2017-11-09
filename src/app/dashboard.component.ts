@@ -30,8 +30,8 @@ export class DashBoardComponent implements OnInit {
   fresh() {
     this.dataService.getRowFile()
     .then(config => {
-      this.timers = config.timers.slice(-5);
-      this.todos = config.todos.slice(-5);
+      this.timers = config.timers.slice(-5).reverse();
+      this.todos = config.todos.slice(-5).reverse();
     });
   }
 }
