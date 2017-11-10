@@ -1,5 +1,5 @@
 # OWN
-`jskyzero` `201/10/31`
+`jskyzero` `2017/10/31`
 
 > About jskyzero, and jskyzero's github.
 
