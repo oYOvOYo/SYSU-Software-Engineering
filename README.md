@@ -7,6 +7,8 @@
 
 Please see [own](https://jskyzero.github.io/OWN/html/index.html)
 
+stupid student / sometimes serious /  independent developer / loving new technology / playstation network id sujiner / 
+
 ## about jskyzero's github
 
 I always put Studying and Project codes in github, So you will find many Studying Repositories.
