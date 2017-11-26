@@ -14,8 +14,8 @@ v = abs((1:n) - (n + 1) / 2);
 [V,U] = meshgrid(v,u);
 D = sqrt(U.^2+V.^2);
 
-[V,U] = meshgrid((1:m), (1:n));
-I = (-1).^(V + U);
+[V,U] = meshgrid((1:n), (1:m));
+I = (-1).^(U + V);
 
 
 H = 1./((D./D0 + 1).^rank);
