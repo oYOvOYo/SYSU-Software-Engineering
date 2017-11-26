@@ -1,7 +1,7 @@
-# Matlab-Study
-MATLAB and Digit Image Propressing
+# Digit Image Propressing
+Use MATLAB in Digit Image Propressing
 
-![Matlab_Logo.png](https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png)
+![Some process result](./Histogram_Equalization/output_img_2.bmp)
 
 ## LEARN TO USE MATLAB
 
