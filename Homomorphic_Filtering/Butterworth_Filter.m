@@ -18,7 +18,7 @@ D = sqrt(U.^2+V.^2);
 I = (-1).^(U + V);
 
 
-H = 1./((D./D0 + 1).^rank);
+H = 1./((D./D0 + 1).^(2 * rank));
 
 filter_img = Filter(img.*I, H).*I;
 
