@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="ParallaxView.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ParallaxView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <ParallaxView Source="{x:Bind ForegroundElement}" VerticalShift="50">
+
+      <!-- Background element -->
+      <Image x:Name="BackgroundImage" Source="Assets/roboot.png"
+               Stretch="UniformToFill"/>
+    </ParallaxView>
+
+    <!-- Foreground element -->
+    <ListView x:Name="ForegroundElement">
+      <x:String>Item 1</x:String>
+      <x:String>Item 2</x:String>
+      <x:String>Item 3</x:String>
+      <x:String>Item 4</x:String>
+      <x:String>Item 5</x:String>
+      <x:String>Item 6</x:String>
+      <x:String>Item 7</x:String>
+      <x:String>Item 8</x:String>
+      <x:String>Item 9</x:String>
+      <x:String>Item 10</x:String>
+      <x:String>Item 11</x:String>
+      <x:String>Item 13</x:String>
+      <x:String>Item 14</x:String>
+      <x:String>Item 15</x:String>
+      <x:String>Item 16</x:String>
+      <x:String>Item 17</x:String>
+      <x:String>Item 18</x:String>
+      <x:String>Item 19</x:String>
+      <x:String>Item 20</x:String>
+      <x:String>Item 21</x:String>
+    </ListView>
+  </Grid>
+</Page>
