@@ -16,15 +16,23 @@
 您可能需要：
 1. 一个安静不被打断的环境，一台拥有管理员权限的电脑，网络连接，和一颗愿意学习的心。
 2. 会Windows/Linux系统下的基本操作。
-3. 了解`Intel x86 architecture`及NASM编写。
-4. 熟悉C语言编写。
+3. 了解`Intel x86 architecture`及NASM编写程序。
+4. 熟悉C语言编写程序。
 如果你需要补充对应知识的话请求助于互联网。
 
 ### nasm 初步
 
 > 请参考0.helloworld.asm
 
-## 动手
+## 动手：更新
+1. 你需要有
+  1. 一台符合要求的目标主机，运行Linux系统
+  2. 软盘写入工具，例如`UNetbootin`
+2. `nasm 1.os.asm`
+3. 使用`BIOS`选择优盘启动，或者使用`qemu-system-i386 1.os`运行
+
+
+## 动手：旧
 1. 创建Linux虚拟机，设置共享文件夹。
 2. 在windows下编写好代码
 3. 在linux下汇编
