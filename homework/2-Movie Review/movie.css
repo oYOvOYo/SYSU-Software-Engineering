@@ -1,0 +1,141 @@
+/* A simple web page, by Wangqing's student Huang Jintian, 2016/09/09 in SYSU */
+
+body {
+    background: url("./rsc/background.png")
+                repeat;
+	margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    font-family: Verdana, Tahoma, sans-serif;
+	position: relative;
+}
+
+.banner {
+    background: url("./rsc/bannerbackground.png")
+	            repeat-x;
+	height: 50px;
+	text-align: center;
+}
+
+h1 {
+    font-size: 24pt;
+    font-family: Tahoma, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* in the total, there ara left right and bottom */
+.total {
+    width: 800px;
+	border: 4px gray solid;
+	margin: auto;
+}
+
+.left {
+    width: 550px;
+}
+
+.right {
+	margin: 0;
+    padding: 0;
+    width: 250px;
+    float: right;
+	background-color: #A2B964;
+}
+
+.column1, .column2 {
+	width: 47%;
+    padding-left: 2%;
+    float: left;
+}
+
+.review {
+	font-weight: bold;
+	background: #E1D697;
+	border: gray 2px solid;
+	padding: 8px;
+	overflow: auto;
+}
+
+.review > img, .reviewer > img {
+	float: left;
+	margin-right: 5px;
+}
+
+.reviewer > .br {
+	font-style: italic;
+}
+.review > p{
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: left;
+}
+
+.reviewer {
+	margin-bottom: 3em;
+}
+
+.reviewer p {
+	font-style: italic;
+}
+
+
+.head {
+    background: url("./rsc/rottenbackground.png")
+	            repeat-x;
+	height: 83px;
+	text-align: left;
+}
+
+.head img {
+	vertical-align: bottom;
+}
+
+.head > .font33{
+    font-size:48pt;
+    color: red;
+    font-weight:bold;
+}
+
+.head > .font88{
+    font-size: 8pt;
+	color: white;
+}
+
+.right img {
+	vertical-align: bottom;
+}
+
+.right > .info {
+	margin: 0px;
+	padding-right: 10px;
+	padding-top: 0px;
+	padding-left: 10px;
+	padding-bottom: 0px;
+	font-family: Arial, sans-serif;
+}
+
+.right > .info dl {
+	margin: 0;
+}
+
+.right > .info dt {
+	text-align: left;
+	font-weight: bold;
+	margin-top: 1em;
+}
+
+.bottom{
+    background-color: #A2B964;
+	text-align: center;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	clear: both;
+	margin: 0;
+}
+
+.validators {
+    position: absolute;
+	right: 0;
+	bottom: 0;
+}

@@ -1,0 +1,56 @@
+body {
+  width: 80%;
+  margin:  0 auto;
+}
+
+h1 {
+  border-bottom: 2px solid gray;
+  text-indent: 20px;
+}
+
+p {
+  display: inline-block;
+  margin: 0px;
+}
+
+botton {
+  width: 15%;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+}
+
+#menu {
+  border: 1px solid silver;
+  margin: 0px;
+  padding: 5px;
+}
+
+#postContent {
+  width: 65%;
+  border: 1px solid gainsboro;
+}
+
+#getButton {
+  background: palegoldenrod;
+}
+
+#postButton {
+  background: lightcoral;
+}
+
+#totalTweet {
+  border: 1px solid silver;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.eachTweet {
+  margin: 5px;
+  background-color: gainsboro;
+}
+
+.eachTweet:nth-child(even) {
+  background-color: silver;
+}

@@ -1,0 +1,210 @@
+    /*大布局*/
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#at-plus-container {
+    position: relative;
+    width: 180px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bottom-positioner {
+    position: absolute;
+    bottom:  0;
+    width: 100%;
+}
+
+/*细节*/
+
+#info-bar {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    bottom: 97px;
+    left: 77px;
+    border-radius: 50%;
+    background-color: #7E7E7E;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+#button:hover #info-bar {
+    width: 130px;
+    height:130px;
+    bottom: 150px;
+    left: 25px;
+    opacity: 1;
+}
+
+
+
+#info-bar ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+#info-bar li {
+    list-style:  none;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-left: 0;
+    color: white;
+}
+
+#info-bar li img {
+    vertical-align: middle;
+}
+
+#info-bar li span {
+    margin-left: 8px;
+}
+
+#info-bar li.mine {
+    display: inline-block;
+    width: 50%;
+    color: #26E79E;
+    box-sizing: border-box;
+}
+
+#info-bar li.posted {
+    padding-left: 15px;
+}
+
+#info-bar li.comment {
+    font-size: 30px;
+}
+
+#control-ring-container {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    bottom: 20px;
+    left: 0px;
+    border-radius: 50%;
+}
+
+#control-ring-container li {
+    list-style: none;
+    position: absolute;
+    display: block;
+    margin-top: 60px;
+    margin-left: 35px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #686868 center no-repeat;
+    background-size: 18px 18px;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+#button:hover #control-ring-container li{
+    opacity: 1;
+}
+
+#button:hover #control-ring li:nth-child(1) {
+    margin-top: 20px;
+    margin-left: -30px;
+    background-image: url("../assets/images/nomask.png")
+}
+
+#button:hover #control-ring li:nth-child(2) {
+    margin-top: 60px;
+    margin-left: -40px;
+    background-image: url("../assets/images/history.png")
+}
+
+#button:hover #control-ring li:nth-child(3) {
+    margin-top: 102px;
+    margin-left: -26px;
+    background-image: url("../assets/images/message.png")
+}
+
+#button:hover #control-ring li:nth-child(4) {
+    margin-top: 129px;
+    margin-left: 12px;
+    background-image: url("../assets/images/setting.png")
+}
+
+#button:hover #control-ring li:nth-child(5) {
+    margin-top: 128px;
+    margin-left: 60px;
+    background-image: url("../assets/images/signin.png")
+}
+
+#button:hover #control-ring li span.unread {
+    position: absolute;
+    top: -2px;
+    right: -10px;
+    display: block;
+    width:20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: #E0D6DC;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+#button {
+    width: 70px;
+    height: 70px;
+    margin: 75px 55px;
+}
+
+
+#button .apb {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    bottom: 97px;
+    left: 77px;
+    border-radius: 50%;
+    background: url('../assets/images/atplus_white.png') center no-repeat;
+    background-size: 20px 15px;
+    background-color: #989FCF;
+    transition: all 0.5s;
+}
+
+#button:hover .apb {
+    width: 50px;
+    height: 50px;
+    bottom: 85px;
+    left: 65px;
+    background: url('../assets/images/atplus_green.png') center no-repeat;
+    background-size: 40px 30px;
+    background-color: #303F9F;
+}
+
+/*NEW*/
+#control-ring-container li {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    vertical-align: middle;
+}
+
+.answer {
+    position: absolute;
+    margin-left: 45px;
+    margin-top: 45px;
+    color: #26E79E;
+    font-size: 32px;
+}
+
+.sequence {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 10px;
+    color: #26E79E;
+    font-size: 20px;
+}

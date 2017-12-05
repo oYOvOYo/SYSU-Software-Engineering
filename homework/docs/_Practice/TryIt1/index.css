@@ -1,0 +1,13 @@
+/*commment*/
+body {
+    background-color: grey;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    /*font-style: italic;*/
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    background-image: url("orz.jpg");
+    background-repeat: repeat;
+}

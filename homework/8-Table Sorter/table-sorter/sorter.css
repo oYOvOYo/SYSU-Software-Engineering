@@ -1,0 +1,49 @@
+@font-face {
+        font-family: OpenSans-Light;
+        src: url(../font/OpenSans-Light.ttf);
+}
+
+* {
+    font-family: OpenSans-Light sans-serif;
+}
+/*居中*/
+body {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+    border: 1px #F6F6F6 solid;
+    text-align: left;
+}
+
+thead {
+    background-color: #031B7F;
+    color: white;
+}
+
+th {
+    padding-right: 20px;
+}
+
+/*偶数行灰色背景*/
+tr:nth-child(even) {
+    background-color: #DDDDDD;
+}
+/*点击背景*/
+.click {
+    background-color: #A4B0FC;
+}
+/*升序*/
+.ascend {
+    background-image: url(ascend.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+/*降序*/
+.descend {
+    background-image: url(descend.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}

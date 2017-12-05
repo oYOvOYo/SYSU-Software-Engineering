@@ -1,0 +1,62 @@
+* {
+	margin: 0px;
+}
+body {
+	background-image:url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/cork-wallet.png");
+	background-repeat:repeat;
+	font-family: Futura, Verdana, sans-serif;
+}
+h1 {
+	color: RGB(128,128,128);
+	text-align:center;
+	font-size: 60px;
+	margin: 20px auto 20px	auto ;
+}
+.pic {
+	display:table-cell;
+	vertical-align:middle;
+	width: 480px;
+	height: 320px;
+	margin: 50px auto;
+	border-radius: 25px;
+	box-shadow: 0 5px 0px 0 RGB(200,200,180);
+}
+a.pie {
+	text-align: center;
+	text-decoration: none;
+	line-height: 60px;
+	font-size: 25px;
+	color: RGB(255,255,255);
+	display: block;
+	width: 300px;
+	height: 60px;
+	margin: 20px auto 20px	auto ;
+	background: RGB(200,200,200);
+	border-radius: 15px;
+	box-shadow: 0 5px 0px 0 RGB(180,180,180);
+}
+a.mail {
+	text-align: center;
+	text-decoration: none;
+	line-height: 40px;
+	font-size: 28px;
+	color: RGB(255,255,255);
+	display: block;
+	width: 200px;
+	height: 40px;
+	margin: 10px auto;
+	background: RGB(200,200,200);
+	border-radius: 15px;
+	box-shadow: 0 5px 0px 0 RGB(180,180,180);
+}
+a:hover {
+	background:RGB(50,50,50);
+}
+.signature {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 20px;
+	color: RGB(100,100,100);
+}
+
