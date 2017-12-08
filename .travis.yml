@@ -8,6 +8,9 @@ compiler:
   - clang
   - gcc
 
+env:
+  - TEST_DIR=BNF  
+
 # before_install:
   # gcc -4.8
   # - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
