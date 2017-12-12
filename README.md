@@ -1,4 +1,4 @@
 # DBMS-Study
 
-DateBase Manage System Study
+DateBase Manage System
 
