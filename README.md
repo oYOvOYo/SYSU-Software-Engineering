@@ -13,4 +13,4 @@ You can use many ways to simulation a cpu, here we choose Verilog, a hardware de
 
 See the subfolder for more infomation about the code.
 
-As about how to run, you can choose the `Xilinx ISE` use the simulation mode or some other name which can run the projects else. I recommond you to use the `Icarus Verilog` to do these things, the source file is by `Xilinx ISE` but I last testing run was in `Icarus Verilog`.
+As about how to run, you can choose the `Xilinx ISE` use the simulation mode or some other name which can run the projects. I recommond you to use the `Icarus Verilog` to do these things, the source file is by `Xilinx ISE` but I last testing run was in `Icarus Verilog`.
