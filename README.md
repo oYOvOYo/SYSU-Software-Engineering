@@ -1,7 +1,7 @@
 # Digit Image Propressing
 Use MATLAB in Digit Image Propressing
 
-![Some process result](./Histogram_Equalization/output_img_2.bmp)
+![Some process result](./1.histogram_equalization/output_img_2.bmp)
 
 ## LEARN TO USE MATLAB
 
