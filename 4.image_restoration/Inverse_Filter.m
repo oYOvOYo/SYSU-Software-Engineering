@@ -24,7 +24,9 @@ I = (-1).^(U + V);
 
 
 F = fft2(img.*I);
+% sample inverse
 F = F./H;
+% must after fft so can't use common filter
 F(abs(H) < 0.001) = 0;
 
 filter_img = (real(ifft2(F))).*I;

@@ -17,7 +17,7 @@ D = sqrt(U.^2+V.^2);
 [V,U] = meshgrid((1:n), (1:m));
 I = (-1).^(U + V);
 
-
+% Butterworth
 H = 1./((D./D0 + 1).^(2 * rank));
 
 filter_img = Filter(img.*I, H).*I;

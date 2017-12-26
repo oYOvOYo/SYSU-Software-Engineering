@@ -1,3 +1,9 @@
+%{
+jskyzero 2017/12/26
+
+Digital Image Processing
+%}
+
 book_img = imread('book_cover.jpg');
 
 hold on;

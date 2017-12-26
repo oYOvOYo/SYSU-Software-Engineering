@@ -5,6 +5,7 @@ jskyzero 2017/12/26
 Digital Image Processing
 %}
 
+% use Butterworth_Filter first
 img = Butterworth_Filter(img, 20, 2);
 
 img = im2double(img);

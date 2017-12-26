@@ -14,7 +14,7 @@ v = (1:n) - n / 2 - 1;
 [V,U] = meshgrid(v,u);
 D = U.*a+V.*b;
 
-
+% Blurring_Filter
 blur_func = @(x) (T / (pi * x)) * sin(pi * x) * exp(-1i * pi * x);
 H = arrayfun(blur_func, D);
 H(D==0) = T;
