@@ -1,4 +1,4 @@
-function [filter_img] = Inverse_Filter(img, a, b, T)
+function [filter_img] = Wiener_Filter(img, a, b, T, K)
 %{
 jskyzero 2017/12/26
 
@@ -22,12 +22,11 @@ H(D==0) = T;
 [V,U] = meshgrid((1:n), (1:m));
 I = (-1).^(U + V);
 
+H_2 = conj(H).* H;
 
-F = fft2(img.*I);
-F = F./H;
-F(abs(H) < 0.001) = 0;
+W = (H_2) ./ (H .* (H_2 + K));
 
-filter_img = (real(ifft2(F))).*I;
+filter_img = Filter(img.*I, W).*I;
 
 end
 

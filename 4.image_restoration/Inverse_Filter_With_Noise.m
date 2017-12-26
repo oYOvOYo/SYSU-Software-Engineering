@@ -1,9 +1,11 @@
-function [filter_img] = Inverse_Filter(img, a, b, T)
+function [filter_img] = Inverse_Filter_With_Noise(img, a, b, T)
 %{
 jskyzero 2017/12/26
 
 Digital Image Processing
 %}
+
+img = Butterworth_Filter(img, 20, 2);
 
 img = im2double(img);
 [m, n] = size(img);
@@ -30,4 +32,6 @@ F(abs(H) < 0.001) = 0;
 filter_img = (real(ifft2(F))).*I;
 
 end
+
+
 
