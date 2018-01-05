@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   templateUrl: './root.component.html'
 })
 export class RootComponent {
-  constructor(private userService: UserService) {
+  constructor(public userService: UserService) {
   }
 }
 

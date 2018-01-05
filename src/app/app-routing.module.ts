@@ -9,7 +9,7 @@ import { TimerComponent } from './timer.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   { path: 'dashboard', component: DashBoardComponent },
   { path: 'login-in', component: LoginInComponent },
   { path: 'todo', component: TodoComponent },

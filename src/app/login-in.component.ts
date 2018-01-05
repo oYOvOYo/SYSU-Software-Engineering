@@ -16,7 +16,7 @@ export class LoginInComponent implements OnInit {
   img_url: string;
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private alert: Alert) {
   }
 
