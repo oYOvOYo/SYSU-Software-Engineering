@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 
 @Injectable()
 export class DataService {
-  private gists_description = 'work-better config f`ile';
+  private gists_description = 'work-better config file';
   private config_filename = 'work-better';
 
   constructor(private http: Http,
