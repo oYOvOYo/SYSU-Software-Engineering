@@ -19,7 +19,7 @@ $(document).ready(function () {
     console.log("hello world!");
 
     initialTable();
-    $(".mdc-grid-tile__primary").css('background', color_table[0]);
+    $("rect").attr('fill', color_table[0]);
     $("#folder_chooser").on("change", choose_folder);
     $("#choose").on("click", click_folder_chooser);
     $("#start").on("click", start_draw);
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   function grid_click(event) {
     grid_value[this.id] = (grid_value[this.id] + 1) % 5;
-    $(this).css('background', color_table[grid_value[this.id]]);
+    $(this).attr('fill',  color_table[grid_value[this.id]]);
   }
 
   function click_folder_chooser(event) {
@@ -69,8 +69,6 @@ $(document).ready(function () {
         run_scripts("bash run.sh")
       });
     }
-    // console.log(scripts);
-
   }
 
   function run_scripts(scripts) {
@@ -85,12 +83,14 @@ $(document).ready(function () {
   }
 
   function each_day_scripts(before_date, path) {
-    var scripts = `echo "github drawer" > ${path}/github_drawer;
+    var scripts = `
+echo "github drawer" > ${path}/github_drawer;
 git add -A;
 git commit --date "${before_date} day ago" -m "add github drawer";
 rm github_drawer;
 git add -A;
-git commit --date "${before_date} day ago" -m "delete github drawer";\n`;
+git commit --date "${before_date} day ago" -m "delete github drawer";
+`;
     return scripts;
   }
 
@@ -98,24 +98,21 @@ git commit --date "${before_date} day ago" -m "delete github drawer";\n`;
     var row_size = 7;
     var col_size = 52;
 
-    for (var i = 0; i < row_size; i++) {
-      var new_ul = document.createElement('ul');
-      new_ul.className = 'mdc-grid-list__tiles';
-      for (var j = 0; j < col_size; j++) {
-        var new_li = document.createElement('li');
-        var new_div = document.createElement('div');
-        new_li.className = 'mdc-grid-tile';
-        new_div.className = 'mdc-grid-tile__primary';
+    for (var j = 0; j < col_size; j++) {
+      for (var i = 0; i < row_size; i++) {
+        var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect')
+        $(rect).attr("width", 10);
+        $(rect).attr("height", 10);
+        $(rect).attr("x", j * 13);
+        $(rect).attr("y", i * 13);
+        $(rect).on("click", grid_click);
 
         var id = j * row_size + i;
         grid_value[id] = 0;
-        new_div.id = id;
-        new_div.onclick = grid_click;
+        rect.id = id;
 
-        new_li.appendChild(new_div);
-        new_ul.appendChild(new_li);
+        $("#drawer").append(rect);
       }
-      $("#drawer").append(new_ul);
     }
   }
 });
