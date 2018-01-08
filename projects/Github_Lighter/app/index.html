@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Github Lighter</title>
+  <link rel="stylesheet" href="../node_modules/material-components-web/dist/material-components-web.css">
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <h2 class="mdc-typography--display2">Github Lighter</h2>
+
+  <p class="mdc-typography--subheading2">click the rect to change color</p>
+  <p class="mdc-typography--subheading2">choose folder and then click START DRAW buttom</p>
+
+  <input type="file" id="folder_chooser" name="fileList" webkitdirectory multiple style="display:none"/>
+  <div>
+    <svg id="drawer" width="676" height="104"></svg>
+  </div>
+  <button class="mdc-button" id="choose">Choose Folder</button>
+  <button class="mdc-button" id="start" disabled>Start Draw!</button>
+
+  <footer class="footer">
+  <!-- All of the Node.js APIs are available in this renderer process. -->
+    <p class="mdc-typography--body2">Powered by Nodejs
+    <script>document.write(process.versions.node)</script>, Chromium
+    <script>document.write(process.versions.chrome)</script>, and Electron
+    <script>document.write(process.versions.electron)</script>.</p>
+  </footer>
+
+  <!-- Insert this line above script imports  -->
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+
+  <script src="../node_modules/material-components-web/dist/material-components-web.js"></script>
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/main.js"></script>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./js/renderer.js')
+    mdc.autoInit()
+  </script>
+
+  <!-- Insert this line after script imports -->
+  <script>if (window.module) module = window.module;</script>
+</body>
+
+</html>
