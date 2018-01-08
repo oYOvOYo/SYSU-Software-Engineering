@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     for (var i = 0; i < grid_value.length; i++) {
       while (grid_value[i]) {
-        scripts += each_day_scripts(365 - i + today, path).repeat(3);
+        scripts += each_day_scripts(364 - i + today, path).repeat(3);
         grid_value[i]--;
       }
     }
@@ -69,7 +69,7 @@ $(document).ready(function () {
         run_scripts("bash run.sh")
       });
     }
-    console.log(scripts);
+    // console.log(scripts);
 
   }
 
