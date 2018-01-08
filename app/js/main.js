@@ -1,7 +1,7 @@
 $(document).ready(function () {
   "use strict";
 
-
+  const fs = require('fs');
   const exec = require('child_process').exec;
   const color_table = {
     '0': '#eee',
@@ -42,9 +42,10 @@ $(document).ready(function () {
   }
 
   function start_draw(event) {
+    var isWin = /^win/.test(process.platform);
     var path = $("#folder_chooser")[0].files[0].path;
-    var scripts = "powershell;cd " + path + ";";
-    var today =new Date().getDay();
+    var scripts = "cd " + path + ";\n";
+    var today = new Date().getDay();
 
     for (var i = 0; i < grid_value.length; i++) {
       while (grid_value[i]) {
@@ -53,24 +54,45 @@ $(document).ready(function () {
       }
     }
 
+    if (isWin) {
+      var fs = require('fs');
+      fs.writeFile("run.PS1", scripts, function (err) {
+        if (err) {
+          return console.log(err);
+        }
+        run_scripts("powershell.exe -File run.PS1")
+      });
+    } else {
+      var fs = require('fs');
+      fs.writeFile("run.sh", scripts, function (err) {
+        if (err) {
+          return console.log(err);
+        }
+        run_scripts("bash run.sh")
+      });
+    }
     console.log(scripts);
-    // const child = exec(scripts,
-    //   (error, stdout, stderr) => {
-    //     // console.log(`stdout: ${stdout}`);
-    //     // console.log(`stderr: ${stderr}`);
-    //     if (error !== null) {
-    //       console.log(`exec error: ${error}`);
-    //     }
-    //   });
+
+  }
+
+  function run_scripts(scripts) {
+    const child = exec(scripts,
+      (error, stdout, stderr) => {
+        // console.log(`stdout: ${stdout}`);
+        // console.log(`stderr: ${stderr}`);
+        if (error !== null) {
+          console.log(`exec error: ${error}`);
+        }
+      });
   }
 
   function each_day_scripts(before_date, path) {
     var scripts = `echo "github drawer" > ${path}/github_drawer;
-                   git add -A;
-                   'git commit --date "${before_date} day ago" -m "add github drawer"';
-                   rm github_drawer;
-                   git add -A;
-                   'git commit --date "${before_date} day ago" -m "delete github drawer"';`;
+git add -A;
+git commit --date "${before_date} day ago" -m "add github drawer";
+rm github_drawer;
+git add -A;
+git commit --date "${before_date} day ago" -m "delete github drawer";\n`;
     return scripts;
   }
 
