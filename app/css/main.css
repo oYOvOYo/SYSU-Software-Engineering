@@ -1,0 +1,7 @@
+.mdc-grid-list .mdc-grid-list__tiles{
+  margin: 0px;
+  padding: 0px;
+}
+.mdc-grid-tile {
+  --mdc-grid-list-tile-width: 20px;
+}
