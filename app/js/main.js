@@ -55,7 +55,6 @@ $(document).ready(function () {
     }
 
     if (isWin) {
-      var fs = require('fs');
       fs.writeFile("run.PS1", scripts, function (err) {
         if (err) {
           return console.log(err);
@@ -63,7 +62,6 @@ $(document).ready(function () {
         run_scripts("powershell.exe -File run.PS1")
       });
     } else {
-      var fs = require('fs');
       fs.writeFile("run.sh", scripts, function (err) {
         if (err) {
           return console.log(err);
