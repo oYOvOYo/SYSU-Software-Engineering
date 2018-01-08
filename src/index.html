@@ -29,6 +29,18 @@
     crossorigin="anonymous"></script>
   <!-- Insert this line after script imports -->
   <script>if (window.module) module = window.module;</script>
+  <script>
+    document.addEventListener("keydown", function (e) {
+      if (e.which === 123) {
+        const remote = require('electron').remote;
+        // seems nothing different from open
+        remote.getCurrentWindow().webContents.toggleDevTools();
+      }
+      // else if (e.which === 116) {
+      //   location.reload();
+      // }
+    });
+  </script>
 </body>
 
 </html>

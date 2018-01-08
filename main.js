@@ -9,7 +9,7 @@ const url = require('url')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let win;
 
 function createWindow () {
   win = new BrowserWindow({
@@ -18,10 +18,13 @@ function createWindow () {
     backgroundColor: '#ffffff',
   })
 
-  win.loadURL(`file://${__dirname}/dist/index.html`)
+  win.loadURL(`file://${__dirname}/app/index.html`)
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  process.on('uncaughtException', function (err) {
+    // Open the DevTools.
+    win.webContents.openDevTools();
+    console.log(err);
+  })
 }
 
 // This method will be called when Electron has finished
