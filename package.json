@@ -20,6 +20,8 @@
     "electron": "~1.7.8"
   },
   "dependencies": {
+    "@material/button": "^0.27.0",
+    "@material/form-field": "^0.27.0",
     "@material/grid-list": "^0.27.0",
     "material-components-web": "^0.27.0"
   }

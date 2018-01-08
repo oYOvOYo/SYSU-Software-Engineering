@@ -10,42 +10,20 @@
 
 <body>
   <h2 class="mdc-typography--display2">Hello, Material Components!</h2>
-  <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-    <input type="text" class="mdc-text-field__input" id="demo-input">
-    <label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
-  </div>
 
-  <div class="mdc-grid-list">
-    <ul class="mdc-grid-list__tiles">
-      <li class="mdc-grid-tile">
-        <div class="mdc-grid-tile__primary">
-        </div>
-      </li>
-      <li class="mdc-grid-tile">
-        <div class="mdc-grid-tile__primary">
-        </div>
-      </li>
-    </ul>
-    <ul class="mdc-grid-list__tiles">
-      <li class="mdc-grid-tile">
-        <div class="mdc-grid-tile__primary">
-        </div>
-      </li>
-      <li class="mdc-grid-tile">
-        <div class="mdc-grid-tile__primary">
-        </div>
-      </li>
-    </ul>
-  </div>
+  <input type="file" id="folder_chooser" name="fileList" webkitdirectory multiple style="opacity: 0;"/>
+  <div class="mdc-grid-list" id="drawer"></div>
 
+  <button class="mdc-button" id="choose">Choose Folder</button>
+  <button class="mdc-button" id="start" disabled>Start Draw!</button>
 
-  <div>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js
+  <!-- <footer class="footer"> -->
+  <!-- All of the Node.js APIs are available in this renderer process. -->
+  <!-- We are using Node.js
     <script>document.write(process.versions.node)</script>, Chromium
     <script>document.write(process.versions.chrome)</script>, and Electron
     <script>document.write(process.versions.electron)</script>.
-  </div>
+  </footer> -->
 
   <!-- Insert this line above script imports  -->
   <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
