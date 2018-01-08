@@ -16,26 +16,24 @@
 .
 ├── docs
 ├── homework
-│   ├── 10-Asynchronous JavaScript
-│   ├── 1-Recipe
-│   ├── 2-Movie Review
-│   ├── 3-Ring Menu
-│   ├── 4-Calculater
-│   ├── 6-Games
-│   ├── 7-Fifteen Puzzle
-│   ├── 8-Table Sorter
-│   ├── LICENSE
-│   └── README.md
+│   ├── 10-Asynchronous JavaScript
+│   ├── 1-Recipe
+│   ├── 2-Movie Review
+│   ├── 3-Ring Menu
+│   ├── 4-Calculater
+│   ├── 6-Games
+│   ├── 7-Fifteen Puzzle
+│   ├── 8-Table Sorter
+│   ├── LICENSE
+│   └── README.md
 ├── LICENSE
 ├── projects
-│   └── Github_Lighter                // a Electron light your contributions table 
+│   └── Github_Lighter                // a Electron App light your github contributions table 
 └── README.md
 ```
 
 
 ## Reference
 
-[Modern Web Programming Home](http://my.ss.sysu.edu.cn/wiki/display/WEB/Modern+Web+Programming+Home)
-
-
-13 directories, 10 files
++ [Preview Demo](https://jskyzero.github.io/Web/hardwork)
++ [Modern Web Programming Home](http://my.ss.sysu.edu.cn/wiki/display/WEB/Modern+Web+Programming+Home)
