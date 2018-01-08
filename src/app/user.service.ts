@@ -8,6 +8,7 @@ declare const Buffer;
 @Injectable()
 export class UserService {
   private user: User;
+  private isLogin = false;
   private base_url = 'https://api.github.com';
   private user_info_url = this.base_url + '/user';
 
@@ -24,7 +25,8 @@ export class UserService {
   }
 
   isLoginIn(): Boolean {
-    return this.user !== undefined;
+    // return this.user !== undefined;
+    return this.user !== undefined && this.isLogin;
   }
 
   getHeaders(): Headers {
@@ -45,19 +47,19 @@ export class UserService {
   }
 
   getGistsUrl(): string {
-    return  this.base_url + '/gists';
+    return this.base_url + '/gists';
   }
 
   getUserGistsUrl(): string {
-    return  this.base_url + '/users/' +  this.user.name + '/gists';
+    return this.base_url + '/users/' + this.user.name + '/gists';
   }
 
   getImageUrl(): Promise<string> {
-    return this.http.get(this.user_info_url, {headers: this.getHeaders()})
-    .toPromise()
-    .then(response => response.json())
-    .then(json => json.avatar_url)
-    .catch(this.handleError);
+    return this.http.get(this.user_info_url, { headers: this.getHeaders() })
+      .toPromise()
+      .then(response => response.json())
+      .then(json => { this.isLogin = (json.avatar_url != null) ; return json.avatar_url; })
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

@@ -104,8 +104,7 @@ export class DataService {
   getGistId(): Promise<String> {
     return this.http.get(this.userService.getUserGistsUrl(),
       { headers: this.userService.getHeaders() })
-      .toPromise()
-      .then(response => response.json().filter(
+      .toPromise().then(response => response.json().filter(
         each_gists => each_gists.description === this.gists_description
       ))
       .then(response =>
