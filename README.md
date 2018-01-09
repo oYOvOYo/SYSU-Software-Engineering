@@ -17,6 +17,29 @@
 
 我们希望您有一定的编程基础，最好学习过某门编程语言，同时我们假定您熟悉C#基本语法（实例涉及到的基本上是基本语法），编程很重要的一点就是举一反三，根据例子扩出新的东西来。最后希望读者学习顺利。
 
+## Structure
+```
+.
+├── docs
+├── hardwork
+│   ├── homework
+│   │   ├── 0_GuessAnimal_XAML
+│   │   ├── 4_TodoList_MVVM
+│   │   ├── 5_TodoList_SavaConfig
+│   │   ├── 6_TodoList_DataBase
+│   │   ├── 7_ChatRoom_Socket
+│   │   ├── 7_ToolBox_Internet
+│   │   ├── 8_NicePlayer_Media
+│   │   └── README
+│   └── Windows 10 Fall Creators Update
+│       ├── AcrylicMaterial
+│       ├── ParallaxView
+│       └── RevealHighlight
+├── LICENSE
+├── projects
+│   └── MusicGame
+└── README.md
+```
 ## Reference
 
 + [Windows 开发人员中心](https://developer.microsoft.com/zh-cn/windows)
