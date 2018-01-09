@@ -1,0 +1,4 @@
+g++ scanner.cpp -o out
+less Sample\ Input | ./out > output
+diff output Sample\ Output
+rm out
