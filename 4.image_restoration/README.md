@@ -1,6 +1,11 @@
 # Homework4
 `jskyzero` `2017/12/26`
 
+
+## 原理
+
+我们这里说到的图像恢复都是假定知道图像的退化方式的，需要的操作也就是先去掉噪声然后进行退化操作的逆变化。
+
 ## Project 4：Image Restoration
 > The scoring method for this project is as follows:
 1. Implement a blurring filter using the equation (5.6-11，数字图像处理（第三版）) in textbook, and blur the test image ‘book_cover.jpg’ using parameters a=b=0.1 and T=1. (20%)
