@@ -1,11 +1,20 @@
 # Digit Image Propressing
-Use MATLAB in Digit Image Propressing
+`jskyzero` `2017/10/22`
 
 ![Some process result](./1.histogram_equalization/output_img_2.bmp)
 
-## LEARN TO USE MATLAB
+上图为直方图均衡/匹配的输出图像。
 
-Learn by Doing
+## Overview
+
++ 关于数字图像。
+
+  ![](./docs/usage.jpg)
+
++ 关于MATLAB
+
+  多看参考多动手。
+
 
 ## REFERENCE
 
