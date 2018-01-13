@@ -9,7 +9,7 @@ compiler:
   - gcc
 
 env:
-  - TEST_DIR=hardwork/BNF
+  - TEST_DIR=projects/BNF
 
 # before_install:
   # gcc -4.8

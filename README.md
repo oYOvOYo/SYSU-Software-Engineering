@@ -1,5 +1,5 @@
 # Compilers:Principles
-`jskyzero` `2017/12/08`
+`jskyzero` `2016/12/09`
 
 [![Build Status](https://travis-ci.org/jskyzero/Compilers-Principles.svg?branch=master)](https://travis-ci.org/jskyzero/Compilers-Principles)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
@@ -13,10 +13,15 @@ So, why must we learn compilers? most programmer, in fact, do not need to write 
 This repository's structure list bellow
 ```
 .
-├── docs            some documents
-├── hardwork        the actual projects
-├── homework        the basic part work
-└── README.md       introduction
+├── docs
+├── hardwork
+│   └── homework
+│       ├── 1.lexical_analysis
+│       ├── 2.syntax_analysis
+│       └── 3.semantic_analysis
+├── projects
+│   └── BNF
+└── README.md
 ```
 I will add many documents in those code, I hope anyone with basic c/cpp knowledge can read those code. read this repository with sequence: `docs -> homework -> hardwork`, in each part, just try to make it run and play with it.
 
