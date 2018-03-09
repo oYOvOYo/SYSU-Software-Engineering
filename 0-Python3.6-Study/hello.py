@@ -1,4 +1,0 @@
-""" hello.py
-"""
-
-print("HelloWorld!")
