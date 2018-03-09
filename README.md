@@ -1,9 +1,11 @@
 # Data Mining
+`jskyzero` `2017/07/27`
+
 > learn to process and analysis data using python
 
 
 ## Contents
---------
+
 Lessons:
 * L0: [Self Evaluation] 
 * L1: [Matplotlib NumPy and Pandas] 
