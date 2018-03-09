@@ -6,18 +6,18 @@ Actually is about Data Mining.
 ## Overview
 
 + Prerequisite: Linear Algebra, Statistics, Data Structure, Programing.
-+ Overview
++ Course Contents:
   + Supervised Learning: Liner / Loigistic Regression, SVM, decition tree, ensemble methods, neural networks, overfitting.
   + Unsupervised learing: PCA, manifold learning, clustering
-  + Revommendation: ...
-  + Association: ...
-  + Recent advanced techniques: ...
+  + Revommendation system: Collaborative Filtering, UV-Decomposition
+  + Association analysis: Apriori Algorithm, frequent itemset
+  + Recent advanced techniques: PageRank, hashing, Stochastic gradient descent, CNN
 + Assessment:
   + 3-4 Assignments, mid-term / final open-ended project attendance.
+
 ## Question & Answer
 
 - Mhy Learn Data Mining ?
-  - ~~for me, now learn it is useful to find a job.~~
   - Large-scale data is every where.
   - Greate opportunities to solve society's major problem (via infomation)
   - Commercial viewpoint, many company.
@@ -58,4 +58,8 @@ Actually is about Data Mining.
 
 - [PowerPoint](http://www.xieguotian.cn)
 - Many Reference books
+  + Jure Leskovec, Anand Rajaraman, Jeffrey David Ullman. Mining of Massive Datasets, Second Edition. Cambridge University Press, 2014. 
+  + Pang-Ning Tan, Michael Steinbach, Vipin Kumar. Introduction to data mining. Pearson, 2006. 
+  + T. Hastie, R. Tibshirani, and J. Friedman. The Elements of Statistical Learning: Data Mining, Inference, and Prediction, 2nd Ed. Springer, 2009. 
+  + 周志华. 机器学习. 清华大学出版社, 2016. 
 
