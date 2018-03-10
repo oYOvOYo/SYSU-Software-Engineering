@@ -4,7 +4,8 @@ export class Timer {
 
   public static getDate(timer: Timer): string {
     const date = new Date(timer.begin);
-    return [date.getFullYear(), date.getMonth(), date.getDate()].join('/');
+    // thanks to algebra's suggestion
+    return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/');
   }
 
   public static getElapsedTime(timer: Timer): number {
