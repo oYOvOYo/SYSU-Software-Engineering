@@ -1,11 +1,15 @@
 body {
   width: 80%;
   margin:  0 auto;
+  background: #E7ECF0;
 }
 
 h1 {
-  border-bottom: 2px solid gray;
   text-indent: 20px;
+  background: #fff;
+  height: 46px;
+  margin: 0;
+  font-family: "Segoe UI",Arial,sans-serif;
 }
 
 p {
@@ -23,7 +27,7 @@ botton {
 
 #menu {
   border: 1px solid silver;
-  margin: 0px;
+  margin-top: 10px;
   padding: 5px;
 }
 
@@ -48,7 +52,7 @@ botton {
 
 .eachTweet {
   margin: 5px;
-  background-color: gainsboro;
+  /* background-color: gainsboro; */
 }
 
 .eachTweet:nth-child(even) {
