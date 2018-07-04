@@ -1,0 +1,54 @@
+body {
+  background: #F8F8F9 !important;
+}
+
+header {
+  background: #fff;
+  border-bottom: 1px solid #dee0e1;
+}
+
+header a .title {
+  margin-right: 30px;
+  font-weight: 900;
+  color: #585858;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+.description {
+  color: #585858;
+  letter-spacing: 4.8px;
+  font-size: 16px;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 736px) {
+  header a .description {
+    display: none;
+  }
+}
+
+
+body {
+  text-align: center;
+}
+
+  body div.row  {
+    margin: 0;
+  }
+
+#color-picker {
+  height: 150px;
+}
+
+#color-box {
+  height: 150px;
+}
+
+.history_color {
+  width: 48px;
+  height: 48px;
+  margin: 2px;
+}
