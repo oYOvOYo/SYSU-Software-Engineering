@@ -1,0 +1,48 @@
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="follow col-md-3 col-12">
+          <ul>
+            {% if site.twitter_username %}
+            <li><a href="https://twitter.com/{{ site.twitter_username }}" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+            {% endif %} {% if site.github_username %}
+            <li><a href="https://github.com/{{ site.github_username }}" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+            {% endif %} {% if site.email %}
+            <li><a href="mailto:{{ site.email }}" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+            {% endif %}
+          </ul>
+        </div>
+    
+        <div class="copyright col-md-6 col-12">
+          Copyright&nbsp;©&nbsp;
+          <script type="text/javascript">
+            var fd = new Date();
+            document.write(fd.getFullYear());
+          </script>&nbsp; {{ site.title }}
+        </div>
+    
+        <div class="develop col-md-3 col-12">
+          <li>Design: <a href="https://github.com/jskyzero">jskyzero</a></li>
+          <li>Power by : <a href="http://jekyllcn.com/">Jekyll</a></li>
+        </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Scripts -->
+<script src="{{ site.url }}{{ site.baseurl }}/assets/js/main.js"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.0.1/lazyload.min.js"></script>
+<script>
+                new LazyLoad();
+
+</script>

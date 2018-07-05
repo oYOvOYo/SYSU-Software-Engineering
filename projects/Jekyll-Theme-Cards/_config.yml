@@ -1,0 +1,25 @@
+# global site settings
+title:        "Cards"
+email:        "jskyzero@outlook.com"
+description:  "A basic jekyll theme"
+logo:         "logo.png"
+url:          ""
+baseurl:      "/jekyll-theme-cards"
+
+# requirement
+plugins: [jekyll-paginate]
+
+# 转换
+markdown:    kramdown
+
+# 分页显示文章列表
+paginate:     12
+
+# default author settings
+author:             "Nishiki"
+author_img:         "Nishiki.png"
+author_img_folder:  "author"
+
+# follow settings
+github_username:  "jskyzero"
+twitter_username: "jskyzero"

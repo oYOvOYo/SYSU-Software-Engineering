@@ -1,0 +1,51 @@
+--- 
+layout : default 
+---
+
+<div class="row">
+  {% for post in paginator.posts %}
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3" id="card">
+      <article class="style{{ forloop.index | plus:1 }} ">
+          <div class="cover">
+            <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ post.thumbnail}}" alt="" />
+          </div>
+          <div class="details">
+            <a href="{{ post.url | prepend:site.baseurl | prepend:site.url }}">
+              <h2>{{ post.title }}</h2>
+            </a>
+            <!-- <p>{{ post.excerpt }}</p> -->
+          </div>
+          <div class="post_info">
+            {% if post.author and post.author_img %}
+      
+            <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author_img_folder }}/{{ post.author_img }}" alt=""
+            />
+            <span>{{ post.author }}</span> 
+            
+            {% else %}
+      
+            <img data-original="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.author_img_folder }}/{{ site.author_img }}" alt=""
+            />
+            <span>{{ site.author }}</span> 
+            
+            {% endif %}
+            <!-- https://learn.cloudcannon.com/jekyll/date-formatting/ -->
+            <span class="time">{{ post.date |  date: "%y/%m/%d" }}</span>
+          </div>
+        </article>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- 分页链接 -->
+{% if paginator.total_pages > 1 %}
+<div id="pagination">
+  {% if paginator.previous_page %}
+  <a class="icon style2 fa-arrow-circle-left" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"><span class="label">&laquo; Prev</span></a>  {% else %}
+  {% endif %}
+  {% if paginator.next_page %}
+  <a class="icon style2 fa-arrow-circle-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"><span class="label">Next &raquo;</span></a>  {% else %}
+  <!-- <span>Next &raquo;</span> -->
+  {% endif %}
+</div>
+{% endif %}
