@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "main.h": "c",
+    "stdio.h": "c",
+    "def.h": "c",
+    "string.h": "c",
+    "stdint.h": "c",
+    "des.h": "c"
+  }
+}
