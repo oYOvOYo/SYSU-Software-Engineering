@@ -1,0 +1,39 @@
+<div class="main">
+  <h2> DashBoard </h2>
+  <br>
+  <h3>Recent Todos</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-info">
+        <th scope="col">Title</th>
+        <th scope="col">Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos"
+          [class.table-success]="todo.isFinished === true"
+          [class.table-warning]="todo.isFinished !== true">
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.detail }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <h3>Recent Timer</h3>
+  <table class="table table-hover">
+      <thead>
+        <tr class="table-info">
+          <th scope="col">Date</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let each of timers">
+            <!-- [class.table-success]="todo.isFinished === true"
+            [class.table-warning]="todo.isFinished !== true"> -->
+          <td>{{ getDate(each) }}</td>
+          <td>{{ getElapsedTime(each) }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

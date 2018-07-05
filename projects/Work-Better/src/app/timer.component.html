@@ -1,0 +1,24 @@
+<h2>Timer</h2>
+<div *ngIf="timer">
+  <label class="display-3">{{ time_str }}</label>
+</div>
+<button (click)="start()" class="btn btn-outline-primary">Start</button>
+<button (click)="end()" class="btn btn-outline-danger">End</button>
+
+<h3>All Timers</h3>
+<table class="table table-hover">
+    <thead>
+      <tr class="table-info">
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let each of timers">
+          <!-- [class.table-success]="todo.isFinished === true"
+          [class.table-warning]="todo.isFinished !== true"> -->
+        <td>{{ getDate(each) }}</td>
+        <td>{{ getElapsedTime(each) }}</td>
+      </tr>
+    </tbody>
+  </table>

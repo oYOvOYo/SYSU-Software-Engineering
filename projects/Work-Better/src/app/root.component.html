@@ -1,0 +1,17 @@
+<header>
+  <div class="container">
+    <span class="title">Work Better</span>
+    <span class="description">helps you efficient working</span>
+  </div>
+</header>
+<div class="container">
+  <app-login-in></app-login-in>
+  <div *ngIf="userService.isLoginIn()">
+    <nav class="nav">
+      <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+      <a class="nav-link" routerLink="/todo">Todo</a>
+      <a class="nav-link" routerLink="/timer">Timer</a>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div *ngIf="!userService.isLoginIn()"
+     class="login-in">
+  <h1 class="display-4">Login In</h1>
+  <div class="input-group">
+    <span class="input-group-addon" >Name:</span>
+    <input class="form-control" [(ngModel)]="user.name" placeholder="name" />
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon" >Token: </span>
+    <input class="form-control" [(ngModel)]="user.token" placeholder="gits token" type="password" />
+  </div>
+  <button (click)="login_in()"
+          button type="button" class="btn btn-primary">Login in</button>
+</div>
+<div *ngIf="userService.isLoginIn()"
+      class="user-info">
+  <button (click)="login_out()"
+          class="btn btn-outline-warning btn-sm">Login Out</button>
+  <div *ngIf="img_url">
+    <img src="{{ img_url }}" alt="{{ img_url }}" class="rounded-circle">
+  </div>
+</div>
