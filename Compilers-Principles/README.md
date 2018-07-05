@@ -1,7 +1,7 @@
 # Compilers:Principles
 `jskyzero` `2016/12/09`
 
-[![Build Status](https://travis-ci.org/jskyzero/Compilers-Principles.svg?branch=master)](https://travis-ci.org/jskyzero/Compilers-Principles)
+[![Build Status](https://travis-ci.org/jskyzero/Subjects.svg?branch=master)](https://travis-ci.org/jskyzero/Subjects)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 
