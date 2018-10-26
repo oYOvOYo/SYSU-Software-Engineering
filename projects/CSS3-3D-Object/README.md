@@ -3,7 +3,7 @@
 
 Some really cool css 3d effects
 
-![](images/preview.png)
+![](./images/preview.png)
 
 ## Overview
 
@@ -11,7 +11,7 @@ Just use `transform-style: preserve-3d;` and add a parent set `perspective: 800p
 
 ## More Preview
 
-Visit [Demo](https://jskyzero.github.io/CSS3-3D-Object/)
+Visit [Demo](https://jskyzero.github.io/Web/projects/CSS3-3D-Object/)
 
 ## Reference
 
