@@ -11,7 +11,7 @@ Just use `transform-style: preserve-3d;` and add a parent set `perspective: 800p
 
 ## More Preview
 
-Visit [Demo](https://jskyzero.github.io/Web/projects/CSS3-3D-Object/)
+Visit [Demo](https://jskyzero.github.io/SYSU-Software-Engineering/web/projects/CSS3-3D-Object/)
 
 ## Reference
 

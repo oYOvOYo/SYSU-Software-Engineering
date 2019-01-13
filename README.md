@@ -5,7 +5,7 @@
 
 “所見即所得”使得Web編程充滿了吸引力，本倉庫將展現一個相對典型的前端程序的學習路徑
 
-+ 基礎靜態網頁的學習，[DEMO點我](https://jskyzero.github.io/Web/hardwork/)
++ 基礎靜態網頁的學習，[DEMO點我](https://jskyzero.github.io/SYSU-Software-Engineering/web/hardwork/)
 ```bash
 ├── homework
     ├── 1-Recipe  // HTML，簡單的菜譜頁面
@@ -18,7 +18,7 @@
     ├── 10-Asynchronous JavaScript // JS，異步編程
     └── README.md
 ```
-+ 進階項目的訓練，[DEMO點我](https://jskyzero.github.io/Web/projects/)
++ 進階項目的訓練，[DEMO點我](https://jskyzero.github.io/SYSU-Software-Engineering/web/projects/)
   + CSS3-3D-Object，CSS3中的3D效果。
   + Color-of-Mood，從零開始的基礎前端系統。
   + Github-Lighter，基於Election的客戶端程序，可以點亮你的Github貢獻板。

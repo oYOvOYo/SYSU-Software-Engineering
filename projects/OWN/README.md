@@ -5,7 +5,7 @@
 
 ## about jskyzero
 
-Please see [own](https://jskyzero.github.io/Web/projects/OWN/html/index.html)
+Please see [own](https://jskyzero.github.io/SYSU-Software-Engineering/web/projects/OWN/html/index.html)
 
 stupid student / sometimes serious /  independent developer / loving new technology / playstation network id sujiner / 
 

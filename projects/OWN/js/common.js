@@ -13,7 +13,7 @@ window.onload = function(){
   }
   // link common.css 
   var commonStyle = createElementByTagName("link");
-  commonStyle.href="https://jskyzero.github.io/Web/projects/OWN/css/common.css";
+  commonStyle.href="https://jskyzero.github.io/SYSU-Software-Engineering/web/projects/OWN/css/common.css";
   commonStyle.rel="stylesheet";
   commonStyle.type="text/css";
   head.appendChild(commonStyle);
