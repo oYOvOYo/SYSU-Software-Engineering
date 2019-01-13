@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>170</x>
+      <y>180</y>
+      <w>170</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;DB Server&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>200</x>
+      <y>230</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+user
+profile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>200</x>
+      <y>310</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>390</x>
+      <y>180</y>
+      <w>170</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;WEB Server&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>270</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>JDBC</panel_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>270</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>HTTP,JSON</panel_attributes>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>660</x>
+      <y>180</y>
+      <w>170</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Client&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>680</x>
+      <y>230</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>MVC
+Component
+symbol=component
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>680</x>
+      <y>300</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Proxy
+Services
+symbol=component
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
