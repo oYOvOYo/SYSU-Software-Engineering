@@ -29,6 +29,21 @@ namespace NicePlayer
             this.InitializeComponent();
             mediaElement.CurrentStateChanged += MediaElement_CurrentStateChanged;
             mediaElement.MediaOpened += MediaElement_MediaOpened;
+            
+            var view = ApplicationView.GetForCurrentView();
+
+            // 将标题栏的三个键背景设为透明
+            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+            // 失去焦点时，将三个键背景设为透明
+            view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            // 将三个键前景色设为白色
+            view.TitleBar.ButtonForegroundColor = Colors.White;
+            // 失去焦点时，将三个键前景色设为白色
+            view.TitleBar.ButtonInactiveForegroundColor = Colors.White;
+
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            // 窗口内容扩展填充到标题栏
+            coreTitleBar.ExtendViewIntoTitleBar = !view.IsFullScreenMode;
         }
 
         private void MediaElement_MediaOpened(object sender, RoutedEventArgs e)
